@@ -21,13 +21,22 @@ public class Customer {
     private Long id;
     private String seatNumber;
     private String name;
-    private long bus;
+
+    private Bus[] listOfBussesBooked;
     private String username;
     private String password;
 
     /*
     Getters and Setters
      */
+    public Bus[] getListOfBussesBooked() {
+        return listOfBussesBooked;
+    }
+
+    public void setListOfBussesBooked(Bus[] listOfBussesBooked) {
+        this.listOfBussesBooked = listOfBussesBooked;
+    }
+
     public Long getId() {
         return id;
     }
@@ -51,15 +60,6 @@ public class Customer {
     public void setName(String name) {
         this.name = name;
     }
-
-    public long getBus() {
-        return bus;
-    }
-
-    public void setBus(long bus) {
-        this.bus = bus;
-    }
-
     public String getUsername() {
         return username;
     }

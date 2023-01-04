@@ -22,6 +22,10 @@ public class Bus {
     private String startDestination;
     private String endDestination;
     private String numberOfSeats;
+    private double startLat;
+    private double startLng;
+    private double endLat;
+    private double endLng;
 
 
 }
