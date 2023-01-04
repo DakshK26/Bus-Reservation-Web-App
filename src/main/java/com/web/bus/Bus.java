@@ -3,6 +3,15 @@ package com.web.bus;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 /*
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
@@ -50,6 +59,44 @@ public class Bus {
         // Set distance
         this.distance = EARTH_RADIUS * c;
     }
+
+    /*
+    Method to find longtitude and langtitude from adress
+     */
+    public double[] getCoordinates(String location) throws IOException {
+        String API_KEY = "AIzaSyC6tR-p77Y-NHQyWv7JnRsFlfhOhZvkhTI";
+        String requestUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+                location + "&key=" + API_KEY;
+
+        // make the HTTP GET request to the URL
+        URL url = new URL(requestUrl);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setConnectTimeout(5000);
+        con.setReadTimeout(5000);
+
+        // read the response
+        Scanner scan = new Scanner(con.getInputStream());
+        String response = "";
+        while (scan.hasNext()) {
+            response += scan.nextLine();
+        }
+        scan.close();
+
+        // parse the response to get the longitude and latitude coordinates
+        JsonParser parser = new JsonParser();
+        JsonObject responseJson = parser.parse(response).getAsJsonObject();
+        JsonArray results = responseJson.getAsJsonArray("results");
+        JsonObject firstResult = results.get(0).getAsJsonObject();
+        JsonObject geometry = firstResult.getAsJsonObject("geometry");
+        JsonObject locationJson = geometry.getAsJsonObject("location");
+        double lat = locationJson.get("lat").getAsDouble();
+        double lng = locationJson.get("lng").getAsDouble();
+
+        return new double[] { lat, lng };
+    }
+}
 }
 
 
