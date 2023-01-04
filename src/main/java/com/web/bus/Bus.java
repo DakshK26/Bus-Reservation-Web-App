@@ -97,7 +97,6 @@ public class Bus {
         return new double[] { lat, lng };
     }
 }
-}
 
 
 
