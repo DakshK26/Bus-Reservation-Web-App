@@ -19,7 +19,6 @@ public class Customer {
         Private Instance Data
      */
     private Long id;
-    private String seatNumber;
     private String name;
 
     private Bus[] listOfBussesBooked;
@@ -43,14 +42,6 @@ public class Customer {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(String seatNumber) {
-        this.seatNumber = seatNumber;
     }
 
     public String getName() {
