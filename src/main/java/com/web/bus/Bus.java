@@ -129,7 +129,7 @@ public class Bus {
         JsonArray legs = firstRoute.getAsJsonArray("legs");
         JsonObject firstLeg = legs.get(0).getAsJsonObject();
 
-        return (firstLeg.get("duration").getAsJsonObject().get("value").getAsInt() / 60); // Convert time to minits
+        return (firstLeg.get("duration").getAsJsonObject().get("value").getAsInt() / 60); // Convert time to minutes and return
     }
 }
 
