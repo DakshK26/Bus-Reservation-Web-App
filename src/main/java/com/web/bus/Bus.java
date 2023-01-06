@@ -37,6 +37,26 @@ public class Bus {
     private double endLng;
     private double distance;
 
+    private int timeInMinutes;
+
+    /*
+    Default Constructor
+     */
+    public Bus(long id, String startDestination, String endDestination, String numberOfSeats) throws IOException {
+        this.id = id;
+        this.startDestination = startDestination;
+        this.endDestination = endDestination;
+        this.numberOfSeats = numberOfSeats;
+        var startCords = getCoordinates(startDestination);
+        this.startLat = startCords[0];
+        this.startLng = startCords[1];
+        var endCords = getCoordinates(startDestination);
+        this.endLat = endCords[0];
+        this.endLng = endCords[1];
+        calculateDistance();
+        getTravelTime();
+    }
+
     /*
     Method to calculate distance between start and end
      */
@@ -45,10 +65,10 @@ public class Bus {
         final int EARTH_RADIUS = 6371; // radius of the Earth in kilometers
 
         // Convert Distance to Radians
-        double startLatRadians = Math.toRadians(startLat);
-        double endLatRadians = Math.toRadians(endLat);
-        double latDeltaRadians = Math.toRadians(endLat - startLat);
-        double lngDeltaRadians = Math.toRadians(endLng - startLng);
+        double startLatRadians = Math.toRadians(this.startLat);
+        double endLatRadians = Math.toRadians(this.endLat);
+        double latDeltaRadians = Math.toRadians(this.endLat - this.startLat);
+        double lngDeltaRadians = Math.toRadians(this.endLng - this.startLng);
 
         // Use Haversine Formula
         double a = Math.sin(latDeltaRadians / 2) * Math.sin(latDeltaRadians / 2) +
@@ -78,15 +98,15 @@ public class Bus {
 
         // read the response
         Scanner scan = new Scanner(con.getInputStream());
-        String response = "";
+        StringBuilder response = new StringBuilder();
         while (scan.hasNext()) {
-            response += scan.nextLine();
+            response.append(scan.nextLine());
         }
         scan.close();
 
         // parse the response to get the longitude and latitude coordinates
         JsonParser parser = new JsonParser();
-        JsonObject responseJson = parser.parse(response).getAsJsonObject();
+        JsonObject responseJson = parser.parse(response.toString()).getAsJsonObject();
         JsonArray results = responseJson.getAsJsonArray("results");
         JsonObject firstResult = results.get(0).getAsJsonObject();
         JsonObject geometry = firstResult.getAsJsonObject("geometry");
@@ -100,10 +120,10 @@ public class Bus {
     /*
     Method to get travel time from two locations
      */
-    public int getTravelTime(String start, String end) throws IOException {
+    public void getTravelTime() throws IOException {
         String API_KEY = "AIzaSyC6tR-p77Y-NHQyWv7JnRsFlfhOhZvkhTI";
         String requestUrl = "https://maps.googleapis.com/maps/api/directions/json?origin=" +
-                start + "&destination=" + end + "&key=" + API_KEY;
+                this.startDestination + "&destination=" + this.endDestination + "&key=" + API_KEY;
 
         // make the HTTP GET request to the URL
         URL url = new URL(requestUrl);
@@ -115,21 +135,105 @@ public class Bus {
 
         // read the response
         Scanner scan = new Scanner(con.getInputStream()); // Create scanner
-        String response = "";
+        StringBuilder response = new StringBuilder();
         while (scan.hasNext()) {
-            response += scan.nextLine();
+            response.append(scan.nextLine());
         }
         scan.close(); // Close scanner
 
         // parse the response to get the travel time
         JsonParser parser = new JsonParser();
-        JsonObject responseJson = parser.parse(response).getAsJsonObject();
+        JsonObject responseJson = parser.parse(response.toString()).getAsJsonObject();
         JsonArray routes = responseJson.getAsJsonArray("routes");
         JsonObject firstRoute = routes.get(0).getAsJsonObject();
         JsonArray legs = firstRoute.getAsJsonArray("legs");
         JsonObject firstLeg = legs.get(0).getAsJsonObject();
 
-        return (firstLeg.get("duration").getAsJsonObject().get("value").getAsInt() / 60); // Convert time to minutes and return
+        this.timeInMinutes = (firstLeg.get("duration").getAsJsonObject().get("value").getAsInt() / 60); // Convert time to minutes and return
+    }
+
+    /*
+    Generate Getters and Setters
+     */
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getStartDestination() {
+        return startDestination;
+    }
+
+    public void setStartDestination(String startDestination) {
+        this.startDestination = startDestination;
+    }
+
+    public String getEndDestination() {
+        return endDestination;
+    }
+
+    public void setEndDestination(String endDestination) {
+        this.endDestination = endDestination;
+    }
+
+    public String getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public void setNumberOfSeats(String numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+    }
+
+    public double getStartLat() {
+        return startLat;
+    }
+
+    public void setStartLat(double startLat) {
+        this.startLat = startLat;
+    }
+
+    public double getStartLng() {
+        return startLng;
+    }
+
+    public void setStartLng(double startLng) {
+        this.startLng = startLng;
+    }
+
+    public double getEndLat() {
+        return endLat;
+    }
+
+    public void setEndLat(double endLat) {
+        this.endLat = endLat;
+    }
+
+    public double getEndLng() {
+        return endLng;
+    }
+
+    public void setEndLng(double endLng) {
+        this.endLng = endLng;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public int getTimeInMinutes() {
+        return timeInMinutes;
+    }
+
+    public void setTimeInMinutes(int timeInMinutes) {
+        this.timeInMinutes = timeInMinutes;
     }
 }
 
