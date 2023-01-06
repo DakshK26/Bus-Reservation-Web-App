@@ -96,6 +96,41 @@ public class Bus {
 
         return new double[] { lat, lng };
     }
+
+    /*
+    Method to get travel time from two locations
+     */
+    public int getTravelTime(String start, String end) throws IOException {
+        String API_KEY = "AIzaSyC6tR-p77Y-NHQyWv7JnRsFlfhOhZvkhTI";
+        String requestUrl = "https://maps.googleapis.com/maps/api/directions/json?origin=" +
+                start + "&destination=" + end + "&key=" + API_KEY;
+
+        // make the HTTP GET request to the URL
+        URL url = new URL(requestUrl);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setConnectTimeout(5000);
+        con.setReadTimeout(5000);
+
+        // read the response
+        Scanner scan = new Scanner(con.getInputStream()); // Create scanner
+        String response = "";
+        while (scan.hasNext()) {
+            response += scan.nextLine();
+        }
+        scan.close(); // Close scanner
+
+        // parse the response to get the travel time
+        JsonParser parser = new JsonParser();
+        JsonObject responseJson = parser.parse(response).getAsJsonObject();
+        JsonArray routes = responseJson.getAsJsonArray("routes");
+        JsonObject firstRoute = routes.get(0).getAsJsonObject();
+        JsonArray legs = firstRoute.getAsJsonArray("legs");
+        JsonObject firstLeg = legs.get(0).getAsJsonObject();
+
+        return (firstLeg.get("duration").getAsJsonObject().get("value").getAsInt() / 60); // Convert time to minits
+    }
 }
 
 
