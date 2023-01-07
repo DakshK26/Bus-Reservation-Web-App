@@ -20,7 +20,6 @@ public class Customer {
      */
     private Long id;
     private String name;
-
     private Bus[] listOfBussesBooked;
     private String username;
     private String password;
