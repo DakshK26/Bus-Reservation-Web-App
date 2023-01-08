@@ -27,8 +27,19 @@ public class Customer {
     private String password;
 
     /*
-    Getters and Setters
+    Default Constructor
      */
+
+    public Customer(String name, String username, String password) {
+        this.name = name;
+        this.listOfBussesBooked = null;
+        this.username = username;
+        this.password = password;
+    }
+
+    /*
+        Getters and Setters
+         */
     public Bus[] getListOfBussesBooked() {
         return listOfBussesBooked;
     }
