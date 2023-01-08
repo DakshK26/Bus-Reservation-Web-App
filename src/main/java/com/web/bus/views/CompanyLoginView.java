@@ -1,5 +1,4 @@
 package com.web.bus.views;
-import com.sun.jna.platform.unix.X11;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -11,21 +10,18 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.web.bus.entities.Customer;
-import com.web.bus.services.UserRepository;
-
 /*
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
  * Description: GUI for login, Initial user screen
  * Method List: public static void main(String[] args)
  */
-@Route("")
+@Route("company")
 @PageTitle("Login")
 @CssImport("./styles/views/login/login-view.css")
-public class LoginView extends Div {
+public class CompanyLoginView extends Div {
 
-    public LoginView() {
+    public CompanyLoginView() {
         setId("login-view"); // Set element ID
         // Declare components
         var username = new TextField("Username");
@@ -37,19 +33,12 @@ public class LoginView extends Div {
                 username,
                 password,
                 login = new Button("Login", event -> { // Login action event
-                    if(new Customer().checkCustomer(username.getValue())){ //
-                        if(new Customer().getCustomerByName(username.getValue()).getPassword().equals(password.getValue())){
 
-                        }
-                    }
-                    else{
-
-                    }
                 }),
                 register = new Button("Register", event ->{ // Register action event
-                    UI.getCurrent().navigate("register"); // Send user to register route
+                    UI.getCurrent().navigate("company/register"); // Send user to register route
                 }),
-                companyRedirect = new Button("Company Sign In", event -> { // Company action event
+                companyRedirect = new Button("User Sign In", event -> { // Company action event
                     UI.getCurrent().navigate("company"); // Send user to register route
                 })
         );

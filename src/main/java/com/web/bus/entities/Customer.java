@@ -1,6 +1,8 @@
 package com.web.bus.entities;
 
 import com.web.bus.entities.Bus;
+import com.web.bus.services.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +27,8 @@ public class Customer {
     private Bus[] listOfBussesBooked;
     private String username;
     private String password;
+    @Autowired
+    private UserRepository userRepository;
 
     /*
     Default Constructor
@@ -35,6 +39,35 @@ public class Customer {
         this.listOfBussesBooked = null;
         this.username = username;
         this.password = password;
+    }
+
+    /*
+    Blank Constructor
+     */
+    public Customer(){
+        this.name = null;
+        this.listOfBussesBooked = null;
+        this.username = null;
+        this.password = null;
+    }
+
+    /*
+    Method to save customer
+     */
+    public void saveCustomer(Customer customer) {
+        userRepository.save(customer);
+    }
+    /*
+    Method to find customer
+     */
+    public Customer getCustomerByName(String name) {
+        return userRepository.findByName(this.name);
+    }
+    /*
+    Check if customer exists
+     */
+    public boolean checkCustomer(String name) {
+        return userRepository.findByName(this.name) != null;
     }
 
     /*
