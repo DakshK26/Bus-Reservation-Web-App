@@ -52,20 +52,14 @@ public class Customer {
     /*
     Method to save customer
      */
-    public void saveCustomer(Customer customer) {
-        userRepository.save(customer);
+     public void saveCustomer(Customer customer) {
+         userRepository.save(customer);
     }
     /*
     Method to find customer
      */
     public Customer getCustomerByName(String name) {
-        return userRepository.findByName(this.name);
-    }
-    /*
-    Check if customer exists
-     */
-    public boolean checkCustomer(String name) {
-        return userRepository.findByName(this.name) != null;
+        return userRepository.findByName(name);
     }
 
     /*

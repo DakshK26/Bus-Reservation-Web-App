@@ -11,6 +11,5 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface CompanyRepository extends JpaRepository<Company, Long> {
     // Create new query to find company by name
-    @Query("SELECT c FROM Customer c WHERE c.name = :name")
     Company findByName(String name);
 }

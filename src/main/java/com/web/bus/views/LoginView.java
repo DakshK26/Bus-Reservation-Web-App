@@ -35,14 +35,7 @@ public class LoginView extends Div {
                 username,
                 password,
                 login = new Button("Login", event -> { // Login action event
-                    if(new Customer().checkCustomer(username.getValue())){ //
-                        if(new Customer().getCustomerByName(username.getValue()).getPassword().equals(password.getValue())){
 
-                        }
-                    }
-                    else{
-
-                    }
                 }),
                 register = new Button("Register", event ->{ // Register action event
                     UI.getCurrent().navigate("register"); // Send user to register route

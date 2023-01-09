@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.Query;
  * Description: Interface to use Jpa Repository to save and retrieve customers
  */
 public interface UserRepository extends JpaRepository<Customer, Long> {
+
     // Create new query to find customer by name
-    @Query("SELECT c FROM Customer c WHERE c.name = :name")
     Customer findByName(String name);
 
 }

@@ -24,12 +24,12 @@ import com.web.bus.entities.Customer;
 public class RegisterView extends Div {
 
     public RegisterView() {
-        setId("login-view"); // Set element ID
+        setId("register-view"); // Set element ID
         // Declare components
         var username = new TextField("Username");
         var password = new PasswordField("Password");
         var confirmPassword = new PasswordField("Confirm Password");
-        Button register, loginRedirect;
+        Button register, loginRedirect, companyRedirect;
         // Add components
         add(
                 new H1("Register"),
@@ -37,20 +37,19 @@ public class RegisterView extends Div {
                 password,
                 confirmPassword,
                 register = new Button("Register", event -> { // Register action event
-                    if(password.getValue().equals(confirmPassword.getValue())){
-                        Customer customer = new Customer(username.getValue(), username.getValue(), password.getValue());
-                        customer.saveCustomer(customer);
-                    }
-                    else{
 
-                    }
                 }),
                 loginRedirect = new Button("Login", event ->{ // Login action event
                     UI.getCurrent().navigate(""); // Send user to login route
+                }
+                ),
+                companyRedirect = new Button("Company Sign In", event -> { // Company action event
+                    UI.getCurrent().navigate("company"); // Send user to register route
                 })
         );
         // Change theme of buttons
         register.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         loginRedirect.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
+        companyRedirect.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
     }
 }

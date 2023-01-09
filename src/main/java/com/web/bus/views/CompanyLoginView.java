@@ -22,7 +22,7 @@ import com.vaadin.flow.router.Route;
 public class CompanyLoginView extends Div {
 
     public CompanyLoginView() {
-        setId("login-view"); // Set element ID
+        setId("companylogin-view"); // Set element ID
         // Declare components
         var username = new TextField("Username");
         var password = new PasswordField("Password");
