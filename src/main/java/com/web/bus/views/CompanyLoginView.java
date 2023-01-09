@@ -26,7 +26,7 @@ public class CompanyLoginView extends Div {
         // Declare components
         var username = new TextField("Username");
         var password = new PasswordField("Password");
-        Button login, register, companyRedirect;
+        Button login, register, userRedirect;
         // Add components
         add(
                 new H1("Welcome!"),
@@ -38,13 +38,13 @@ public class CompanyLoginView extends Div {
                 register = new Button("Register", event ->{ // Register action event
                     UI.getCurrent().navigate("company/register"); // Send user to register route
                 }),
-                companyRedirect = new Button("User Sign In", event -> { // Company action event
+                userRedirect = new Button("User Sign In", event -> { // Company action event
                     UI.getCurrent().navigate("company"); // Send user to register route
                 })
         );
         // Change theme of buttons
         login.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         register.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
-        companyRedirect.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
+        userRedirect.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
     }
 }
