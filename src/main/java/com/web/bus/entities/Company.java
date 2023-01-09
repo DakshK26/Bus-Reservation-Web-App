@@ -10,6 +10,7 @@ import javax.persistence.Id;
  * Description: GUI for login, Initial user screen
  * Method List: public static void main(String[] args)
  */
+//
 @Entity
 public class Company {
     @Id
