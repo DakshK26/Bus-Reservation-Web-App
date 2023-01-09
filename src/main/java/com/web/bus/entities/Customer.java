@@ -1,9 +1,7 @@
 package com.web.bus.entities;
 
-import com.web.bus.entities.Bus;
 import com.web.bus.services.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
