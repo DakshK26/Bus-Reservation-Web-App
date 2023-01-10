@@ -20,11 +20,11 @@ import com.web.bus.entities.Customer;
  */
 @Route("register")
 @PageTitle("Register")
-@CssImport("./styles/views/register/login-view.css")
+@CssImport("./styles/views/login/login-view.css")
 public class RegisterView extends Div {
 
     public RegisterView() {
-        setId("register-view"); // Set element ID
+        setId("login-view"); // Set element ID
         // Declare components
         var username = new TextField("Username");
         var password = new PasswordField("Password");
@@ -32,7 +32,7 @@ public class RegisterView extends Div {
         Button register, loginRedirect, companyRedirect;
         // Add components
         add(
-                new H1("Register"),
+                new H1("Register!"),
                 username,
                 password,
                 confirmPassword,

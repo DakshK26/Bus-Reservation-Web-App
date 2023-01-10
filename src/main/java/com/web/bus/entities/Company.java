@@ -24,8 +24,6 @@ public class Company extends AbstractEntity{
      */
 
     private Bus[] busList;
-    @Autowired
-    private CompanyRepository CompanyRepository;
 
     /*
     Default Constructor

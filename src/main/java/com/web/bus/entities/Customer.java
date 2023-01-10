@@ -23,8 +23,6 @@ public class Customer extends AbstractEntity{
      */
     private Bus[] listOfBussesBooked;
     private String username;
-    @Autowired
-    private UserRepository userRepository;
 
     /*
     Default Constructor
@@ -50,15 +48,15 @@ public class Customer extends AbstractEntity{
     /*
     Method to save customer
      */
-     public void saveCustomer(Customer customer) {
-         userRepository.saveAndFlush(customer);
-    }
+     //public void saveCustomer(Customer customer) {
+      //   UserRepository.saveAndFlush(customer);
+    //}
     /*
     Method to find customer
      */
-    public Optional<Customer> getCustomerByName(String name) {
-        return userRepository.findByName(name);
-    }
+   // public Optional<Customer> getCustomerByName(String name) {
+   //     return UserRepository.findByName(name);
+    //}
 
     /*
         Getters and Setters
