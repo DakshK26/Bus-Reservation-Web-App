@@ -12,15 +12,13 @@ import javax.persistence.Id;
  */
 //
 @Entity
-public class Company {
+public class Company extends AbstractEntity{
     @Id
     @GeneratedValue
     /*
     Private Instance Data
      */
-    private long id;
-    private String name;
-    private String password;
+
     private Bus[] busList;
 
     /*
@@ -35,31 +33,6 @@ public class Company {
     /*
     Getter and Setters
      */
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Bus[] getBusList() {
         return busList;
     }
