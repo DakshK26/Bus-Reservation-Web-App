@@ -37,13 +37,13 @@ public interface UserRepository extends JpaRepository<Customer, Long> {
     @Query("update Customer c set c = :newC where c.id = :id")
     void replace(@Param("newC") Customer newCustomer, @Param("id") Long id);
 
-/**
- * Custom delete method that deletes a customer by id and username
- * @param id the id of the customer to be deleted
- * @param username the username of the customer to be deleted
- */
-@Transactional
-void deleteByIdAndUsername(Long id, String username);
+    /**
+    * Custom delete method that deletes a customer by id and username
+     * @param id the id of the customer to be deleted
+     * @param username the username of the customer to be deleted
+     */
+    @Transactional
+    void deleteByIdAndUsername(Long id, String username);
 
     /**
      * Custom find method that finds a customer by name
