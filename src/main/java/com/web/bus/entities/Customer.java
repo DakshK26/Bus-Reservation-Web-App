@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Optional;
 
 /*
  * @author: Daksh & Ashwin
@@ -50,12 +51,12 @@ public class Customer extends AbstractEntity{
     Method to save customer
      */
      public void saveCustomer(Customer customer) {
-         userRepository.save(customer);
+         userRepository.saveAndFlush(customer);
     }
     /*
     Method to find customer
      */
-    public Customer getCustomerByName(String name) {
+    public Optional<Customer> getCustomerByName(String name) {
         return userRepository.findByName(name);
     }
 

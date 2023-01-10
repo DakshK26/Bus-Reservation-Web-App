@@ -1,5 +1,9 @@
 package com.web.bus.entities;
 
+import com.web.bus.services.CompanyRepository;
+import com.web.bus.services.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,6 +24,8 @@ public class Company extends AbstractEntity{
      */
 
     private Bus[] busList;
+    @Autowired
+    private CompanyRepository CompanyRepository;
 
     /*
     Default Constructor
