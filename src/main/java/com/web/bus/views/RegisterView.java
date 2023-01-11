@@ -22,14 +22,15 @@ import com.web.bus.entities.Customer;
 @PageTitle("Register")
 @CssImport("./styles/views/login/login-view.css")
 public class RegisterView extends Div {
-
+    private TextField username;
+    private PasswordField password, confirmPassword;
+    private Button register, loginRedirect, companyRedirect;
     public RegisterView() {
         setId("login-view"); // Set element ID
         // Declare components
-        var username = new TextField("Username");
-        var password = new PasswordField("Password");
-        var confirmPassword = new PasswordField("Confirm Password");
-        Button register, loginRedirect, companyRedirect;
+        username = new TextField("Username");
+        password = new PasswordField("Password");
+        confirmPassword = new PasswordField("Confirm Password");
         // Add components
         add(
                 new H1("Register!"),
@@ -51,5 +52,9 @@ public class RegisterView extends Div {
         register.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         loginRedirect.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         companyRedirect.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
+    }
+
+    public static void main (String [] args) {
+
     }
 }

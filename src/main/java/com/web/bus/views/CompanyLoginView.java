@@ -20,13 +20,15 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Login")
 @CssImport("./styles/views/login/login-view.css")
 public class CompanyLoginView extends Div {
+    private TextField username;
+    private PasswordField password;
+    private Button login, register, userRedirect;
 
     public CompanyLoginView() {
         setId("login-view"); // Set element ID
         // Declare components
-        var username = new TextField("Username");
-        var password = new PasswordField("Password");
-        Button login, register, userRedirect;
+        username = new TextField("Username");
+        password = new PasswordField("Password");
         // Add components
         add(
                 new H1("Welcome!"),
@@ -39,12 +41,15 @@ public class CompanyLoginView extends Div {
                     UI.getCurrent().navigate("company/register"); // Send user to register route
                 }),
                 userRedirect = new Button("User Sign In", event -> { // Company action event
-                    UI.getCurrent().navigate("company"); // Send user to register route
+                    UI.getCurrent().navigate(""); // Send user to register route
                 })
         );
         // Change theme of buttons
         login.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         register.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         userRedirect.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
+    }
+    public static void main (String [] args) {
+
     }
 }

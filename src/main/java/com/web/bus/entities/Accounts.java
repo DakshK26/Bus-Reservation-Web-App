@@ -1,10 +1,10 @@
 package com.web.bus.entities;
 
-public abstract class AbstractEntity {
+public abstract class Accounts {
     /*
      Instance Data
      */
-    Long id;
+    long id;
     String name;
     String password;
     String email;
@@ -21,7 +21,7 @@ public abstract class AbstractEntity {
         this.email = email;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

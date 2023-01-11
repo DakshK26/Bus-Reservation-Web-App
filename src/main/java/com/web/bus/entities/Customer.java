@@ -1,11 +1,8 @@
 package com.web.bus.entities;
 
-import com.web.bus.services.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Optional;
 
 /*
  * @author: Daksh & Ashwin
@@ -14,7 +11,7 @@ import java.util.Optional;
  * Method List:
  */
 @Entity
-public class Customer extends AbstractEntity{
+public class Customer extends Accounts {
 
     @Id
     @GeneratedValue

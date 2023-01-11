@@ -1,9 +1,5 @@
 package com.web.bus.entities;
 
-import com.web.bus.services.CompanyRepository;
-import com.web.bus.services.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +12,7 @@ import javax.persistence.Id;
  */
 //
 @Entity
-public class Company extends AbstractEntity{
+public class Company extends Accounts {
     @Id
     @GeneratedValue
     /*
@@ -26,12 +22,21 @@ public class Company extends AbstractEntity{
     private Bus[] busList;
 
     /*
-    Default Constructor
+    Blank Constructor
+     */
+    public Company(){
+        this.name = null;
+        this.password = null;
+        this.busList = null;
+    }
+
+    /*
+    Overloaded Constructor
      */
     public Company(String name, String password) {
         this.name = name;
-        this.password = password;
         this.busList = null;
+        this.password = password;
     }
 
     /*
