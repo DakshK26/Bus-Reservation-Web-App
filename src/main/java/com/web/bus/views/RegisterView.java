@@ -53,8 +53,4 @@ public class RegisterView extends Div {
         loginRedirect.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         companyRedirect.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
     }
-
-    public static void main (String [] args) {
-
-    }
 }

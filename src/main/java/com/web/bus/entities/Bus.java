@@ -42,8 +42,7 @@ public class Bus {
     /*
     Default Constructor
      */
-    public Bus(long id, String startDestination, String endDestination, String numberOfSeats) throws IOException {
-        this.id = id;
+    public Bus(String startDestination, String endDestination, String numberOfSeats) throws IOException {
         this.startDestination = startDestination;
         this.endDestination = endDestination;
         this.numberOfSeats = numberOfSeats;
@@ -60,7 +59,6 @@ public class Bus {
     /*
     Method to calculate distance between start and end
      */
-    // add a method to calculate the distance between the start and end destinations
     public void calculateDistance() {
         final int EARTH_RADIUS = 6371; // radius of the Earth in kilometers
 
@@ -235,7 +233,52 @@ public class Bus {
     public void setTimeInMinutes(int timeInMinutes) {
         this.timeInMinutes = timeInMinutes;
     }
+
+    @Override
+    public String toString() {
+        return "Bus{" +
+                "id=" + id +
+                ", startDestination='" + startDestination + '\'' +
+                ", endDestination='" + endDestination + '\'' +
+                ", numberOfSeats='" + numberOfSeats + '\'' +
+                ", startLat=" + startLat +
+                ", startLng=" + startLng +
+                ", endLat=" + endLat +
+                ", endLng=" + endLng +
+                ", distance=" + distance +
+                ", timeInMinutes=" + timeInMinutes +
+                '}';
+    }
+
+    public static void main(String [] args) throws IOException {
+        String requestUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=Washington%2C%20DC&destinations=New%20York%20City%2C%20NY&units=imperial&key=AIzaSyC6tR-p77Y-NHQyWv7JnRsFlfhOhZvkhTI";
+
+        // make the HTTP GET request to the URL
+        URL url = new URL(requestUrl);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setConnectTimeout(5000);
+        con.setReadTimeout(5000);
+
+        // read the response
+        Scanner scan = new Scanner(con.getInputStream());
+        StringBuilder response = new StringBuilder();
+        while (scan.hasNext()) {
+            response.append(scan.nextLine());
+        }
+        scan.close();
+
+        // parse the response to get the longitude and latitude coordinates
+        JsonParser parser = new JsonParser();
+        JsonObject responseJson = parser.parse(response.toString()).getAsJsonObject();
+        JsonArray results = responseJson.getAsJsonArray("results");
+        JsonObject firstResult = results.get(0).getAsJsonObject();
+        JsonObject geometry = firstResult.getAsJsonObject("geometry");
+        JsonObject locationJson = geometry.getAsJsonObject("location");
+        double lat = locationJson.get("lat").getAsDouble();
+        double lng = locationJson.get("lng").getAsDouble();
+
+        System.out.println("" + lat + "    " + lng );
+    }
 }
-
-
-

@@ -18,7 +18,7 @@ import java.util.Optional;
  * Description: Interface to use Jpa Repository to save and retrieve companies
  */
 @Repository
-public interface CompanyRepository extends CrudRepository<Company, Long> {
+public interface CompanyRepository extends JpaRepository<Company, Long> {
     /**
      * Custom save method that saves an entity and flush the changes to the database.
      * @param entity the entity to save
