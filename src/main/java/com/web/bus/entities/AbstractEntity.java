@@ -21,7 +21,7 @@ public abstract class AbstractEntity {
         this.email = email;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
