@@ -11,6 +11,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.web.bus.components.CustomPasswordField;
+import com.web.bus.components.PasswordStrengthBar;
 import com.web.bus.components.UsernameField;
 
 /*
@@ -25,17 +26,20 @@ import com.web.bus.components.UsernameField;
 public class LoginView extends Div {
     private UsernameField username;
     private CustomPasswordField password;
+    PasswordStrengthBar PasswordStrengthBar;
     private Button login, register, companyRedirect;
     public LoginView() {
         setId("login-view"); // Set element ID
         // Declare components
         username = new UsernameField(16, 4);
         password = new CustomPasswordField("Password", 20, 4);
+        PasswordStrengthBar = new PasswordStrengthBar(password);
         // Add components
         add(
                 new H1("Welcome!"),
                 username,
                 password,
+                PasswordStrengthBar,
                 login = new Button("Login", event -> { // Login action event
 
                 }),

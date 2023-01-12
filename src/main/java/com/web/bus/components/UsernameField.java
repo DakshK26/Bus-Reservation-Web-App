@@ -15,15 +15,22 @@ import java.util.regex.Pattern;
  */
 public class UsernameField extends TextField {
     /*
+    Private Instance Data
+     */
+    private int minLength;
+    private int maxLength;
+    /*
     Default Constructor
      */
-    public UsernameField(int max, int min) {
+    public UsernameField(int maxLength, int minLength) {
         super("Username");
         // Set max and min length
-        this.setMaxLength(max);
-        this.setMinLength(min);
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+        // Show value error constantly
+        setValueChangeMode(ValueChangeMode.EAGER);
         // Set helper text
-        this.addFocusListener(e-> setHelperText("Enter " + min + " - " + max + " alphanumeric characters"));
+        this.addFocusListener(e-> setHelperText("Enter " + this.minLength + " - " + this.maxLength + " alphanumeric characters"));
         this.addBlurListener(e-> setHelperText(""));
         this.addValueChangeListener(e -> {
             if (!isValidUsername(e.getValue())) {
@@ -35,11 +42,11 @@ public class UsernameField extends TextField {
     }
 
     /*
-    Method to check if username is alphanumeric
+    Method to check if username is valid
      */
     private boolean isValidUsername(String username) {
         // Alphanumeric pattern check
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]*$");
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{"+minLength+","+maxLength+"}$");
         Matcher matcher = pattern.matcher(username);
         return matcher.matches();
     }
