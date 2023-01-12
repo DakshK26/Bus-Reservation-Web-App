@@ -10,6 +10,8 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.web.bus.components.CustomPasswordField;
+import com.web.bus.components.UsernameField;
 import com.web.bus.entities.Customer;
 
 /*
@@ -22,15 +24,15 @@ import com.web.bus.entities.Customer;
 @PageTitle("Register")
 @CssImport("./styles/views/login/login-view.css")
 public class RegisterView extends Div {
-    private TextField username;
-    private PasswordField password, confirmPassword;
+    private UsernameField username;
+    private CustomPasswordField password, confirmPassword;
     private Button register, loginRedirect, companyRedirect;
     public RegisterView() {
         setId("login-view"); // Set element ID
         // Declare components
-        username = new TextField("Username");
-        password = new PasswordField("Password");
-        confirmPassword = new PasswordField("Confirm Password");
+        username = new UsernameField(16, 4);
+        password = new CustomPasswordField("Password", 20, 4);
+        confirmPassword = new CustomPasswordField("Confirm Password", 20, 4);
         // Add components
         add(
                 new H1("Register!"),

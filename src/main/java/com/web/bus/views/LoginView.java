@@ -10,6 +10,8 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.web.bus.components.CustomPasswordField;
+import com.web.bus.components.UsernameField;
 
 /*
  * @author: Daksh & Ashwin
@@ -21,14 +23,14 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Login")
 @CssImport("./styles/views/login/login-view.css")
 public class LoginView extends Div {
-    private TextField username;
-    private PasswordField password;
+    private UsernameField username;
+    private CustomPasswordField password;
     private Button login, register, companyRedirect;
     public LoginView() {
         setId("login-view"); // Set element ID
         // Declare components
-        username = new TextField("Username");
-        password = new PasswordField("Password");
+        username = new UsernameField(16, 4);
+        password = new CustomPasswordField("Password", 20, 4);
         // Add components
         add(
                 new H1("Welcome!"),
@@ -48,8 +50,5 @@ public class LoginView extends Div {
         login.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         register.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         companyRedirect.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
-    }
-    public static void main (String [] args) {
-
     }
 }

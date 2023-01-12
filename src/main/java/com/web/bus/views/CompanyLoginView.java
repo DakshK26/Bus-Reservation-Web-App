@@ -10,6 +10,10 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.web.bus.components.CustomPasswordField;
+import com.web.bus.components.UsernameField;
+
+
 /*
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
@@ -20,15 +24,15 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Login")
 @CssImport("./styles/views/login/login-view.css")
 public class CompanyLoginView extends Div {
-    private TextField username;
-    private PasswordField password;
+    private UsernameField username;
+    private CustomPasswordField password;
     private Button login, register, userRedirect;
 
     public CompanyLoginView() {
         setId("login-view"); // Set element ID
         // Declare components
-        username = new TextField("Username");
-        password = new PasswordField("Password");
+        username = new UsernameField(16, 4);
+        password = new CustomPasswordField("Password", 20, 4);
         // Add components
         add(
                 new H1("Welcome!"),
