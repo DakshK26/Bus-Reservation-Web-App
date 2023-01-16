@@ -22,7 +22,7 @@ public class Company extends Accounts {
      */
 
     private Bus[] busList;
-    private String companyname;
+    private String company;
     CompanyRepository companyRepository;
 
     /*
@@ -58,11 +58,11 @@ public class Company extends Accounts {
         this.busList = busList;
     }
 
-    public String getCompanyname() {
-        return companyname;
+    public String getCompany() {
+        return company;
     }
 
-    public void setCompanyname(String companyname) {
-        this.companyname = companyname;
+    public void setCompany(String companyname) {
+        this.company = company;
     }
 }
