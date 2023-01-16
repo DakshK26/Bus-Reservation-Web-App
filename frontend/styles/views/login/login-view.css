@@ -1,6 +1,9 @@
 #login-view {
   display: grid;
-  padding: 30%;
+  padding-top: 10%;
+  padding-left: 30%;
+  padding-right: 30%;
+  color: red;
 }
 
 :host {
