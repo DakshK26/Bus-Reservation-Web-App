@@ -31,25 +31,23 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     /**
      * Custom replace method that updates a Company with a new Company
      * @param newCompany the new Company
-     * @param id the id of the Company to be updated
      */
     @Transactional
     @Modifying
-    @Query("update Company c set c = :newC where c.id = :id")
-    void replace(@Param("newC") Company newCompany, @Param("id") Long id);
+    @Query("update Company c set c = :newC where c.companyname = :companyname")
+    void replace(@Param("newC") Company newCompany, @Param("companyname") String companyname);
 
     /**
-     * Custom delete method that deletes a customer by id and username
-     * @param id the id of the customer to be deleted
-     * @param name the username of the customer to be deleted
+     * Custom delete method that deletes a company by id and username
+     * @param companyname the username of the company to be deleted
      */
     @Transactional
-    void deleteByIdAndUsername(Long id, String name);
+    void deleteByCompanyname(String companyname);
 
     /**
-     * Custom find method that finds a customer by name
-     * @param name the name of the customer
-     * @return the customer
+     * Custom find method that finds a company by name
+     * @param companyname the name of the company
+     * @return the company
      */
-    Optional<Company> findByName(String name);
+    Optional<Company> findByCompanyname(String companyname);
 }

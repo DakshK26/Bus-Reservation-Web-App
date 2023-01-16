@@ -1,5 +1,7 @@
 package com.web.bus.entities;
 
+import com.web.bus.services.CompanyRepository;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +22,8 @@ public class Company extends Accounts {
      */
 
     private Bus[] busList;
-    private String companyName;
+    private String companyname;
+    CompanyRepository companyRepository;
 
     /*
     Blank Constructor
@@ -41,6 +44,10 @@ public class Company extends Accounts {
     }
 
     /*
+
+     */
+
+    /*
     Getter and Setters
      */
     public Bus[] getBusList() {
@@ -49,5 +56,13 @@ public class Company extends Accounts {
 
     public void setBusList(Bus[] busList) {
         this.busList = busList;
+    }
+
+    public String getCompanyname() {
+        return companyname;
+    }
+
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
     }
 }

@@ -1,8 +1,11 @@
 package com.web.bus.entities;
 
+import com.web.bus.services.UserRepository;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Optional;
 
 /*
  * @author: Daksh & Ashwin
@@ -20,6 +23,7 @@ public class Customer extends Accounts {
      */
     private Bus[] listOfBussesBooked;
     private String username;
+    UserRepository userRepository;
 
     /*
     Default Constructor
@@ -45,15 +49,15 @@ public class Customer extends Accounts {
     /*
     Method to save customer
      */
-     //public void saveCustomer(Customer customer) {
-      //   UserRepository.saveAndFlush(customer);
-    //}
+     public void saveCustomer() {
+         userRepository.saveAndFlush(this);
+    }
     /*
     Method to find customer
      */
-   // public Optional<Customer> getCustomerByName(String name) {
-   //     return UserRepository.findByName(name);
-    //}
+    public Optional<Customer> getCustomerByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 
     /*
         Getters and Setters
