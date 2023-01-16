@@ -41,15 +41,15 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     /**
      * Custom delete method that deletes a customer by id and username
      * @param id the id of the customer to be deleted
-     * @param username the username of the customer to be deleted
+     * @param name the username of the customer to be deleted
      */
-  //  @Transactional
-  //  void deleteByIdAndUsername(Long id, String name);
+    @Transactional
+    void deleteByIdAndUsername(Long id, String name);
 
     /**
      * Custom find method that finds a customer by name
      * @param name the name of the customer
      * @return the customer
      */
- //   Optional<Company> findByName(String name);
+    Optional<Company> findByName(String name);
 }

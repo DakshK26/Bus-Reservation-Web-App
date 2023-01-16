@@ -36,9 +36,6 @@ public class LoginView extends Div {
         username = new UsernameField(16, 4);
         password = new CustomPasswordField("Password", 20, 4);
         PasswordStrengthBar = new PasswordStrengthBar(password);
-
-        ThemeList themeList = UI.getCurrent().getElement().getThemeList();
-        themeList.add(Lumo.DARK);
         // Add components
         add(
                 new H1("Welcome!"),
