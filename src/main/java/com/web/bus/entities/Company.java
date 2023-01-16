@@ -20,6 +20,7 @@ public class Company extends Accounts {
      */
 
     private Bus[] busList;
+    private String companyName;
 
     /*
     Blank Constructor

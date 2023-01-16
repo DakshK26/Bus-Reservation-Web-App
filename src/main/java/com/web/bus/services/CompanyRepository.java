@@ -25,18 +25,18 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
      * @param <S> the type of the entity
      * @return the saved entity
      */
-   // @Transactional
-   // <S extends Company> S saveAndFlush(S entity);
+   @Transactional
+   <S extends Company> S saveAndFlush(S entity);
 
     /**
      * Custom replace method that updates a Company with a new Company
      * @param newCompany the new Company
      * @param id the id of the Company to be updated
      */
-  //  @Transactional
-   // @Modifying
-   // @Query("update Company c set c = :newC where c.id = :id")
-  //  void replace(@Param("newC") Company newCompany, @Param("id") Long id);
+    @Transactional
+    @Modifying
+    @Query("update Company c set c = :newC where c.id = :id")
+    void replace(@Param("newC") Company newCompany, @Param("id") Long id);
 
     /**
      * Custom delete method that deletes a customer by id and username
@@ -44,7 +44,7 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
      * @param username the username of the customer to be deleted
      */
   //  @Transactional
-  //  void deleteByIdAndUsername(Long id, String username);
+  //  void deleteByIdAndUsername(Long id, String name);
 
     /**
      * Custom find method that finds a customer by name

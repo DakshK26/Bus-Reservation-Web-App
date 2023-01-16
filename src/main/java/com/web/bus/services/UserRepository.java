@@ -4,7 +4,6 @@ import com.web.bus.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,25 +30,24 @@ public interface UserRepository extends JpaRepository<Customer, Long> {
     /**
      * Custom replace method that updates a customer with a new customer
      * @param newCustomer the new customer
-     * @param id the id of the customer to be updated
+     * @param username the username of the customer to be updated
      */
     @Transactional
     @Modifying
-    @Query("update Customer c set c = :newC where c.id = :id")
-    void replace(@Param("newC") Customer newCustomer, @Param("id") Long id);
+    @Query("update Customer c set c = :newC where c.username = :username")
+    void replaceByUsername(@Param("newC") Customer newCustomer, @Param("username") String username);
 
     /**
     * Custom delete method that deletes a customer by id and username
-     * @param id the id of the customer to be deleted
-     * @param name the username of the customer to be deleted
+     * @param username the id of the customer to be deleted
      */
-    //@Transactional
-   // void deleteByIdAndUsername(Long id, String name);
+    @Transactional
+    void deleteByUsername(String username);
 
     /**
-     * Custom find method that finds a customer by name
-     * @param name the name of the customer
+     * Custom find method that finds a customer by username
+     * @param username the username of the customer
      * @return the customer
      */
-    //Optional<Customer> findByName(String name);
+    Optional<Customer> findByUsername(String username);
 }
