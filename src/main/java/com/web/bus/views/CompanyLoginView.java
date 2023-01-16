@@ -8,8 +8,11 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 import com.web.bus.components.CustomPasswordField;
 import com.web.bus.components.UsernameField;
 
@@ -35,14 +38,14 @@ public class CompanyLoginView extends Div {
         password = new CustomPasswordField("Password", 20, 4);
         // Add components
         add(
-                new H1("Welcome!"),
+                new H1("Salutations To Your Organization!"),
                 username,
                 password,
                 login = new Button("Login", event -> { // Login action event
 
                 }),
                 register = new Button("Register", event ->{ // Register action event
-                    UI.getCurrent().navigate("company/register"); // Send user to register route
+                    UI.getCurrent().navigate("companyRegister"); // Send user to register route
                 }),
                 userRedirect = new Button("User Sign In", event -> { // Company action event
                     UI.getCurrent().navigate(""); // Send user to register route
