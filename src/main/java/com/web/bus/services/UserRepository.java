@@ -50,4 +50,12 @@ public interface UserRepository extends JpaRepository<Customer, Long> {
      * @return the customer
      */
     Optional<Customer> findByUsername(String username);
+
+    /**
+     * Check if a customer with the given username exists in the repository.
+     *
+     * @param username the username of the customer to search for
+     * @return true if a customer with the given username exists, false otherwise
+     */
+    boolean existsByUsername(String username);
 }

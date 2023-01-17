@@ -1,6 +1,8 @@
 package com.web.bus.entities;
 
 import com.web.bus.services.UserRepository;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +16,7 @@ import java.util.Optional;
  * Method List:
  */
 @Entity
-public class Customer extends Accounts {
+public class Customer extends Accounts{
 
     @Id
     @GeneratedValue
@@ -23,13 +25,12 @@ public class Customer extends Accounts {
      */
     private Bus[] listOfBussesBooked;
     private String username;
-    UserRepository userRepository;
 
     /*
     Default Constructor
      */
 
-    public Customer(String name, String username, String password) {
+    public Customer(String name, String email, String username, String password) {
         this.name = name;
         this.listOfBussesBooked = null;
         this.username = username;
@@ -49,15 +50,8 @@ public class Customer extends Accounts {
     /*
     Method to save customer
      */
-     public void saveCustomer() {
-         userRepository.saveAndFlush(this);
-    }
-    /*
-    Method to find customer
-     */
-    public Optional<Customer> getCustomerByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
+
+
 
     /*
         Getters and Setters

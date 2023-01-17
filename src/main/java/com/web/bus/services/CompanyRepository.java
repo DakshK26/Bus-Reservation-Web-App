@@ -32,7 +32,7 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
      */
     @Transactional
     @Modifying
-    @Query("update Companasy c set c = :newC where c.company = :company")
+    @Query("update Company c set c = :newC where c.company = :company")
     void replace(@Param("newC") Company newCompany, @Param("company") String company);
 
     /**

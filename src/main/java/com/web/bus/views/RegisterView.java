@@ -6,6 +6,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
@@ -16,6 +17,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import com.web.bus.components.CustomPasswordField;
 import com.web.bus.components.UsernameField;
 import com.web.bus.entities.Customer;
+import com.web.bus.services.CustomerController;
 
 /*
  * @author: Daksh & Ashwin
@@ -32,7 +34,8 @@ public class RegisterView extends Div {
     private Button register, loginRedirect, companyRedirect;
     private TextField name;
     private EmailField email;
-    public RegisterView() {
+    private CustomerController customerController;
+    public RegisterView(CustomerController customerController) {
         setId("login-view"); // Set element ID
         // Declare components
         name = new TextField("First and Last Name");
@@ -49,7 +52,28 @@ public class RegisterView extends Div {
                 password,
                 confirmPassword,
                 register = new Button("Register", event -> { // Register action event
+                    String enteredName = name.getValue();
+                    String enteredEmail = email.getValue();
+                    String enteredUsername = username.getValue();
+                    String enteredPassword = password.getValue();
+                    String enteredConfirmPassword = confirmPassword.getValue();
 
+                    // Validate the passwords match
+                    if (!enteredPassword.equals(enteredConfirmPassword)) {
+                        Notification.show("Passwords do not match. Please try again.", 5000, Notification.Position.TOP_CENTER);
+                    }
+                    // Validate the username is not already taken
+                    if (customerController.isUsernameTaken(enteredUsername)) {
+                        Notification.show("Username is already taken. Please try again.", 5000, Notification.Position.TOP_CENTER);
+                    }
+                    // Create a new customer object
+                    Customer newCustomer = new Customer(enteredName, enteredEmail, enteredUsername, enteredPassword);
+                    // Save the new customer
+                    customerController.createCustomer(newCustomer);
+                    // Show a success message
+                    Notification.show("Registration successful! Please login to continue.", 5000, Notification.Position.TOP_CENTER);
+                    // Redirect the user to the login route
+                    UI.getCurrent().navigate("");
                 }),
                 loginRedirect = new Button("Login", event ->{ // Login action event
                     UI.getCurrent().navigate(""); // Send user to login route
