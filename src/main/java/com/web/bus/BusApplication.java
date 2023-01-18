@@ -1,9 +1,14 @@
 package com.web.bus;
 
+import com.web.bus.entities.Customer;
+import com.web.bus.services.CustomerController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import javax.annotation.PostConstruct;
 
 /*
 * @author: Daksh & Ashwin
@@ -21,6 +26,19 @@ public class BusApplication {
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(BusApplication.class, args);
+	}
+
+
+	////////////////////////////////////////////////////////////////
+	// Testing Classes
+	/////////////////////////////////////////////////////////////////
+	@Autowired
+	private CustomerController customerController;
+
+	@PostConstruct
+	public void testCustomerController() {
+		var test = new Customer("Daksh k", "khannad24@gmail.com", "test", "test");
+		System.out.println(customerController.getCustomerByUsername(test.getUsername()));
 	}
 
 }

@@ -27,6 +27,8 @@ public class Customer extends Accounts{
 
     public Customer(String name, String email, String username, String password) {
         this.name = name;
+        this.email = email;
+        this.username = username;
         this.listOfBussesBooked = null;
         this.username = username;
         this.password = password;
@@ -64,6 +66,19 @@ public class Customer extends Accounts{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    /*
+    To string method
+     */
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password;
     }
 
 }

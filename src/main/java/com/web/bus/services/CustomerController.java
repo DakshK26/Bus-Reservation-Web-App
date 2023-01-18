@@ -13,6 +13,19 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    /*
+    Get All Customers
+     */
+    @GetMapping
+    public Iterable<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+    /*
+    Get Customer By Id
+     */
+    @GetMapping("/{id}")
+
     /**
      Method to create a new customer
      @param customer the customer to be created
