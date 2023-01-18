@@ -15,12 +15,12 @@ import javax.persistence.Id;
 //
 @Entity
 public class Company extends Accounts {
-    @Id
-    @GeneratedValue
     /*
     Private Instance Data
      */
-
+    @Id
+    @GeneratedValue
+    private Long id;
     private Bus[] busList;
     private String company;
 

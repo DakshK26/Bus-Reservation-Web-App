@@ -16,7 +16,7 @@ import java.util.Optional;
  * Description: Repository interface for managing {@link Customer} entities
  */
 @Repository
-public interface UserRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     /**
      * Custom save method that saves an entity and flush the changes to the database.

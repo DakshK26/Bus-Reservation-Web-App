@@ -4,7 +4,6 @@ public abstract class Accounts {
     /*
      Instance Data
      */
-    long id;
     String name;
     String password;
     String email;
@@ -19,14 +18,6 @@ public abstract class Accounts {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

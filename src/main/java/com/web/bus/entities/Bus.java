@@ -18,16 +18,10 @@ import com.google.gson.JsonParser;
  * Description: Class to represent bus object
  * Method List:
  */
-@Entity
 public class Bus {
-
-    @Id
-    @GeneratedValue
     /*
     Private Instance Data
      */
-
-    private long id;
     private String startDestination;
     private String endDestination;
     private String numberOfSeats;
@@ -154,14 +148,6 @@ public class Bus {
     Generate Getters and Setters
      */
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getStartDestination() {
         return startDestination;
     }
@@ -237,8 +223,7 @@ public class Bus {
     @Override
     public String toString() {
         return "Bus{" +
-                "id=" + id +
-                ", startDestination='" + startDestination + '\'' +
+                "startDestination='" + startDestination + '\'' +
                 ", endDestination='" + endDestination + '\'' +
                 ", numberOfSeats='" + numberOfSeats + '\'' +
                 ", startLat=" + startLat +

@@ -1,6 +1,6 @@
 package com.web.bus.security;
 import com.web.bus.entities.Customer;
-import com.web.bus.services.UserRepository;
+import com.web.bus.services.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +21,7 @@ import java.util.Optional;
 public class CustomerAuthenticationService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private CustomerRepository customerRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -34,7 +34,7 @@ public class CustomerAuthenticationService implements UserDetailsService {
      if the authentication fails
      */
     public boolean authenticate(String username, String password) {
-        Optional<Customer> optionalCustomer = userRepository.findByUsername(username);
+        Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
         if (optionalCustomer.isEmpty()) {
             return false;
         }
@@ -52,7 +52,7 @@ public class CustomerAuthenticationService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Customer> customer = userRepository.findByUsername(username);
+        Optional<Customer> customer = customerRepository.findByUsername(username);
         if (!customer.isPresent()) {
             throw new UsernameNotFoundException("Customer not found with username: " + username);
         }

@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequestMapping("/api/customers")
 public class CustomerController {
     @Autowired
-    private UserRepository userRepository;
+    private CustomerRepository customerRepository;
 
     /**
      Method to create a new customer
@@ -20,7 +20,7 @@ public class CustomerController {
      */
     @PostMapping
     public Customer createCustomer(@RequestBody Customer customer) {
-        return userRepository.saveAndFlush(customer);
+        return customerRepository.saveAndFlush(customer);
     }
 
     /**
@@ -31,12 +31,12 @@ public class CustomerController {
      */
     @PutMapping("/{username}")
     public ResponseEntity<Customer> updateCustomer(@PathVariable String username, @RequestBody Customer customer) {
-        Optional<Customer> existingCustomer = userRepository.findByUsername(username);
+        Optional<Customer> existingCustomer = customerRepository.findByUsername(username);
         if (!existingCustomer.isPresent()) {
             return ResponseEntity.notFound().build();
         }
         customer.setUsername(username);
-        userRepository.replaceByUsername(customer, username);
+        customerRepository.replaceByUsername(customer, username);
         return ResponseEntity.ok().build();
     }
 
@@ -47,10 +47,10 @@ public class CustomerController {
      */
     @DeleteMapping("/{username}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable String username) {
-        if (!userRepository.existsByUsername(username)) {
+        if (!customerRepository.existsByUsername(username)) {
             return ResponseEntity.notFound().build();
         }
-        userRepository.deleteByUsername(username);
+        customerRepository.deleteByUsername(username);
         return ResponseEntity.ok().build();
     }
 
@@ -61,7 +61,7 @@ public class CustomerController {
      */
     @GetMapping("/{username}")
     public ResponseEntity<Customer> getCustomerByUsername(@PathVariable String username) {
-        Optional<Customer> customer = userRepository.findByUsername(username);
+        Optional<Customer> customer = customerRepository.findByUsername(username);
         if (!customer.isPresent()) {
             return ResponseEntity.notFound().build();
         }
@@ -75,7 +75,7 @@ public class CustomerController {
      @return true if the username is already taken, false otherwise
      */
     public boolean isUsernameTaken(String username) {
-        return userRepository.findByUsername(username).isPresent();
+        return customerRepository.findByUsername(username).isPresent();
     }
 }
 

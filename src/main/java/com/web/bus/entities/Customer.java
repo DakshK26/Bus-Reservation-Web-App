@@ -1,13 +1,8 @@
 package com.web.bus.entities;
 
-import com.web.bus.services.UserRepository;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Optional;
 
 /*
  * @author: Daksh & Ashwin
@@ -17,12 +12,12 @@ import java.util.Optional;
  */
 @Entity
 public class Customer extends Accounts{
-
-    @Id
-    @GeneratedValue
     /*
         Private Instance Data
      */
+    @Id
+    @GeneratedValue
+    private Long id;
     private Bus[] listOfBussesBooked;
     private String username;
 
