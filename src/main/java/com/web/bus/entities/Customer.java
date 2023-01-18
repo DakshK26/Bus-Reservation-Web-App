@@ -29,7 +29,7 @@ public class Customer extends Accounts{
         this.name = name;
         this.email = email;
         this.username = username;
-        this.listOfBussesBooked = null;
+        this.listOfBussesBooked = new Bus[0];
         this.username = username;
         this.password = password;
     }

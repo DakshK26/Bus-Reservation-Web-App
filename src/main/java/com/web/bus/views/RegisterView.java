@@ -15,9 +15,11 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.web.bus.components.CustomPasswordField;
+import com.web.bus.components.PasswordStrengthBar;
 import com.web.bus.components.UsernameField;
 import com.web.bus.entities.Customer;
 import com.web.bus.services.CustomerController;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /*
  * @author: Daksh & Ashwin
@@ -29,11 +31,16 @@ import com.web.bus.services.CustomerController;
 @PageTitle("Register")
 @CssImport("./styles/views/login/login-view.css")
 public class RegisterView extends Div {
+    /*
+    Private Instance Data
+     */
     private UsernameField username;
     private CustomPasswordField password, confirmPassword;
     private Button register, loginRedirect, companyRedirect;
     private TextField name;
     private EmailField email;
+    private PasswordStrengthBar passwordStrengthBar;
+    @Autowired
     private CustomerController customerController;
     public RegisterView(CustomerController customerController) {
         setId("login-view"); // Set element ID
@@ -43,6 +50,8 @@ public class RegisterView extends Div {
         username = new UsernameField(16, 4);
         password = new CustomPasswordField("Password", 20, 4);
         confirmPassword = new CustomPasswordField("Confirm Password", 20, 4);
+        passwordStrengthBar = new PasswordStrengthBar(password);
+        register = new Button("Register");
         // Add components
         add(
                 new H1("Register!"),
@@ -50,6 +59,7 @@ public class RegisterView extends Div {
                 email,
                 username,
                 password,
+                passwordStrengthBar,
                 confirmPassword,
                 register = new Button("Register", event -> { // Register action event
                     String enteredName = name.getValue();
