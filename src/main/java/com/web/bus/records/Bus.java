@@ -232,7 +232,7 @@ public class Bus {
     }
 
     public static void main(String[] args) throws IOException {
-        Bus bus = new Bus("30AllegroDrive", "45DaviselmDrive", "10");
+        Bus bus = new Bus("Toronto", "Ottawa", "10");
         System.out.println(bus.toString());
     }
 }
