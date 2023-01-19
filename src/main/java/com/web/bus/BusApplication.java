@@ -28,17 +28,4 @@ public class BusApplication {
 		SpringApplication.run(BusApplication.class, args);
 	}
 
-
-	////////////////////////////////////////////////////////////////
-	// Testing Classes
-	/////////////////////////////////////////////////////////////////
-	@Autowired
-	private CustomerController customerController;
-
-	@PostConstruct
-	public void testCustomerController() {
-		var test = new Customer("Daksh k", "khannad24@gmail.com", "test", "test");
-		System.out.println(customerController.getCustomerByUsername(test.getUsername()));
-	}
-
 }

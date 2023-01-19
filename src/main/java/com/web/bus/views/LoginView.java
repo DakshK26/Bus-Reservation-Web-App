@@ -48,12 +48,8 @@ public class LoginView extends Div {
 
         // Create Login Button
         login = new Button("Login", event -> {
-            // Get the entered username and password
-            String enteredUsername = username.getValue();
-            String enteredPassword = password.getValue();
-
             // Call the authentication service to verify the user's credentials
-            boolean isAuthenticated = authenticationService.authenticate(enteredUsername, enteredPassword);
+            boolean isAuthenticated = authenticationService.authenticate(username.getValue(), password.getValue());
 
             if (isAuthenticated) {
                 // Redirect the user to the "main" route

@@ -1,6 +1,6 @@
 package com.web.bus.entities;
 
-import com.web.bus.services.CompanyRepository;
+import com.web.bus.records.Bus;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

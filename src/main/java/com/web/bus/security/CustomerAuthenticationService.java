@@ -40,7 +40,7 @@ public class CustomerAuthenticationService implements UserDetailsService {
         }
 
         Customer customer = optionalCustomer.get();
-        return passwordEncoder.matches(password, customer.getPassword());
+        return passwordEncoder.matches(password, customer.getPassword()); // Check if password matches password inside customer
     }
 
     /**

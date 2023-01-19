@@ -1,5 +1,7 @@
 package com.web.bus.entities;
 
+import com.web.bus.records.Bus;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,7 +31,6 @@ public class Customer extends Accounts{
         this.name = name;
         this.email = email;
         this.username = username;
-        this.listOfBussesBooked = new Bus[0];
         this.username = username;
         this.password = password;
     }

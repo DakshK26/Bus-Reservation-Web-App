@@ -1,8 +1,4 @@
-package com.web.bus.entities;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+package com.web.bus.records;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -18,6 +14,7 @@ import com.google.gson.JsonParser;
  * Description: Class to represent bus object
  * Method List:
  */
+
 public class Bus {
     /*
     Private Instance Data
@@ -30,7 +27,6 @@ public class Bus {
     private double endLat;
     private double endLng;
     private double distance;
-
     private int timeInMinutes;
 
     /*
@@ -43,7 +39,7 @@ public class Bus {
         var startCords = getCoordinates(startDestination);
         this.startLat = startCords[0];
         this.startLng = startCords[1];
-        var endCords = getCoordinates(startDestination);
+        var endCords = getCoordinates(endDestination);
         this.endLat = endCords[0];
         this.endLng = endCords[1];
         calculateDistance();
@@ -76,7 +72,7 @@ public class Bus {
     Method to find longtitude and langtitude from adress
      */
     public double[] getCoordinates(String location) throws IOException {
-        String API_KEY = "AIzaSyC6tR-p77Y-NHQyWv7JnRsFlfhOhZvkhTI";
+        String API_KEY = "AIzaSyBk0Kb6yd7K--5U_vqKZjggvZvXlBaLBP8";
         String requestUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
                 location + "&key=" + API_KEY;
 
@@ -235,35 +231,8 @@ public class Bus {
                 '}';
     }
 
-    public static void main(String [] args) throws IOException {
-        String requestUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=Washington%2C%20DC&destinations=New%20York%20City%2C%20NY&units=imperial&key=AIzaSyC6tR-p77Y-NHQyWv7JnRsFlfhOhZvkhTI";
-
-        // make the HTTP GET request to the URL
-        URL url = new URL(requestUrl);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("Content-Type", "application/json");
-        con.setConnectTimeout(5000);
-        con.setReadTimeout(5000);
-
-        // read the response
-        Scanner scan = new Scanner(con.getInputStream());
-        StringBuilder response = new StringBuilder();
-        while (scan.hasNext()) {
-            response.append(scan.nextLine());
-        }
-        scan.close();
-
-        // parse the response to get the longitude and latitude coordinates
-        JsonParser parser = new JsonParser();
-        JsonObject responseJson = parser.parse(response.toString()).getAsJsonObject();
-        JsonArray results = responseJson.getAsJsonArray("results");
-        JsonObject firstResult = results.get(0).getAsJsonObject();
-        JsonObject geometry = firstResult.getAsJsonObject("geometry");
-        JsonObject locationJson = geometry.getAsJsonObject("location");
-        double lat = locationJson.get("lat").getAsDouble();
-        double lng = locationJson.get("lng").getAsDouble();
-
-        System.out.println("" + lat + "    " + lng );
+    public static void main(String[] args) throws IOException {
+        Bus bus = new Bus("30AllegroDrive", "45DaviselmDrive", "10");
+        System.out.println(bus.toString());
     }
 }

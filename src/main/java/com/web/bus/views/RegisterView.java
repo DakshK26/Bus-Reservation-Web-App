@@ -21,6 +21,9 @@ import com.web.bus.entities.Customer;
 import com.web.bus.services.CustomerController;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /*
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
@@ -42,7 +45,7 @@ public class RegisterView extends Div {
     private PasswordStrengthBar passwordStrengthBar;
     @Autowired
     private CustomerController customerController;
-    public RegisterView(CustomerController customerController) {
+    public RegisterView() {
         setId("login-view"); // Set element ID
         // Declare components
         name = new TextField("First and Last Name");
@@ -73,13 +76,13 @@ public class RegisterView extends Div {
                         Notification.show("Passwords do not match. Please try again.", 5000, Notification.Position.TOP_CENTER);
                     }
                     // Validate the username is not already taken
-                    if (customerController.isUsernameTaken(enteredUsername)) {
+                    if (this.customerController.isUsernameTaken(enteredUsername)) {
                         Notification.show("Username is already taken. Please try again.", 5000, Notification.Position.TOP_CENTER);
                     }
                     // Create a new customer object
                     Customer newCustomer = new Customer(enteredName, enteredEmail, enteredUsername, enteredPassword);
                     // Save the new customer
-                    customerController.createCustomer(newCustomer);
+                    this.customerController.createCustomer(newCustomer);
                     // Show a success message
                     Notification.show("Registration successful! Please login to continue.", 5000, Notification.Position.TOP_CENTER);
                     // Redirect the user to the login route
