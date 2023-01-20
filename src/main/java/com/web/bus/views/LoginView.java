@@ -18,6 +18,7 @@ import com.web.bus.components.PasswordStrengthBar;
 import com.web.bus.components.UsernameField;
 import com.web.bus.security.CustomerAuthenticationService;
 import com.web.bus.security.CustomerPrincipal;
+import com.web.bus.services.CustomerController;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /*

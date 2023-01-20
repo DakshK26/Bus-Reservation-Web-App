@@ -1,6 +1,6 @@
 package com.web.bus.entities;
 
-
+import com.web.bus.records.Bus;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +20,7 @@ public class Customer extends Accounts{
     @Id
     @GeneratedValue
     private Long id;
+    private Bus[] listOfBussesBooked;
     private String username;
 
     /*
@@ -29,6 +30,7 @@ public class Customer extends Accounts{
     public Customer(String name, String email, String username, String password) {
         this.name = name;
         this.email = email;
+        this.listOfBussesBooked = new Bus[0];
         this.username = username;
         this.password = password;
     }
@@ -38,6 +40,7 @@ public class Customer extends Accounts{
      */
     public Customer(){
         this.name = null;
+        this.listOfBussesBooked = null;
         this.username = null;
         this.password = null;
     }
@@ -51,6 +54,13 @@ public class Customer extends Accounts{
     /*
         Getters and Setters
          */
+    public Bus[] getListOfBussesBooked() {
+        return listOfBussesBooked;
+    }
+
+    public void setListOfBussesBooked(Bus[] listOfBussesBooked) {
+        this.listOfBussesBooked = listOfBussesBooked;
+    }
     public String getUsername() {
         return username;
     }
