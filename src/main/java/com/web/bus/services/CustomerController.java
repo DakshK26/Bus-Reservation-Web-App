@@ -29,11 +29,10 @@ public class CustomerController {
     /**
      Method to create a new customer
      @param customer the customer to be created
-     @return the created customer
      */
     @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer) {
-        return customerRepository.saveAndFlush(customer);
+    public void createCustomer(@RequestBody Customer customer) {
+        customerRepository.save(customer);
     }
 
     /**

@@ -15,7 +15,7 @@ import java.util.Optional;
  @author: Daksh & Ashwin
  Date: Jan. 2023
  Description: Service class that provides authentication for customers by implementing
- Spring Security's UserDetailsService interface
+              Spring Security's UserDetailsService interface
  */
 @Service
 public class CustomerAuthenticationService implements UserDetailsService {

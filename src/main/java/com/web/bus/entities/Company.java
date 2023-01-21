@@ -1,10 +1,6 @@
 package com.web.bus.entities;
 
-import com.web.bus.records.Bus;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /*
  * @author: Daksh & Ashwin
@@ -14,47 +10,39 @@ import javax.persistence.Id;
  */
 //
 @Entity
-public class Company extends Accounts {
+public class Company extends AbstractEntity {
+
     /*
-    Private Instance Data
-     */
-    @Id
-    @GeneratedValue
-    private Long id;
-    private Bus[] busList;
+        Private Instance Data
+         */
     private String company;
+    private String name;
+    private String password;
+    private String email;
 
     /*
     Blank Constructor
      */
-    public Company(){
-        super();
-        this.busList = null;
+    public Company() {
+        this.company = null;
+        this.name = null;
+        this.password = null;
+        this.email = null;
     }
 
     /*
-    Overloaded Constructor
+    Default Constructor
      */
-    public Company(String name, String password) {
+    public Company(String company, String name, String password, String email) {
+        this.company = company;
         this.name = name;
-        this.busList = new Bus[0];
         this.password = password;
+        this.email = email;
     }
-
-    /*
-
-     */
 
     /*
     Getter and Setters
      */
-    public Bus[] getBusList() {
-        return busList;
-    }
-
-    public void setBusList(Bus[] busList) {
-        this.busList = busList;
-    }
 
     public String getCompany() {
         return company;
@@ -62,5 +50,28 @@ public class Company extends Accounts {
 
     public void setCompany(String companyname) {
         this.company = company;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
