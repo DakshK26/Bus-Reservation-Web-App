@@ -33,7 +33,7 @@ public class CustomerHomeView extends VerticalLayout {
         search = new Button("Search");
 
         add (
-                new H1("Book a Bus"),
+                new H1("Welcome to the Bus Reservation System!"),
                 new HorizontalLayout(new H2("Search: "), select, searchbar, search)
                 );
        search.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
