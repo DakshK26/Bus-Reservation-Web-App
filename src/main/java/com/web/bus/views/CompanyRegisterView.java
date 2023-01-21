@@ -29,12 +29,13 @@ public class CompanyRegisterView extends Div {
     private UsernameField username;
     private CustomPasswordField password, confirmPassword;
     private Button register, loginRedirect, customerRedirect;
-    private TextField companyName;
+    private TextField companyName, ceoName;
     private EmailField companyEmail;
     public CompanyRegisterView() {
         setId("login-view"); // Set element ID
         // Declare components
         companyName = new TextField("Company Name");
+        ceoName = new TextField("Name of CEO");
         companyEmail = new EmailField("Company Email");
         username = new UsernameField(16, 4);
         password = new CustomPasswordField("Password", 20, 4);
@@ -43,6 +44,7 @@ public class CompanyRegisterView extends Div {
         add(
                 new H1("Company Registration"),
                 companyName,
+                ceoName,
                 companyEmail,
                 username,
                 password,
