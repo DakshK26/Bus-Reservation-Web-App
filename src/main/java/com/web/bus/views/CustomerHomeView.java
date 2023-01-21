@@ -17,7 +17,6 @@ import java.awt.*;
 
 @Route("customerHomeView")
 @PageTitle("CustomerHome")
-@CssImport("./styles/views/login/login-view.css")
 public class CustomerHomeView extends VerticalLayout {
     Button search;
     com.vaadin.flow.component.textfield.TextField searchbar;
