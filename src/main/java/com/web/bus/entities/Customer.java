@@ -39,10 +39,9 @@ public class Customer extends Accounts{
     Blank Constructor
      */
     public Customer(){
-        this.name = null;
+        super();
         this.listOfBussesBooked = null;
         this.username = null;
-        this.password = null;
     }
 
     /*

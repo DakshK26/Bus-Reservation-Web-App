@@ -8,6 +8,11 @@ public abstract class Accounts {
     String password;
     String email;
 
+    public Accounts() {
+        this.name = "";
+        this.password = "";
+        this.email = "";
+    }
     /*
     Getter and Setters
      */

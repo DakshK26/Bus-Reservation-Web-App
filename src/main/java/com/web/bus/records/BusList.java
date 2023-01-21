@@ -42,11 +42,7 @@ public class BusList {
         }
     }
 
-    public void quicksort() {
-        quicksort(0, currentSize - 1);
-    }
-
-    private void quicksort(int low, int high) {
+    public void quicksort(int low, int high) {
         if (low < high) {
             int pivot = partition(low, high);
             quicksort(low, pivot);

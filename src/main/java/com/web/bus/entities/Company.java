@@ -28,8 +28,7 @@ public class Company extends Accounts {
     Blank Constructor
      */
     public Company(){
-        this.name = null;
-        this.password = null;
+        super();
         this.busList = null;
     }
 
