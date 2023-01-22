@@ -19,9 +19,9 @@ import com.web.bus.entities.BusList;
 import java.io.IOException;
 import java.util.List;
 
-@Route(value = "customerHomeView", layout = CustomerMainLayout.class)
-@PageTitle("CustomerHome")
-public class CustomerHomeView extends VerticalLayout {
+@Route(value = "customerHistoryView", layout = CustomerMainLayout.class)
+@PageTitle("CustomerHistory")
+public class CustomerHistoryView extends VerticalLayout {
     private Button search;
     private TextField searchbar;
     private Select<String> select;
@@ -30,7 +30,7 @@ public class CustomerHomeView extends VerticalLayout {
 
     private List<Bus> busList;
 
-    public CustomerHomeView () throws IOException {
+    public CustomerHistoryView() throws IOException {
         //busses = new BusList();
         //Bus bus = new Bus("Freeway", "Toronto", "Ottawa", "10");
         //Bus bus2 = new Bus("Parkway", "Vancouver", "Hamilton", "20");
@@ -71,15 +71,10 @@ public class CustomerHomeView extends VerticalLayout {
         table.addColumn(Bus::getDistance).setHeader("Distance");
         table.addColumn(Bus::getTimeInMinutes).setHeader("Travel Time");
 
-        table.addComponentColumn(item -> {
-            Button btn = new Button("Book");
-            return btn;
-                }).setHeader("Book Bus");
-
         table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
 
         add (
-                new H1("Book A Bus"),
+                new H1("Past Purchases"),
                 new HorizontalLayout(new H4("Search: "), select, searchbar, search),
                 table
                 );

@@ -30,18 +30,21 @@ public class CustomerMainLayout extends AppLayout {
 
         HorizontalLayout header = new HorizontalLayout(new DrawerToggle());
         header.addClassName("header");
-        header.setWidth("100%");
+        header.setWidth("3%");
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
 
-        addToNavbar(header);
+        addToNavbar(header, title);
     }
 
     private void createDrawer() {
         RouterLink customerMainLink = new RouterLink("Book A Bus", CustomerHomeView.class);
         customerMainLink.setHighlightCondition(HighlightConditions.sameLocation());
+        RouterLink customerHistoryLink = new RouterLink("View Past Purchases", CustomerHistoryView.class);
+        customerHistoryLink.setHighlightCondition(HighlightConditions.sameLocation());
 
         addToDrawer(new VerticalLayout(
-                customerMainLink
+                customerMainLink,
+                customerHistoryLink
         ));
     }
 

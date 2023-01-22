@@ -34,9 +34,12 @@ public class CompanyMainLayout extends AppLayout {
     private void createDrawer() {
         RouterLink companyMainLink = new RouterLink("View All Busses", CompanyHomeView.class);
         companyMainLink.setHighlightCondition(HighlightConditions.sameLocation());
+        RouterLink companyRoutesLink = new RouterLink("View Company Active Routes", CompanyRoutesView.class);
+        companyRoutesLink.setHighlightCondition(HighlightConditions.sameLocation());
 
         addToDrawer(new VerticalLayout(
-                companyMainLink
+                companyMainLink,
+                companyRoutesLink
         ));
     }
 
