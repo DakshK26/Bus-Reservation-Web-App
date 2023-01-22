@@ -9,6 +9,9 @@ import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.web.bus.entities.Bus;
+
+import java.io.IOException;
 
 @Route("companyAddRouteView")
 @PageTitle("companyAddRoute")
@@ -43,7 +46,14 @@ private Button add, cancel;
             System.out.println(numSeatsAvailableValue);
 
             if (!busIDValue.equalsIgnoreCase("") && !startDestinationValue.equalsIgnoreCase("") && !endDestinationValue.equalsIgnoreCase("") && numSeatsAvailable.getValue() > 0) {
-                UI.getCurrent().navigate("companyRoutesView");
+                try {
+                    Bus bus = new Bus(startDestinationValue, endDestinationValue, numSeatsAvailableValue, busIDValue);
+                   System.out.println(bus.toStringFile());
+                    UI.getCurrent().navigate("companyRoutesView");
+                }
+                catch (IOException e) {
+
+                }
             }
         });
 

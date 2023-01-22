@@ -21,7 +21,7 @@ public class Bus {
      */
     private String startDestination;
     private String endDestination;
-    private String numberOfSeats;
+    private int numberOfSeats;
     private String busID;
     private double startLat;
     private double startLng;
@@ -33,7 +33,7 @@ public class Bus {
     /*
     Default Constructor
      */
-    public Bus(String startDestination, String endDestination, String numberOfSeats, String busID) throws IOException {
+    public Bus(String startDestination, String endDestination, int numberOfSeats, String busID) throws IOException {
         this.startDestination = startDestination;
         this.endDestination = endDestination;
         this.numberOfSeats = numberOfSeats;
@@ -162,11 +162,11 @@ public class Bus {
         this.endDestination = endDestination;
     }
 
-    public String getNumberOfSeats() {
+    public int getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setNumberOfSeats(String numberOfSeats) {
+    public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 
@@ -226,6 +226,10 @@ public class Bus {
         this.busID = busID;
     }
 
+    public String toStringFile() {
+        return (getStartDestination() + "/" + getEndDestination() + "/" + getNumberOfSeats() + "/" + getBusID() + "/");
+    }
+
     @Override
     public String toString() {
         return "Bus{" +
@@ -243,7 +247,7 @@ public class Bus {
     }
 
     public static void main(String[] args) throws IOException {
-        Bus bus = new Bus("Toronto", "Ottawa", "10", "Mustang");
-        System.out.println(bus.toString());
+        Bus bus = new Bus("Toronto", "Ottawa", 10, "Mustang");
+        System.out.println(bus.toStringFile());
     }
 }

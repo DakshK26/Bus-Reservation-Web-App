@@ -32,15 +32,14 @@ public class CompanyRoutesView extends VerticalLayout {
     private List<Bus> busList;
 
     public CompanyRoutesView() throws IOException {
-        //busses = new BusList();
-        //Bus bus = new Bus("Freeway", "Toronto", "Ottawa", "10");
+       // busses = new BusList();
         //Bus bus2 = new Bus("Parkway", "Vancouver", "Hamilton", "20");
        // Bus bus3 = new Bus("International", "Brampton", "Regina", "15");
         //Bus bus4 = new Bus("BooLoo", "Brampton", "Regina", "15");
        // Bus bus5 = new Bus("International", "Brampton", "Regina", "15");
        // Bus bus6 = new Bus("International", "Brampton", "Regina", "15");
         //Bus bus7 = new Bus("International", "Brampton", "Regina", "15");
-      //  Bus bus8 = new Bus("International", "Brampton", "Regina", "15");
+         //Bus bus8 = new Bus("International", "Brampton", "Regina", "15");
         //Bus bus9 = new Bus("International", "Brampton", "Regina", "15");
        // Bus bus10 = new Bus("International", "Brampton", "Regina", "15");
 
