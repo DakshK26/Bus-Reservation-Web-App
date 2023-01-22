@@ -49,8 +49,19 @@ public class CompanyHomeView extends VerticalLayout {
         searchbar = new TextField();
         searchbar.setPlaceholder("Search Criteria");
         searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
-        search = new Button("Search");
-        clear = new Button("Clear Filters");
+        search = new Button("Search", event ->{ // Register action event
+        if (select.getValue().equalsIgnoreCase("Company")) {
+            String companyName = searchbar.getValue();
+            BusList companyBuses = new BusList();
+            companyBuses = companyBuses.searchCompany(companyName, buses);
+            busList = Arrays.asList(companyBuses.getList());
+            table.setItems(busList);
+        }
+        });
+        clear = new Button("Clear Filters", event ->{ // Register action event
+            busList = Arrays.asList(buses.getList());
+            table.setItems(busList);
+        });
         table = new Grid<>();
         table.setItems(busList);
         table.addColumn(Bus::getBusID).setHeader("Company");
@@ -60,6 +71,8 @@ public class CompanyHomeView extends VerticalLayout {
         table.addColumn(Bus::getTimeInMinutes).setHeader("Travel Time");
 
         table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
+
+
 
         add (
                 new H1("All Currently Active Routes - All Companies"),
