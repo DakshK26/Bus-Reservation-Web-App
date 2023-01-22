@@ -1,6 +1,8 @@
 package com.web.bus.records;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -227,7 +229,7 @@ public class Bus {
     }
 
     public String toStringFile() {
-        return (getStartDestination() + "/" + getEndDestination() + "/" + getNumberOfSeats() + "/" + getBusID() + "/");
+        return (getStartDestination() + "/" + getEndDestination() + "/" + getNumberOfSeats() + "/" + getBusID());
     }
 
     @Override
