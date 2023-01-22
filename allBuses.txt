@@ -1,3 +1,7 @@
 Toronto/Vancouver/12/Ashwin
 Ottawa/Vancouver/20/Daksh
+Toronto/Niagra/12/NiagraFalls
+Niagra/Vancouver/24/Youtube
+Niagra/Buffalo/24/NiagraFalls
+California/Toronto/220/Youtube
 EOF
