@@ -37,8 +37,10 @@ public class customerPurchaseView extends VerticalLayout {
 
         name = new TextField("First & Last Name");
         name.setWidth("300px");
+        name.setMinLength(1);
         emailAddress = new EmailField("Email Address");
         emailAddress.setWidth("300px");
+        emailAddress.setMinLength(1);
         emailAddress.setPlaceholder("example@asdk.com");
         phoneNumber = new TextField("Phone Number");
         phoneNumber.setWidth("300px");
@@ -50,13 +52,15 @@ public class customerPurchaseView extends VerticalLayout {
         cardTypes.setWidth("200px");
         cardNum = new TextField("Card Number");
         cardNum.setWidth("300px");
-        phoneNumber.setMinLength(16);
-        phoneNumber.setMaxLength(16);
+        cardNum.setMinLength(16);
+        cardNum.setMaxLength(16);
         expiration = new TextField("Card Expiration Date");
         expiration.setPlaceholder("MM/YYYY");
         expiration.setMinLength(7);
         expiration.setMaxLength(7);
         cvc = new IntegerField("CVC");
+        cvc.setMin(000);
+        cvc.setMax(9999);
 
         purchase = new Button("Purchase", event ->{ // Register action event
             String enteredName = name.getValue();
@@ -75,9 +79,7 @@ public class customerPurchaseView extends VerticalLayout {
             System.out.println(enteredExpiration);
             System.out.println(enteredCVC);
 
-
-
-            //   UI.getCurrent().navigate(""); // Send user to register route
+            UI.getCurrent().navigate("customerHomeView"); // Send user to register route
         });
         cancel = new Button("Cancel Purchase", event -> { // Company action event
             UI.getCurrent().navigate("customerHomeView"); // Send user to register route
@@ -87,7 +89,7 @@ public class customerPurchaseView extends VerticalLayout {
                                         name, emailAddress, phoneNumber, cardTypes, cardNum, expiration, cvc, purchase, cancel);
 
         add (
-            new H1("Purchase Ticket"),
+                new H1("Purchase Ticket"),
                 busIDLbl,
                 startDestinationLbl,
                 endDestinationLbl,

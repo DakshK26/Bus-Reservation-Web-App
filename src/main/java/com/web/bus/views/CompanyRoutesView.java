@@ -1,5 +1,6 @@
 package com.web.bus.views;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
@@ -22,7 +23,7 @@ import java.util.List;
 @Route(value = "companyRoutesView", layout = CompanyMainLayout.class)
 @PageTitle("CustomerRoutes")
 public class CompanyRoutesView extends VerticalLayout {
-    private Button search;
+    private Button search, addRoute;
     private TextField searchbar;
     private Select<String> select;
     private Grid<Bus> table;
@@ -62,7 +63,12 @@ public class CompanyRoutesView extends VerticalLayout {
         searchbar = new TextField();
         searchbar.setPlaceholder("Search Criteria");
         searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
-        search = new Button("Search");
+        search = new Button("Search", event -> { // Company action event
+            UI.getCurrent().navigate("companyAddRouteView");
+        });
+        addRoute = new Button ("Add a Route", event -> { // Company action event
+            UI.getCurrent().navigate("companyAddRouteView"); // Send user to register route
+        });
         table = new Grid<>();
         //table.setItems(busList);
       //  table.addColumn(Bus::getBusID).setHeader("Bus ID");
@@ -85,6 +91,7 @@ public class CompanyRoutesView extends VerticalLayout {
         add (
                 new H1("Company Active Routes"),
                 new HorizontalLayout(new H4("Search: "), select, searchbar, search),
+                addRoute,
                 table
                 );
        search.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
