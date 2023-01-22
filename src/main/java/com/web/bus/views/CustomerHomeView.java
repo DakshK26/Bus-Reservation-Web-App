@@ -1,5 +1,6 @@
 package com.web.bus.views;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
@@ -7,20 +8,22 @@ import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.web.bus.entities.Customer;
 import com.web.bus.records.Bus;
 import com.web.bus.records.BusList;
 
 import java.io.IOException;
 import java.util.List;
 
-@Route(value = "customerHomeView", layout = CustomerMainLayout.class)
-@PageTitle("CustomerHome")
+@Route(value = "main", layout = CustomerMainLayout.class)
+@PageTitle("Customer Home")
 public class CustomerHomeView extends VerticalLayout {
     private Button search, clear;
     private TextField searchbar;
@@ -28,9 +31,10 @@ public class CustomerHomeView extends VerticalLayout {
     private Grid<Bus> table;
     private BusList busses;
 
-    private List<Bus> busList;
-
     public CustomerHomeView () throws IOException {
+        // Get customer from session data
+        Customer customer = (Customer) UI.getCurrent().getSession().getAttribute("customer");
+
         //busses = new BusList();
         //Bus bus = new Bus("Freeway", "Toronto", "Ottawa", "10");
         //Bus bus2 = new Bus("Parkway", "Vancouver", "Hamilton", "20");

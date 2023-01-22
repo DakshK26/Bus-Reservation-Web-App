@@ -51,6 +51,8 @@ public class LoginView extends Div {
             Customer customer = optionalCustomer.get();
 
             if (customer.getPassword().equals(password.getValue())) {
+                // Save customer to UI session data
+                UI.getCurrent().getSession().setAttribute("customer", customer);
                 // Redirect the user to the "main" route
                 UI.getCurrent().navigate("main");
             } else {
