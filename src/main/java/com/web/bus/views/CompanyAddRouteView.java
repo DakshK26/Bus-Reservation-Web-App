@@ -17,13 +17,16 @@ import java.io.IOException;
 @Route("companyAddRouteView")
 @PageTitle("companyAddRoute")
 public class CompanyAddRouteView extends VerticalLayout {
-private TextField startDestination, endDestination;
+private TextField startDestination, endDestination, companyName;
 private IntegerField numSeatsAvailable;
 private Button add, cancel;
     public CompanyAddRouteView() {
         // Get company from session data
         Company company = (Company) UI.getCurrent().getSession().getAttribute("company");
 
+        companyName = new TextField("Company Name");
+        startDestination.setWidth("250px");
+        startDestination.setMinLength(1);
         startDestination = new TextField("Start Destination");
         startDestination.setWidth("250px");
         startDestination.setMinLength(1);
@@ -36,19 +39,19 @@ private Button add, cancel;
 
 
         add = new Button("Add Route", event -> {
-            String companyName = company.getName();
+            String companyNameValue = companyName.getValue();
             String startDestinationValue = startDestination.getValue();
             String endDestinationValue = endDestination.getValue();
             int numSeatsAvailableValue = numSeatsAvailable.getValue();
 
-            System.out.println(companyName);
+            System.out.println(companyNameValue);
             System.out.println(startDestinationValue);
             System.out.println(endDestinationValue);
             System.out.println(numSeatsAvailableValue);
 
-            if (!companyName.equalsIgnoreCase("") && !startDestinationValue.equalsIgnoreCase("") && !endDestinationValue.equalsIgnoreCase("") && numSeatsAvailable.getValue() > 0) {
+            if (!companyNameValue.equalsIgnoreCase("") && !startDestinationValue.equalsIgnoreCase("") && !endDestinationValue.equalsIgnoreCase("") && numSeatsAvailable.getValue() > 0) {
                 try {
-                    Bus bus = new Bus(startDestinationValue, endDestinationValue, numSeatsAvailableValue, companyName);
+                    Bus bus = new Bus(startDestinationValue, endDestinationValue, numSeatsAvailableValue, companyNameValue);
                    System.out.println(bus.toStringFile());
                     UI.getCurrent().navigate("companyRoutesView");
                 }
