@@ -57,8 +57,8 @@ public class CompanyRoutesView extends VerticalLayout {
         //busList = Arrays.asList(busses.getList());
 
         select = new Select<>();
-        select.setItems("Bus ID", "Start Destination", "End Destination");
-        select.setValue("Bus ID");
+        select.setItems("Start Destination", "End Destination");
+        select.setValue("Start Destination");
         searchbar = new TextField();
         searchbar.setPlaceholder("Search Criteria");
         searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
@@ -69,7 +69,7 @@ public class CompanyRoutesView extends VerticalLayout {
         });
         table = new Grid<>();
         //table.setItems(busList);
-      //  table.addColumn(Bus::getBusID).setHeader("Bus ID");
+        table.addColumn(Bus::getBusID).setHeader("CompanyName");
         table.addColumn(Bus::getStartDestination).setHeader("Start Destination");
         table.addColumn(Bus::getEndDestination).setHeader("End Destination");
         table.addColumn(Bus::getDistance).setHeader("Distance");

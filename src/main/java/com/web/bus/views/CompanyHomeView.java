@@ -16,6 +16,8 @@ import com.vaadin.flow.router.Route;
 import com.web.bus.records.Bus;
 import com.web.bus.records.BusList;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @Route(value = "companyHomeView", layout = CompanyMainLayout.class)
@@ -25,22 +27,26 @@ public class CompanyHomeView extends VerticalLayout {
     private TextField searchbar;
     private Select<String> select;
     private Grid<Bus> table;
-    private BusList busses;
+    private BusList buses;
 
     private List<Bus> busList;
 
-    public CompanyHomeView() {
+    public CompanyHomeView() throws IOException {
+        buses = new BusList();
+        buses = buses.readFileMaster();
+
+        busList = Arrays.asList(buses.getList());
         select = new Select<>();
-        select.setItems("Bus ID", "Start Destination", "End Destination");
-        select.setValue("Bus ID");
+        select.setItems("Company Name", "Start Destination", "End Destination");
+        select.setValue("Company Name");
         searchbar = new TextField();
         searchbar.setPlaceholder("Search Criteria");
         searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
         search = new Button("Search");
         clear = new Button("Clear Filters");
         table = new Grid<>();
-        //table.setItems(busList);
-        //  table.addColumn(Bus::getBusID).setHeader("Bus ID");
+        table.setItems(busList);
+        table.addColumn(Bus::getBusID).setHeader("Company Name");
         table.addColumn(Bus::getStartDestination).setHeader("Start Destination");
         table.addColumn(Bus::getEndDestination).setHeader("End Destination");
         table.addColumn(Bus::getDistance).setHeader("Distance");

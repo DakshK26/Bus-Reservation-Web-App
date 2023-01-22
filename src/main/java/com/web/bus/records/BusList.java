@@ -1,6 +1,8 @@
 package com.web.bus.records;
 
 
+import java.io.*;
+
 public class BusList{
     /*
     Private Instace Data
@@ -13,7 +15,7 @@ public class BusList{
     Default Constructor
      */
     public BusList() {
-        this.maxSize = 10;
+        this.maxSize = 0;
         this.currentSize = 0;
         this.list = new Bus[maxSize];
     }
@@ -88,9 +90,69 @@ public class BusList{
     }
 
     private void increaseSize() {
-        maxSize = maxSize * 2;
-        Bus[] newList = new Bus[maxSize];
-        if (currentSize >= 0) System.arraycopy(list, 0, newList, 0, currentSize);
+        this.setMaxSize(maxSize + 1);
+        Bus[] newList = new Bus[this.getMaxSize()];
+        for (int i = 0; i < this.list.length; i++) {
+            newList[i] = this.list[i];
+        }
         list = newList;
+    }
+
+    public Bus[] getList() {
+        return list;
+    }
+
+    public void setList(Bus[] list) {
+        this.list = list;
+    }
+
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public void setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+    }
+
+    public int getCurrentSize() {
+        return currentSize;
+    }
+
+    public void setCurrentSize(int currentSize) {
+        this.currentSize = currentSize;
+    }
+
+    public BusList readFileMaster() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("allBuses.txt"));
+        int length = 0;
+        while(!reader.readLine().equalsIgnoreCase("EOF")) {
+            length = length + 1;
+        }
+        reader.close();
+
+        String fileContents[] = new String[length];
+
+        BusList list = new BusList();
+
+        reader = new BufferedReader(new FileReader("allBuses.txt"));
+
+        for (int i = 0; i < fileContents.length; i++) {
+            fileContents[i] = reader.readLine();
+            String words [] = fileContents[i].split("/");
+            Bus bus = new Bus(words[0], words[1], Integer.parseInt(words[2]), words[3]);
+            list.increaseSize();
+            list.insert(bus);
+        }
+        reader.close();
+
+        return list;
+    }
+    public void writeFileMaster (BusList list) throws IOException {
+        PrintWriter writerF = new PrintWriter(new FileWriter("allBuses.txt"));
+        for (int i = 0; i < list.getList().length && list.getList()[i] != null; i++) {
+            writerF.println(list.getList()[i].toStringFile());
+        }
+    writerF.println("EOF");
+        writerF.close();
     }
 }
