@@ -12,8 +12,11 @@ import com.vaadin.flow.router.Route;
 import com.web.bus.components.CustomPasswordField;
 import com.web.bus.components.PasswordStrengthBar;
 import com.web.bus.components.UsernameField;
-import com.web.bus.security.CustomerAuthenticationService;
+import com.web.bus.entities.Customer;
+import com.web.bus.services.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Optional;
 
 /*
  * @author: Daksh & Ashwin
@@ -33,8 +36,8 @@ public class LoginView extends Div {
     PasswordStrengthBar PasswordStrengthBar;
     private Button login, register, companyRedirect;
     @Autowired
-    private CustomerAuthenticationService authenticationService;
-    public LoginView(CustomerAuthenticationService authenticationService) {
+    private CustomerRepository authenticationService;
+    public LoginView() {
         setId("login-view"); // Set element ID
         // Declare components
         username = new UsernameField(16, 4);
@@ -44,9 +47,10 @@ public class LoginView extends Div {
         // Create Login Button
         login = new Button("Login", event -> {
             // Call the authentication service to verify the user's credentials
-            boolean isAuthenticated = authenticationService.authenticate(username.getValue(), password.getValue());
+            Optional<Customer> optionalCustomer = authenticationService.findByUsername(username.getValue());
+            Customer customer = optionalCustomer.get();
 
-            if (isAuthenticated) {
+            if (customer.getPassword().equals(password.getValue())) {
                 // Redirect the user to the "main" route
                 UI.getCurrent().navigate("main");
             } else {

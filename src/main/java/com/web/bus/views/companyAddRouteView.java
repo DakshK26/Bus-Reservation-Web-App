@@ -9,7 +9,7 @@ import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.web.bus.entities.Bus;
+import com.web.bus.records.Bus;
 
 import java.io.IOException;
 

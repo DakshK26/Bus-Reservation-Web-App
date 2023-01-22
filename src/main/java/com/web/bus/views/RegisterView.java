@@ -66,22 +66,24 @@ public class RegisterView extends Div {
                     String enteredPassword = password.getValue();
                     String enteredConfirmPassword = confirmPassword.getValue();
 
-                    // Validate the passwords match
-                    if (!enteredPassword.equals(enteredConfirmPassword)) {
-                        Notification.show("Passwords do not match. Please try again.", 5000, Notification.Position.TOP_CENTER);
-                    }
                     // Validate the username is not already taken
-                    if (this.customerController.existsByUsername(enteredUsername)) {
+                    if(this.customerController.existsByUsername(enteredUsername)) {
                         Notification.show("Username is already taken. Please try again.", 5000, Notification.Position.TOP_CENTER);
                     }
-                    // Create a new customer object
-                    Customer newCustomer = new Customer(enteredName, enteredEmail, enteredUsername, enteredPassword);
-                    // Save the new customer
-                    customerController.save(newCustomer);
-                    // Show a success message
-                    Notification.show("Registration successful! Please login to continue.", 5000, Notification.Position.TOP_CENTER);
-                    // Redirect the user to the login route
-                    UI.getCurrent().navigate("");
+                    // Validate the passwords match
+                    else if(!enteredPassword.equals(enteredConfirmPassword)) {
+                        Notification.show("Passwords do not match. Please try again.", 5000, Notification.Position.TOP_CENTER);
+                    }
+                    else {
+                        // Create a new customer object
+                        Customer newCustomer = new Customer(enteredName, enteredEmail, enteredUsername, enteredPassword);
+                        // Save the new customer
+                        customerController.save(newCustomer);
+                        // Show a success message
+                        Notification.show("Registration successful! Please login to continue.", 5000, Notification.Position.TOP_CENTER);
+                        // Redirect the user to the login route
+                        UI.getCurrent().navigate("");
+                    }
                 }),
                 loginRedirect = new Button("Login", event ->{ // Login action event
                     UI.getCurrent().navigate(""); // Send user to login route
