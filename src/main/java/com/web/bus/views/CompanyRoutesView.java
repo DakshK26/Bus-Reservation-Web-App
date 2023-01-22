@@ -23,7 +23,7 @@ import java.util.List;
 @Route(value = "companyRoutesView", layout = CompanyMainLayout.class)
 @PageTitle("CustomerRoutes")
 public class CompanyRoutesView extends VerticalLayout {
-    private Button search, addRoute;
+    private Button search, addRoute, clear;
     private TextField searchbar;
     private Select<String> select;
     private Grid<Bus> table;
@@ -63,9 +63,8 @@ public class CompanyRoutesView extends VerticalLayout {
         searchbar = new TextField();
         searchbar.setPlaceholder("Search Criteria");
         searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
-        search = new Button("Search", event -> { // Company action event
-            UI.getCurrent().navigate("companyAddRouteView");
-        });
+        search = new Button("Search");
+        clear = new Button("Clear Filters");
         addRoute = new Button ("Add a Route", event -> { // Company action event
             UI.getCurrent().navigate("companyAddRouteView"); // Send user to register route
         });
@@ -90,10 +89,11 @@ public class CompanyRoutesView extends VerticalLayout {
 
         add (
                 new H1("Company Active Routes"),
-                new HorizontalLayout(new H4("Search: "), select, searchbar, search),
+                new HorizontalLayout(new H4("Search: "), select, searchbar, search, clear),
                 addRoute,
                 table
                 );
-       search.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
+        search.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
+        clear.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
     }
 }

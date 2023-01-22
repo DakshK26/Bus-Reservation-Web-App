@@ -22,7 +22,7 @@ import java.util.List;
 @Route(value = "customerHistoryView", layout = CustomerMainLayout.class)
 @PageTitle("CustomerHistory")
 public class CustomerHistoryView extends VerticalLayout {
-    private Button search;
+    private Button search, clear;
     private TextField searchbar;
     private Select<String> select;
     private Grid<Bus> table;
@@ -63,6 +63,7 @@ public class CustomerHistoryView extends VerticalLayout {
         searchbar.setPlaceholder("Search Criteria");
         searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
         search = new Button("Search");
+        clear = new Button("Clear Filters");
         table = new Grid<>();
         //table.setItems(busList);
       //  table.addColumn(Bus::getBusID).setHeader("Bus ID");
@@ -75,9 +76,10 @@ public class CustomerHistoryView extends VerticalLayout {
 
         add (
                 new H1("Past Purchases"),
-                new HorizontalLayout(new H4("Search: "), select, searchbar, search),
+                new HorizontalLayout(new H4("Search: "), select, searchbar, search, clear),
                 table
                 );
-       search.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
+        search.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
+        clear.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
     }
 }
