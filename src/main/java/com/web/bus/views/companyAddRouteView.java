@@ -31,7 +31,7 @@ private Button add, cancel;
         numSeatsAvailable.setMin(1);
 
 
-        add = new Button("Add A Route", event -> {
+        add = new Button("Add Route", event -> {
             String busIDValue = busID.getValue();
             String startDestinationValue = startDestination.getValue();
             String endDestinationValue = endDestination.getValue();
