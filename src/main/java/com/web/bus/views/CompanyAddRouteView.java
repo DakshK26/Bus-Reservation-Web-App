@@ -20,7 +20,7 @@ private TextField busID, startDestination, endDestination;
 private IntegerField numSeatsAvailable;
 private Button add, cancel;
     public CompanyAddRouteView() {
-        busID = new TextField("Bus ID");
+        busID = new TextField("Company");
         busID.setWidth("250px");
         busID.setMinLength(1);
         startDestination = new TextField("Start Destination");

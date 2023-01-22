@@ -89,6 +89,8 @@ public class BusList{
         return -1;
     }
 
+    public
+
     private void increaseSize() {
         this.setMaxSize(maxSize + 1);
         Bus[] newList = new Bus[this.getMaxSize()];
