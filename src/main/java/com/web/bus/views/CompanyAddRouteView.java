@@ -11,6 +11,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.web.bus.entities.Company;
 import com.web.bus.records.Bus;
+import com.web.bus.records.BusList;
 
 import java.io.IOException;
 
@@ -52,6 +53,11 @@ private Button add, cancel;
             if (!companyNameValue.equalsIgnoreCase("") && !startDestinationValue.equalsIgnoreCase("") && !endDestinationValue.equalsIgnoreCase("") && numSeatsAvailable.getValue() > 0) {
                 try {
                     Bus bus = new Bus(startDestinationValue, endDestinationValue, numSeatsAvailableValue, companyNameValue);
+                    BusList temp = new BusList();
+                    temp = temp.readFileMaster();
+                    temp.insert(bus);
+                    temp.writeFileMaster(temp);
+
                    System.out.println(bus.toStringFile());
                     UI.getCurrent().navigate("companyRoutesView");
                 }
