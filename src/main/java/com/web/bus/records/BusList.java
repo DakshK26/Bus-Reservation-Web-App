@@ -89,7 +89,15 @@ public class BusList{
         return -1;
     }
 
-    public
+    public BusList searchCompany(String company, BusList list) {
+        BusList companySorted = new BusList();
+        for (int i = 0; i < list.getList().length; i++) {
+            if (list.getList()[i].getBusID().equalsIgnoreCase(company)) {
+                companySorted.insert(list.getList()[i]);
+            }
+        }
+        return companySorted;
+    }
 
     private void increaseSize() {
         this.setMaxSize(maxSize + 1);
@@ -155,41 +163,6 @@ public class BusList{
             writerF.println(list.getList()[i].toStringFile());
         }
     writerF.println("EOF");
-        writerF.close();
-    }
-
-    public BusList readFile(String companyName) throws IOException{
-        BufferedReader reader = new BufferedReader(new FileReader(companyName + "Buses.txt"));
-        int length = 0;
-        while(!reader.readLine().equalsIgnoreCase("EOF")) {
-            length = length + 1;
-        }
-        reader.close();
-
-        String fileContents[] = new String[length];
-
-        BusList list = new BusList();
-
-        reader = new BufferedReader(new FileReader(companyName + "Buses.txt"));
-
-        for (int i = 0; i < fileContents.length; i++) {
-            fileContents[i] = reader.readLine();
-            String words [] = fileContents[i].split("/");
-            Bus bus = new Bus(words[0], words[1], Integer.parseInt(words[2]), words[3]);
-            list.increaseSize();
-            list.insert(bus);
-        }
-        reader.close();
-
-        return list;
-    }
-
-    public void writeFile (BusList list) throws IOException {
-        PrintWriter writerF = new PrintWriter(new FileWriter(list.getList()[0].getBusID()+ "Buses.txt"));
-        for (int i = 0; i < list.getList().length && list.getList()[i] != null; i++) {
-            writerF.println(list.getList()[i].toStringFile());
-        }
-        writerF.println("EOF");
         writerF.close();
     }
 }
