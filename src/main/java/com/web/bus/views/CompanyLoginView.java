@@ -6,15 +6,18 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.textfield.PasswordField;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.dom.ThemeList;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.theme.lumo.Lumo;
 import com.web.bus.components.CustomPasswordField;
 import com.web.bus.components.UsernameField;
+import com.web.bus.entities.Company;
+import com.web.bus.entities.Customer;
+import com.web.bus.services.CompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Optional;
 
 
 /*
@@ -27,22 +30,36 @@ import com.web.bus.components.UsernameField;
 @PageTitle("Login")
 @CssImport("./styles/views/login/login-view.css")
 public class CompanyLoginView extends Div {
-    private UsernameField username;
+    private EmailField email;
     private CustomPasswordField password;
     private Button login, register, userRedirect;
+    @Autowired
+    private CompanyRepository authenticationService;
 
     public CompanyLoginView() {
         setId("login-view"); // Set element ID
         // Declare components
-        username = new UsernameField(16, 4);
+        email = new EmailField("Email");
         password = new CustomPasswordField("Password", 20, 4);
         // Add components
         add(
                 new H1("Salutations To Your Organization!"),
-                username,
+                email,
                 password,
                 login = new Button("Login", event -> { // Login action event
+                    // Call the authentication service to verify the user's credentials
+                    Optional<Company> optionalCompany = authenticationService.findByEmail(email.getValue());
+                    Company Company = optionalCompany.get();
 
+                    if (Company.getPassword().equals(password.getValue())) {
+                        // Save customer to UI session data
+                        UI.getCurrent().getSession().setAttribute("company", Company);
+                        // Redirect the user to the "main" route
+                        UI.getCurrent().navigate("companyHomeView");
+                    } else {
+                        // Show an error message
+                        Notification.show("Invalid username or password. Please try again.", 5000, Notification.Position.TOP_CENTER);
+                    }
                 }),
                 register = new Button("Register", event ->{ // Register action event
                     UI.getCurrent().navigate("companyRegister"); // Send user to register route
@@ -55,8 +72,5 @@ public class CompanyLoginView extends Div {
         login.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         register.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         userRedirect.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
-    }
-    public static void main (String [] args) {
-
     }
 }

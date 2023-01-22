@@ -1,5 +1,6 @@
 package com.web.bus.views;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
@@ -13,6 +14,8 @@ import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.web.bus.entities.Company;
+import com.web.bus.entities.Customer;
 import com.web.bus.records.Bus;
 import com.web.bus.records.BusList;
 
@@ -30,6 +33,9 @@ public class CompanyHomeView extends VerticalLayout {
     private List<Bus> busList;
 
     public CompanyHomeView() {
+        // Get company from session data
+        Company customer = (Company) UI.getCurrent().getSession().getAttribute("company");
+
         select = new Select<>();
         select.setItems("Bus ID", "Start Destination", "End Destination");
         select.setValue("Bus ID");

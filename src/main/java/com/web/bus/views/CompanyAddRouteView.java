@@ -15,11 +15,11 @@ import java.io.IOException;
 
 @Route("companyAddRouteView")
 @PageTitle("companyAddRoute")
-public class companyAddRouteView extends VerticalLayout {
+public class CompanyAddRouteView extends VerticalLayout {
 private TextField busID, startDestination, endDestination;
 private IntegerField numSeatsAvailable;
 private Button add, cancel;
-    public companyAddRouteView() {
+    public CompanyAddRouteView() {
         busID = new TextField("Bus ID");
         busID.setWidth("250px");
         busID.setMinLength(1);
