@@ -74,7 +74,7 @@ public class Bus {
     Method to find longtitude and langtitude from adress
      */
     public double[] getCoordinates(String location) throws IOException {
-        String API_KEY = "AIzaSyBk0Kb6yd7K--5U_vqKZjggvZvXlBaLBP8";
+        String API_KEY = "AIzaSyDLQ8elelp-l9UNOWOiDt6sZQgN-yOwlv8";
         String requestUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
                 location + "&key=" + API_KEY;
 

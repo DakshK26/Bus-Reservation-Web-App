@@ -3,16 +3,12 @@ package com.web.bus.views;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.IntegerField;
-import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -21,7 +17,7 @@ import java.math.BigInteger;
 
 @Route("customerPurchaseView")
 @PageTitle("customerPurchase")
-public class customerPurchaseView extends VerticalLayout {
+public class CustomerPurchaseView extends VerticalLayout {
 
     private Label busIDLbl, startDestinationLbl, endDestinationLbl, durationLbl, costLbl;
     private TextField name, phoneNumber, cardNum, expiration;
@@ -32,7 +28,7 @@ public class customerPurchaseView extends VerticalLayout {
 
     private BigInteger cardNumLength = new BigInteger("1000000000000000");
 
-    public customerPurchaseView() {
+    public CustomerPurchaseView() {
         busIDLbl = new Label("Bus ID: ");
         startDestinationLbl = new Label("Start Destination:");
         endDestinationLbl = new Label("End Destination:");
