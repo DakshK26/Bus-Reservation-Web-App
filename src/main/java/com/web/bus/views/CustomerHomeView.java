@@ -77,8 +77,7 @@ public class CustomerHomeView extends VerticalLayout {
         table.addColumn(Bus::getTimeInMinutes).setHeader("Travel Time");
 
         table.addComponentColumn(item -> {
-            Button btn = new Button("Book");
-            return btn;
+            return new Button("Book");
                 }).setHeader("Book Bus");
 
         table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);

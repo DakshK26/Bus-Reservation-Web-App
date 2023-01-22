@@ -9,6 +9,7 @@ import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.web.bus.entities.Company;
 import com.web.bus.records.Bus;
 
 import java.io.IOException;
@@ -16,13 +17,13 @@ import java.io.IOException;
 @Route("companyAddRouteView")
 @PageTitle("companyAddRoute")
 public class CompanyAddRouteView extends VerticalLayout {
-private TextField busID, startDestination, endDestination;
+private TextField startDestination, endDestination;
 private IntegerField numSeatsAvailable;
 private Button add, cancel;
     public CompanyAddRouteView() {
-        busID = new TextField("Company");
-        busID.setWidth("250px");
-        busID.setMinLength(1);
+        // Get company from session data
+        Company company = (Company) UI.getCurrent().getSession().getAttribute("company");
+
         startDestination = new TextField("Start Destination");
         startDestination.setWidth("250px");
         startDestination.setMinLength(1);
@@ -35,19 +36,19 @@ private Button add, cancel;
 
 
         add = new Button("Add Route", event -> {
-            String busIDValue = busID.getValue();
+            String companyName = company.getName();
             String startDestinationValue = startDestination.getValue();
             String endDestinationValue = endDestination.getValue();
             int numSeatsAvailableValue = numSeatsAvailable.getValue();
 
-            System.out.println(busIDValue);
+            System.out.println(companyName);
             System.out.println(startDestinationValue);
             System.out.println(endDestinationValue);
             System.out.println(numSeatsAvailableValue);
 
-            if (!busIDValue.equalsIgnoreCase("") && !startDestinationValue.equalsIgnoreCase("") && !endDestinationValue.equalsIgnoreCase("") && numSeatsAvailable.getValue() > 0) {
+            if (!companyName.equalsIgnoreCase("") && !startDestinationValue.equalsIgnoreCase("") && !endDestinationValue.equalsIgnoreCase("") && numSeatsAvailable.getValue() > 0) {
                 try {
-                    Bus bus = new Bus(startDestinationValue, endDestinationValue, numSeatsAvailableValue, busIDValue);
+                    Bus bus = new Bus(startDestinationValue, endDestinationValue, numSeatsAvailableValue, companyName);
                    System.out.println(bus.toStringFile());
                     UI.getCurrent().navigate("companyRoutesView");
                 }
@@ -61,12 +62,11 @@ private Button add, cancel;
             UI.getCurrent().navigate("companyRoutesView"); // Send user to register route
         });
 
-        setHorizontalComponentAlignment(Alignment.CENTER, busID, startDestination, endDestination, numSeatsAvailable,
+        setHorizontalComponentAlignment(Alignment.CENTER, startDestination, endDestination, numSeatsAvailable,
                                         add, cancel);
 
         add (
                 new H1("Add Route"),
-                busID,
                 startDestination,
                 endDestination,
                 numSeatsAvailable,

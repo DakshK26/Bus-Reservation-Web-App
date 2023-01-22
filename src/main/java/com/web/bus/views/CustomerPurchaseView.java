@@ -12,6 +12,7 @@ import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.web.bus.entities.Customer;
 
 import java.math.BigInteger;
 
@@ -29,6 +30,9 @@ public class CustomerPurchaseView extends VerticalLayout {
     private BigInteger cardNumLength = new BigInteger("1000000000000000");
 
     public CustomerPurchaseView() {
+        // Get customer from session data
+        Customer customer = (Customer) UI.getCurrent().getSession().getAttribute("customer");
+
         busIDLbl = new Label("Bus ID: ");
         startDestinationLbl = new Label("Start Destination:");
         endDestinationLbl = new Label("End Destination:");

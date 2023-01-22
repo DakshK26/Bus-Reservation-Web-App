@@ -14,6 +14,7 @@ import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.web.bus.entities.Company;
 import com.web.bus.records.Bus;
 import com.web.bus.records.BusList;
 
@@ -32,6 +33,9 @@ public class CompanyRoutesView extends VerticalLayout {
     private List<Bus> busList;
 
     public CompanyRoutesView() throws IOException {
+        // Get company from session data
+        Company customer = (Company) UI.getCurrent().getSession().getAttribute("company");
+
        // busses = new BusList();
         //Bus bus2 = new Bus("Parkway", "Vancouver", "Hamilton", "20");
        // Bus bus3 = new Bus("International", "Brampton", "Regina", "15");
