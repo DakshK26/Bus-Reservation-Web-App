@@ -15,7 +15,6 @@ public class Company extends AbstractEntity {
     /*
         Private Instance Data
          */
-    private String company;
     private String name;
     private String password;
     private String email;
@@ -24,7 +23,6 @@ public class Company extends AbstractEntity {
     Blank Constructor
      */
     public Company() {
-        this.company = null;
         this.name = null;
         this.password = null;
         this.email = null;
@@ -33,8 +31,7 @@ public class Company extends AbstractEntity {
     /*
     Default Constructor
      */
-    public Company(String company, String name, String password, String email) {
-        this.company = company;
+    public Company(String name, String password, String email) {
         this.name = name;
         this.password = password;
         this.email = email;
@@ -43,14 +40,6 @@ public class Company extends AbstractEntity {
     /*
     Getter and Setters
      */
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String companyname) {
-        this.company = company;
-    }
     public String getEmail() {
         return email;
     }

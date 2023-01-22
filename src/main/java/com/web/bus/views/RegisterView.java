@@ -15,7 +15,8 @@ import com.web.bus.components.CustomPasswordField;
 import com.web.bus.components.PasswordStrengthBar;
 import com.web.bus.components.UsernameField;
 import com.web.bus.entities.Customer;
-import com.web.bus.services.CustomerController;
+import com.web.bus.services.CompanyRepository;
+import com.web.bus.services.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /*
@@ -38,7 +39,7 @@ public class RegisterView extends Div {
     private EmailField email;
     private PasswordStrengthBar passwordStrengthBar;
     @Autowired
-    private CustomerController customerController;
+    private CustomerRepository customerController;
     public RegisterView() {
         setId("login-view"); // Set element ID
         // Declare components
@@ -70,13 +71,13 @@ public class RegisterView extends Div {
                         Notification.show("Passwords do not match. Please try again.", 5000, Notification.Position.TOP_CENTER);
                     }
                     // Validate the username is not already taken
-                    if (this.customerController.isUsernameTaken(enteredUsername)) {
+                    if (this.customerController.existsByUsername(enteredUsername)) {
                         Notification.show("Username is already taken. Please try again.", 5000, Notification.Position.TOP_CENTER);
                     }
                     // Create a new customer object
                     Customer newCustomer = new Customer(enteredName, enteredEmail, enteredUsername, enteredPassword);
                     // Save the new customer
-                    this.customerController.createCustomer(newCustomer);
+                    customerController.save(newCustomer);
                     // Show a success message
                     Notification.show("Registration successful! Please login to continue.", 5000, Notification.Position.TOP_CENTER);
                     // Redirect the user to the login route

@@ -1,14 +1,7 @@
-package com.web.bus.entities;
+package com.web.bus.records;
 
-import com.web.bus.entities.Bus;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
-
-@Entity
-public class BusList extends AbstractEntity{
+public class BusList{
     /*
     Private Instace Data
      */
@@ -97,9 +90,7 @@ public class BusList extends AbstractEntity{
     private void increaseSize() {
         maxSize = maxSize * 2;
         Bus[] newList = new Bus[maxSize];
-        for (int i = 0; i < currentSize; i++) {
-            newList[i] = list[i];
-        }
+        if (currentSize >= 0) System.arraycopy(list, 0, newList, 0, currentSize);
         list = newList;
     }
 }

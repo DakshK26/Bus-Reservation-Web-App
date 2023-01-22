@@ -17,35 +17,23 @@ import java.util.Optional;
  */
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
-    /**
-     * Custom save method that saves an entity and flush the changes to the database.
-     * @param entity the entity to save
-     * @param <S> the type of the entity
-     * @return the saved entity
-     */
-   @Transactional
-   <S extends Company> S saveAndFlush(S entity);
 
     /**
-     * Custom replace method that updates a Company with a new Company
-     * @param newCompany the new Company
+     * Method to find a company by email
+     * @param email the email of the company to be found
+     * @return the company with the given email
      */
-    @Transactional
-    @Modifying
-    @Query("update Company c set c = :newC where c.company = :company")
-    void replace(@Param("newC") Company newCompany, @Param("company") String company);
+    Optional<Company> findByEmail(String email);
 
     /**
-     * Custom delete method that deletes a company by id and username
-     * @param company the username of the company to be deleted
+     * Method to check if a company exists by email
+     * @param email the email of the company to be checked
+     * @return a boolean indicating whether the company exists
      */
-    @Transactional
-    void deleteByCompany(String company);
+    @Query("select (count(c) > 0) from Company c where c.email = ?1")
+    boolean existsByEmail(String email);
 
-    /**
-     * Custom find method that finds a company by name
-     * @param company the name of the company
-     * @return the company
-     */
-    Optional<Company> findByCompany(String company);
+
+
+
 }

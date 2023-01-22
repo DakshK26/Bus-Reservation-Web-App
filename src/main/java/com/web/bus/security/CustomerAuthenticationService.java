@@ -27,7 +27,6 @@ public class CustomerAuthenticationService implements UserDetailsService {
 
     /**
      *
-
      @param username the username of the customer
      @param password the password of the customer
      @return returns a boolean indicating whether the user has been successfully authenticated.

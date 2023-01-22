@@ -1,15 +1,9 @@
 package com.web.bus;
 
-import com.vaadin.flow.router.Route;
-import com.web.bus.entities.Customer;
-import com.web.bus.services.CustomerController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
-import javax.annotation.PostConstruct;
 
 /*
 * @author: Daksh & Ashwin

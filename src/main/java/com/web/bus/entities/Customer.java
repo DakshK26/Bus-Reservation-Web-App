@@ -41,8 +41,8 @@ public class Customer extends AbstractEntity{
     }
 
     /*
-        Getters and Setters
-         */
+     Getters and Setters
+     */
     public String getUsername() {
         return username;
     }

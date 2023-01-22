@@ -1,4 +1,4 @@
-package com.web.bus.entities;
+package com.web.bus.records;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
