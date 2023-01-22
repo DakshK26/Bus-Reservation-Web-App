@@ -2,6 +2,7 @@ package com.web.bus.views;
 
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -18,28 +19,33 @@ import com.vaadin.flow.router.RouterLink;
 @Route("customerMainView")
 public class CustomerMainLayout extends AppLayout {
 
+    private RouterLink customerMainLink, customerHistoryLink;
+    private  HorizontalLayout header;
+    private Button logout;
     public CustomerMainLayout() {
-        createTitle();
+        createNavbar();
         createDrawer();
     }
 
-    private void createTitle() {
+    private void createNavbar() {
         H1 title = new H1("Bus Reservation Web App");
         title.getStyle().set("font-size", "var(--lumo-font-size-l)")
                 .set("margin", "0");
 
-        HorizontalLayout header = new HorizontalLayout(new DrawerToggle());
+        header = new HorizontalLayout(new DrawerToggle());
         header.addClassName("header");
         header.setWidth("3%");
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
 
-        addToNavbar(header, title);
+        logout = new Button("Logout");
+        logout.getStyle().set("margin-left", "20px");
+        addToNavbar(header, title, logout);
     }
 
     private void createDrawer() {
-        RouterLink customerMainLink = new RouterLink("Book A Bus", CustomerHomeView.class);
+       customerMainLink = new RouterLink("Book A Bus", CustomerHomeView.class);
         customerMainLink.setHighlightCondition(HighlightConditions.sameLocation());
-        RouterLink customerHistoryLink = new RouterLink("View Past Purchases", CustomerHistoryView.class);
+        customerHistoryLink = new RouterLink("View Past Purchases", CustomerHistoryView.class);
         customerHistoryLink.setHighlightCondition(HighlightConditions.sameLocation());
 
         addToDrawer(new VerticalLayout(
