@@ -28,6 +28,7 @@ private Button add, cancel;
         endDestination.setMinLength(1);
         numSeatsAvailable = new IntegerField("Number Of Seats Available");
         numSeatsAvailable.setWidth("200px");
+        numSeatsAvailable.setMin(1);
 
 
         add = new Button("Add A Route", event -> {
@@ -41,7 +42,9 @@ private Button add, cancel;
             System.out.println(endDestinationValue);
             System.out.println(numSeatsAvailableValue);
 
-            UI.getCurrent().navigate("companyRoutesView");
+            if (!busIDValue.equalsIgnoreCase("") && !startDestinationValue.equalsIgnoreCase("") && !endDestinationValue.equalsIgnoreCase("") && numSeatsAvailable.getValue() > 0) {
+                UI.getCurrent().navigate("companyRoutesView");
+            }
         });
 
         cancel = new Button("Cancel", event -> { // Company action event

@@ -17,6 +17,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import java.math.BigInteger;
+
 @Route("customerPurchaseView")
 @PageTitle("customerPurchase")
 public class customerPurchaseView extends VerticalLayout {
@@ -27,6 +29,8 @@ public class customerPurchaseView extends VerticalLayout {
     private IntegerField cvc;
     private Select<String> cardTypes;
     private Button purchase, cancel;
+
+    private BigInteger cardNumLength = new BigInteger("1000000000000000");
 
     public customerPurchaseView() {
         busIDLbl = new Label("Bus ID: ");
@@ -67,9 +71,14 @@ public class customerPurchaseView extends VerticalLayout {
             String enteredEmail = emailAddress.getValue();
             long enteredPhoneNumber = Long.parseLong(phoneNumber.getValue());
             String enteredCardType = cardTypes.getValue();
-            long enteredCardNum = Long.parseLong(cardNum.getValue());
+            BigInteger enteredCardNum = new BigInteger(cardNum.getValue());
             String enteredExpiration = expiration.getValue();
             int enteredCVC = cvc.getValue();
+
+            String expirations [] = enteredExpiration.split("/");
+            int month = Integer.parseInt(expirations[0]);
+            int year = Integer.parseInt(expirations[1]);
+
 
             System.out.println(enteredName);
             System.out.println(enteredEmail);
@@ -79,7 +88,9 @@ public class customerPurchaseView extends VerticalLayout {
             System.out.println(enteredExpiration);
             System.out.println(enteredCVC);
 
-            UI.getCurrent().navigate("customerHomeView"); // Send user to register route
+            if (!enteredName.equalsIgnoreCase("") && !enteredEmail.equalsIgnoreCase("") && enteredPhoneNumber >= 1000000000 && enteredCardNum.compareTo(cardNumLength) >=0 && (month > 0 && month <13) && (year > 0) && (enteredCVC >= 0 && enteredCVC < 10000)) {
+                UI.getCurrent().navigate("customerHomeView"); // Send user to register route
+            }
         });
         cancel = new Button("Cancel Purchase", event -> { // Company action event
             UI.getCurrent().navigate("customerHomeView"); // Send user to register route
