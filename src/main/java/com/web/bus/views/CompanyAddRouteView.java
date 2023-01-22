@@ -22,11 +22,11 @@ private IntegerField numSeatsAvailable;
 private Button add, cancel;
     public CompanyAddRouteView() {
         // Get company from session data
-        Company company = (Company) UI.getCurrent().getSession().getAttribute("company");
+     //   Company company = (Company) UI.getCurrent().getSession().getAttribute("company");
 
         companyName = new TextField("Company Name");
-        startDestination.setWidth("250px");
-        startDestination.setMinLength(1);
+        companyName.setWidth("250px");
+        companyName.setMinLength(1);
         startDestination = new TextField("Start Destination");
         startDestination.setWidth("250px");
         startDestination.setMinLength(1);
@@ -65,11 +65,12 @@ private Button add, cancel;
             UI.getCurrent().navigate("companyRoutesView"); // Send user to register route
         });
 
-        setHorizontalComponentAlignment(Alignment.CENTER, startDestination, endDestination, numSeatsAvailable,
+        setHorizontalComponentAlignment(Alignment.CENTER, companyName, startDestination, endDestination, numSeatsAvailable,
                                         add, cancel);
 
         add (
                 new H1("Add Route"),
+                companyName,
                 startDestination,
                 endDestination,
                 numSeatsAvailable,
