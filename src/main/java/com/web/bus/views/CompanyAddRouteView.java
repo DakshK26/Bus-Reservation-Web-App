@@ -38,25 +38,22 @@ private Button add, cancel;
 
 
         add = new Button("Add Route", event -> {
+            // Get values from text fields
             String companyNameValue = company.getName();
             String startDestinationValue = startDestination.getValue();
             String endDestinationValue = endDestination.getValue();
             int numSeatsAvailableValue = numSeatsAvailable.getValue();
 
-            System.out.println(companyNameValue);
-            System.out.println(startDestinationValue);
-            System.out.println(endDestinationValue);
-            System.out.println(numSeatsAvailableValue);
-
+            // Check if all fields are filled
             if (!companyNameValue.equalsIgnoreCase("") && !startDestinationValue.equalsIgnoreCase("") && !endDestinationValue.equalsIgnoreCase("") && numSeatsAvailable.getValue() > 0) {
                 try {
+                    // Create bus object
                     Bus bus = new Bus(startDestinationValue, endDestinationValue, numSeatsAvailableValue, companyNameValue);
                     BusList temp = new BusList();
                     temp = temp.readFileMaster();
                     temp.insert(bus);
-                    temp.writeFileMaster(temp);
+                    temp.writeFileMaster(temp); // Write to master file
 
-                   System.out.println(bus.toStringFile());
                     UI.getCurrent().navigate("companyRoutesView");
                 }
                 catch (IOException ignored) {
@@ -72,7 +69,7 @@ private Button add, cancel;
         setHorizontalComponentAlignment(Alignment.CENTER, companyName, startDestination, endDestination, numSeatsAvailable,
                                         add, cancel);
 
-        add (
+        add ( // Add components to layout
                 new H1("Add Route"),
                 companyName,
                 startDestination,

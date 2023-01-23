@@ -49,6 +49,7 @@ public class PasswordStrengthBar extends ProgressBar {
         if (password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
             strength += 0.1;
         }
+        // check for length
         strength += (length-passwordField.getMinLength()) * 0.1 / (passwordField.getMaxLength()-passwordField.getMinLength());
         return strength * 2;
     }

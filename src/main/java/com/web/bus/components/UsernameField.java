@@ -32,7 +32,7 @@ public class UsernameField extends TextField {
         // Set helper text
         this.addFocusListener(e-> setHelperText("Enter " + this.minLength + " - " + this.maxLength + " alphanumeric characters"));
         this.addBlurListener(e-> setHelperText(""));
-        this.addValueChangeListener(e -> {
+        this.addValueChangeListener(e -> { // Check if username is valid
             if (!isValidUsername(e.getValue())) {
                 setInvalid(true);
             } else {
@@ -48,7 +48,7 @@ public class UsernameField extends TextField {
         // Alphanumeric pattern check
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{"+minLength+","+maxLength+"}$");
         Matcher matcher = pattern.matcher(username);
-        return matcher.matches();
+        return matcher.matches(); // Return true if matches
     }
 }
 
