@@ -94,19 +94,14 @@ public class CompanyRoutesView extends VerticalLayout {
             Button btn = new Button("Cancel");
             btn.addClickListener(event -> {
                 // Cancel route
-                BusList busList = new BusList();
+                buses.delete(item);
                 try {
-                    busList = busList.readFileMaster();
+                    buses.writeFileMaster(buses);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                busList.delete(item);
-                try {
-                    busList.writeFileMaster(busList);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                UI.getCurrent().navigate("companyRoutesView");
+                busList = Arrays.asList(buses.getList());
+                table.setItems(busList);
             });
             return btn;
         }).setHeader("Cancel Routes");
