@@ -23,7 +23,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
  * Description: GUI for register, Initial user screen
- * Method List: public static void main(String[] args)
+ * Method List:
+ * public RegisterView()
+ * public static void main(String[] args)
  */
 @Route("register")
 @PageTitle("Register")

@@ -17,6 +17,16 @@ import com.google.gson.JsonParser;
  * Date: Jan. 2023
  * Description: Class to represent bus object
  * Method List:
+ * public Bus(String startDestination, String endDestination, int numberOfSeats, String busID) throws IOException
+ * public void calculateDistance()
+ * public void calculateDistance()
+ * public double[] getCoordinates(String location) throws IOException
+ * public void getTravelTime() throws IOException
+ * public String removeSpaces(String str)
+ * getters and setters
+ * public String toStringFile()
+ * public String toString()
+ *  public static void main(String[] args) throws IOException
  */
 
 public class Bus {
