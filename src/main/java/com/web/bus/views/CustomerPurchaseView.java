@@ -15,7 +15,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.web.bus.entities.Customer;
 import com.web.bus.records.Bus;
+import com.web.bus.records.BusList;
 
+import java.io.IOException;
 import java.math.BigInteger;
 
 @Route("customerPurchaseView")
@@ -23,7 +25,7 @@ import java.math.BigInteger;
 public class CustomerPurchaseView extends VerticalLayout {
 
     private Label company, companyName, startDestinationLbl, startDestinationName,
-            endDestinationLbl, endDestinationName, durationLbl, durationName, costLbl, costName;
+            endDestinationLbl, endDestinationName, seats, seatsName, durationLbl, durationName, costLbl, costName;
     private TextField name, phoneNumber, cardNum, expiration;
     private EmailField emailAddress;
     private IntegerField cvc;
@@ -44,6 +46,8 @@ public class CustomerPurchaseView extends VerticalLayout {
 
         company = new Label("Company: ");
         companyName = new Label(bus.getBusID());
+        seats = new Label("Seats");
+        seatsName = new Label(String.valueOf(bus.getNumberOfSeats()));
         startDestinationLbl = new Label("Start Destination:");
         startDestinationName = new Label(bus.getStartDestination());
         endDestinationLbl = new Label("End Destination:");
@@ -105,7 +109,36 @@ public class CustomerPurchaseView extends VerticalLayout {
             System.out.println(enteredCVC);
 
             if (!enteredName.equalsIgnoreCase("") && !enteredEmail.equalsIgnoreCase("") && enteredPhoneNumber >= 1000000000 && enteredCardNum.compareTo(cardNumLength) >=0 && (month > 0 && month <13) && (year > 0) && (enteredCVC >= 0 && enteredCVC < 10000)) {
-                UI.getCurrent().navigate("customerHomeView"); // Send user to register route
+               try {
+                   BusList tempList = new BusList();
+                   Bus busTemp = new Bus(startDestinationName.getText(), endDestinationName.getText(), Integer.parseInt(seatsName.getText()), companyName.getText());
+                   String[] tempData = tempList.readFilePurchases();
+                   String usernames [] = new String[tempData.length + 1];
+                   for (int i = 0; i < tempData.length; i++) {
+                       System.out.println(tempData[i]);
+                       String words[] = tempData[i].split("/");
+                       usernames[i] = words[0];
+                       System.out.println(words[0]);
+                       System.out.println(words[1]);
+                       System.out.println(words[2]);
+                       System.out.println(words[3]);
+                       System.out.println(words[4]);
+
+                       Bus tempBus = new Bus(words[1], words[2], Integer.parseInt(words[3]), words[4]);
+                       tempList.insert(tempBus);
+                       System.out.println(tempList.getList()[i]);
+                   }
+                   tempList.increaseSize();
+                   tempList.insert(busTemp);
+                   usernames[usernames.length-1] = customer.getUsername();
+                   tempList.writeFilePurchases(usernames, tempList);
+
+
+                   UI.getCurrent().navigate("ticketView"); // Send user to register route
+               }
+               catch (IOException e) {
+                   e.printStackTrace();
+               }
             }
             else{
                 Notification.show("Please fill all fields!", 5000, Notification.Position.TOP_CENTER);
@@ -123,6 +156,8 @@ public class CustomerPurchaseView extends VerticalLayout {
                 title,
                 company,
                 companyName,
+                seats,
+                seatsName,
                 startDestinationLbl,
                 startDestinationName,
                 endDestinationLbl,
@@ -145,6 +180,8 @@ public class CustomerPurchaseView extends VerticalLayout {
                 title,
                 company,
                 companyName,
+                seats,
+                seatsName,
                 startDestinationLbl,
                 startDestinationName,
                 endDestinationLbl,
