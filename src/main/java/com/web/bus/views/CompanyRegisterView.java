@@ -41,6 +41,10 @@ public class CompanyRegisterView extends Div {
     private EmailField companyEmail;
     @Autowired
     private CompanyRepository companyController;
+
+    /*
+    Constructor to build the company register view/GUI
+     */
     public CompanyRegisterView() { // Constructor
         setId("login-view"); // Set element ID
         // Declare components
@@ -56,6 +60,7 @@ public class CompanyRegisterView extends Div {
                 password,
                 confirmPassword,
                 register = new Button("Register", event -> { // Register action event
+                    //get the inputed values
                     String enteredName = companyName.getValue();
                     String enteredEmail = companyEmail.getValue();
                     String enteredPassword = password.getValue();
@@ -88,10 +93,12 @@ public class CompanyRegisterView extends Div {
                         UI.getCurrent().navigate("company");
                     }
                 }),
+                //button to redirect user back to company login
                 loginRedirect = new Button("Login", event ->{ // Login action event
                     UI.getCurrent().navigate("company"); // Send user to login route
                 }
                 ),
+                //button to redirect user back to customer login
                 customerRedirect = new Button("User Sign In", event -> { // Company action event
                     UI.getCurrent().navigate(""); // Send user to register route
                 })

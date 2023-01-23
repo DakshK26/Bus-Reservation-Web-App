@@ -42,21 +42,23 @@ public class CustomerMainLayout extends AppLayout {
     Constructor to build the Navbar
      */
     private void createNavbar() {
+        //title
         H1 title = new H1("Bus Reservation Web App");  // Title of the page
         title.getStyle().set("font-size", "var(--lumo-font-size-l)")
                 .set("margin", "0");
-
+        //format header
         header = new HorizontalLayout(new DrawerToggle()); // Drawer toggle button
         header.addClassName("header");
         header.setWidth("3%");
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
-
+        //logout button
         logout = new Button("Logout"); // Logout button
         logout.getStyle().set("margin-left", "20px");
         logout.addClickListener(event -> { // When logout button is clicked, close the session and navigate to the login page
             UI.getCurrent().getSession().close();
             UI.getCurrent().navigate("");
         });
+        //add components to navbar
         addToNavbar(header, title, logout); // Add the title and logout button to the navbar
     }
 
@@ -64,11 +66,12 @@ public class CustomerMainLayout extends AppLayout {
     Constructor to build the toggle menu
      */
     private void createDrawer() { // Create the drawer
+        // add the alternate routes links
        customerMainLink = new RouterLink("Book A Bus", CustomerHomeView.class);
         customerMainLink.setHighlightCondition(HighlightConditions.sameLocation());
         customerHistoryLink = new RouterLink("View Past Purchases", CustomerHistoryView.class);
         customerHistoryLink.setHighlightCondition(HighlightConditions.sameLocation());
-
+        //add components to the toggle menu
         addToDrawer(new VerticalLayout( // Add the links to the drawer
                 customerMainLink,
                 customerHistoryLink

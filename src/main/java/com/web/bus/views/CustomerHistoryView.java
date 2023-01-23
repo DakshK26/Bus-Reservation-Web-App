@@ -124,7 +124,7 @@ Constructor to build the Customer Purchased Tickets View
             busList = Arrays.asList(myBookedBuses.getList());
             table.setItems(busList);
         });
-
+        //create table
         table = new Grid<>(); // Create a grid component
         table.setItems(busList);
         //add the table columns

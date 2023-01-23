@@ -98,6 +98,7 @@ public class CustomerHomeView extends VerticalLayout {
             busList = Arrays.asList(buses.getList());
             table.setItems(busList);
         });
+        //create table
         table = new Grid<>(); // Create a new table object
         table.setItems(busList);
         //add the table columns and bind to the bus object attributes
