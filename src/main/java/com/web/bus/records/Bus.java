@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Scanner;
 
 import com.google.gson.JsonArray;
@@ -54,6 +56,8 @@ public class Bus {
     Method to calculate distance between start and end
      */
     public void calculateDistance() {
+        DecimalFormat twoDigits = new DecimalFormat("0.00");
+
         final int EARTH_RADIUS = 6371; // radius of the Earth in kilometers
 
         // Convert Distance to Radians
@@ -70,6 +74,7 @@ public class Bus {
 
         // Set distance
         this.distance = EARTH_RADIUS * c;
+        this.distance = Math.round(this.distance);
     }
 
     /*
