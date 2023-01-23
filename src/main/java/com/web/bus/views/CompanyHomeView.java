@@ -57,6 +57,20 @@ public class CompanyHomeView extends VerticalLayout {
             busList = Arrays.asList(companyBuses.getList());
             table.setItems(busList);
         }
+        else if (select.getValue().equalsIgnoreCase("Start Destination")) {
+            String busStart = searchbar.getValue();
+            BusList startDestinationBuses = new BusList();
+            startDestinationBuses = startDestinationBuses.searchByStartDestination(busStart, buses);
+            busList = Arrays.asList(startDestinationBuses.getList());
+            table.setItems(busList);
+        }
+        else if (select.getValue().equalsIgnoreCase("End Destination")) {
+            String busEnd = searchbar.getValue();
+            BusList endDestinationBuses = new BusList();
+            endDestinationBuses = endDestinationBuses.searchByEndDestination(busEnd, buses);
+            busList = Arrays.asList(endDestinationBuses.getList());
+            table.setItems(busList);
+        }
         });
         clear = new Button("Clear Filters", event ->{ // Register action event
             busList = Arrays.asList(buses.getList());
