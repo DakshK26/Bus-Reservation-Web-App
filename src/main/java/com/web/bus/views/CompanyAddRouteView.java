@@ -4,6 +4,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
@@ -64,8 +65,9 @@ private Button add, cancel;
 
                     UI.getCurrent().navigate("companyRoutesView");
                 }
-                catch (IOException ignored) {
-
+                catch (IOException e) {
+                    // Notification to tell user to enter valid locations
+                    Notification.show("Please Enter Valid Locations!", 5000, Notification.Position.TOP_CENTER);
                 }
             }
         });
