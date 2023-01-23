@@ -19,11 +19,19 @@ import com.web.bus.records.BusList;
 
 import java.io.IOException;
 import java.math.BigInteger;
-
+/**
+ * @author: Daksh & Ashwin
+ * Date: Jan. 2023
+ * Description: This class is the view for the customer to purchase a ticket
+ * Method List: public CustomerPurchaseView()
+ */
 @Route("customerPurchaseView")
 @PageTitle("customerPurchase")
 public class CustomerPurchaseView extends VerticalLayout {
 
+    /*
+    Private Instance Data
+     */
     private Label company, companyName, startDestinationLbl, startDestinationName,
             endDestinationLbl, endDestinationName, seats, seatsName, durationLbl, durationName, costLbl, costName;
     private TextField name, phoneNumber, cardNum, expiration;
@@ -44,6 +52,7 @@ public class CustomerPurchaseView extends VerticalLayout {
         // Set bus cost
         busCost = "$18.95";
 
+        // Set up labels
         company = new Label("Company: ");
         companyName = new Label(bus.getBusID());
         seats = new Label("Seats");
@@ -57,6 +66,7 @@ public class CustomerPurchaseView extends VerticalLayout {
         costLbl = new Label("Ticket Price: ");
         costName = new Label(busCost);
 
+        // Set up text fields
         name = new TextField("First & Last Name");
         name.setWidth("300px");
         name.setMinLength(1);
@@ -86,6 +96,7 @@ public class CustomerPurchaseView extends VerticalLayout {
         cvc.setMin(0);
         cvc.setMax(9999);
 
+        // Set up buttons
         purchase = new Button("Purchase", event ->{ // Register action event
             String enteredName = name.getValue();
             String enteredEmail = emailAddress.getValue();
@@ -99,15 +110,7 @@ public class CustomerPurchaseView extends VerticalLayout {
             int month = Integer.parseInt(expirations[0]);
             int year = Integer.parseInt(expirations[1]);
 
-
-            System.out.println(enteredName);
-            System.out.println(enteredEmail);
-            System.out.println(enteredPhoneNumber);
-            System.out.println(enteredCardType);
-            System.out.println(enteredCardNum);
-            System.out.println(enteredExpiration);
-            System.out.println(enteredCVC);
-
+            // Check if all fields are filled out
             if (!enteredName.equalsIgnoreCase("") && !enteredEmail.equalsIgnoreCase("") && enteredPhoneNumber >= 1000000000 && enteredCardNum.compareTo(cardNumLength) >=0 && (month > 0 && month <13) && (year > 0) && (enteredCVC >= 0 && enteredCVC < 10000)) {
                try {
                    BusList tempList = new BusList();
@@ -140,7 +143,7 @@ public class CustomerPurchaseView extends VerticalLayout {
                    e.printStackTrace();
                }
             }
-            else{
+            else{ // If not all fields are filled out
                 Notification.show("Please fill all fields!", 5000, Notification.Position.TOP_CENTER);
             }
         });
@@ -149,9 +152,9 @@ public class CustomerPurchaseView extends VerticalLayout {
             UI.getCurrent().navigate("customerHomeView"); // Send user to register route
         });
 
-        var title = new H1("Purchase a Ticket: ");
+        var title = new H1("Purchase a Ticket: "); // Set up title
 
-        setHorizontalComponentAlignment(
+        setHorizontalComponentAlignment(  // Set up alignment
                 Alignment.CENTER,
                 title,
                 company,
@@ -176,7 +179,7 @@ public class CustomerPurchaseView extends VerticalLayout {
                 purchase,
                 cancel);
 
-        add (
+        add ( // Add components to view
                 title,
                 company,
                 companyName,
@@ -200,6 +203,7 @@ public class CustomerPurchaseView extends VerticalLayout {
                 purchase,
                 cancel
         );
+        // Set up theme variants
         purchase.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
     }

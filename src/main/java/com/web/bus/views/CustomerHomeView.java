@@ -23,10 +23,18 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * @author: Aswin & Daksh
+ * Date: Jan. 2023
+ * Description: This class is the view for the customer to view all the routes
+ * Method List: CustomerHomeView()
+ */
 @Route(value = "customerHomeView", layout = CustomerMainLayout.class)
 @PageTitle("CustomerHome")
 public class CustomerHomeView extends VerticalLayout {
+    /*
+    Private Instance Data
+     */
     private Button search, clear;
     private TextField searchbar;
     private Select<String> select;
@@ -36,7 +44,7 @@ public class CustomerHomeView extends VerticalLayout {
     private List<Bus> busList;
 
     public CustomerHomeView () throws IOException {
-        buses = new BusList();
+        buses = new BusList(); // Create a new BusList object
         buses = buses.readFileMaster();
 
         busList = Arrays.asList(buses.getList());

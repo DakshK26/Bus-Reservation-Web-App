@@ -26,6 +26,7 @@ import java.util.List;
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
  * Description: This class is the view for the customer to view their history
+ * Method List: public CustomerHistoryView()
  */
 @Route(value = "customerHistoryView", layout = CustomerMainLayout.class)
 @PageTitle("CustomerHistory")
@@ -46,6 +47,8 @@ public class CustomerHistoryView extends VerticalLayout {
         // Get customer from session data
         Customer customer = (Customer) UI.getCurrent().getSession().getAttribute("customer");
 
+
+            // Read the file and store the data in a list
             BusList temp = new BusList();
             String [] tempData = temp.readFilePurchases();
             String [] usernames = new String[tempData.length];
@@ -113,11 +116,12 @@ public class CustomerHistoryView extends VerticalLayout {
 
         table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
 
-        add (
+        add ( // Add components to the layout
                 new H1("Past Purchases"),
                 new HorizontalLayout(new H4("Search: "), select, searchbar, search, clear),
                 table
                 );
+        // Add theme variants to the buttons
         search.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         clear.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
     }
