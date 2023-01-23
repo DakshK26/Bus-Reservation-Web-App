@@ -2,6 +2,7 @@ package com.web.bus.views;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -26,10 +27,9 @@ public class CustomerTicketView extends VerticalLayout {
 
 
         Div container = new Div();
-        container.add(companyInfo, companyName, startDestination, endDestination, duration, cost);
+        container.add(new H1("Reciept: "), companyInfo, companyName, startDestination, endDestination, duration, cost);
         container.setWidth("300px");
         container.setHeight("200px");
-        container.getStyle().set("border", "2px solid black");
         container.getStyle().set("text-align", "center");
         container.getStyle().set("vertical-align", "middle");
         add(container);
