@@ -21,12 +21,12 @@ import com.web.bus.entities.Customer;
 import com.web.bus.services.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/*
+/**
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
  * Description: GUI for register, Initial user screen
  * Method List: public CompanyRegisterView()
- */
+ **/
 @Route("companyRegister")
 @PageTitle("CompanyRegister")
 @CssImport("./styles/views/login/login-view.css")

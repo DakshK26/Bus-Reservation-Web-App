@@ -18,14 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
-/*
+/**
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
  * Description: GUI for login, Initial user screen
  * Method List:
  * public LoginView()
  * public static void main(String[] args)
- */
+ **/
 @Route("")
 @PageTitle("Login")
 @CssImport("./styles/views/login/login-view.css")

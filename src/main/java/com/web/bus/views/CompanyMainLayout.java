@@ -16,6 +16,10 @@ import com.vaadin.flow.router.RouterLink;
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
  * Description: This class is the main layout for the company user. It contains the navigation bar and the drawer.
+ * Method List:
+ * public CompanyMainLayout()
+ * private void createNavbar()
+ * private void createDrawer()
  */
 @Route("companyMainView")
 public class CompanyMainLayout extends AppLayout {

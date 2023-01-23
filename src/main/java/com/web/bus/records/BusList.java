@@ -3,6 +3,31 @@ package com.web.bus.records;
 
 import java.io.*;
 
+/**
+ * @author: Daksh & Ashwin
+ * Date: Jan. 2023
+ * Description: Class to represent bus list object
+ * Method List:
+ * public BusList()
+ * public void insert(Bus bus)
+ * public void delete(Bus bus)
+ * public void replace(int index, Bus bus)
+ * public void quickSort()
+ * public void quickSort(int left, int right)
+ * public void swap(int i, int j)
+ * public int binarySearch(double distance)
+ * public BusList searchCompany(String company, BusList list)
+ * public BusList searchByStartDestination(String startDestination, BusList list)
+ * public BusList searchByEndDestination(String endDestination, BusList list)
+ * public void increaseSize()
+ * getters and setters
+ * public BusList readFileMaster() throws IOException
+ * public void writeFileMaster(BusList list) throws IOException
+ * public String[] readFilePurchases() throws IOException
+ * public void writeFilePurchases(String[] usernames, BusList list) throws IOException
+ * public void printList() throws IOException
+ * public static void main (String [] args) throws IOException
+ **/
 public class BusList {
     /*
     Private Instace Data
@@ -294,6 +319,47 @@ public class BusList {
             if (bus != null) {
                 System.out.println(bus.toString());
             }
+        }
+    }
+
+    /**
+
+     *  * public void replace(int index, Bus bus)
+     *  * public void quickSort()
+     *  * public void quickSort(int left, int right)
+     *  * public void swap(int i, int j)
+     *  * public int binarySearch(double distance)
+     *  * public BusList searchCompany(String company, BusList list)
+     *  * public BusList searchByStartDestination(String startDestination, BusList list)
+     *  * public BusList searchByEndDestination(String endDestination, BusList list)
+     *  * public void increaseSize()
+     *  * getters and setters
+     *  * public BusList readFileMaster() throws IOException
+     *  * public void writeFileMaster(BusList list) throws IOException
+     *  * public String[] readFilePurchases() throws IOException
+     *  * public void writeFilePurchases(String[] usernames, BusList list) throws IOException
+     *  * public void printList() throws IOException
+     *  * public static void main (String [] args) throws IOException
+     */
+    public static void main (String [] args) throws IOException {
+        Bus bus1 = new Bus("Toronto", "Vancouver", 12, "Freeridge");
+        Bus bus2 = new Bus("Toronto", "Chicago", 24, "Parkway Buses");
+        Bus bus3 = new Bus("Mumbai", "London", 100, "International Buses");
+
+        BusList list = new BusList();
+        System.out.println(list.getList().length);
+        list.insert(bus1);
+        System.out.println(list.getList()[0]);
+        list.insert(bus2);
+        list.insert(bus3);
+        System.out.println(list.getList().length);
+        for(int i = 0; i < list.getCurrentSize(); i++) {
+            System.out.println(list.getList()[i]);
+        }
+        list.delete(bus2);
+        System.out.println(list.getList().length);
+        for(int i = 0; i < list.getCurrentSize(); i++) {
+            System.out.println(list.getList()[i]);
         }
     }
 }

@@ -21,12 +21,14 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
-/*
+/**
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
  * Description: GUI for login, Initial user screen
- * Method List: public static void main(String[] args)
- */
+ * Method List:
+ * public CompanyLoginView()
+ * public static void main(String[] args)
+ **/
 @Route("company")
 @PageTitle("Login")
 @CssImport("./styles/views/login/login-view.css")

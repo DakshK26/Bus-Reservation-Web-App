@@ -12,7 +12,7 @@ import java.util.Scanner;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-/*
+/**
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
  * Description: Class to represent bus object
@@ -27,7 +27,7 @@ import com.google.gson.JsonParser;
  * public String toStringFile()
  * public String toString()
  *  public static void main(String[] args) throws IOException
- */
+ **/
 
 public class Bus {
     /*

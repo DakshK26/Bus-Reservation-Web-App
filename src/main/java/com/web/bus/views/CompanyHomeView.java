@@ -23,6 +23,13 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author: Daksh & Ashwin
+ * Date: Jan. 2023
+ * Description: GUI for the company home view
+ * Method List:
+ * public CompanyHomeView() throws IOException
+ **/
 @Route(value = "companyHomeView", layout = CompanyMainLayout.class)
 @PageTitle("CompanyHome")
 public class CompanyHomeView extends VerticalLayout {

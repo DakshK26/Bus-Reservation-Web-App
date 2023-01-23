@@ -15,6 +15,14 @@ import com.web.bus.records.BusList;
 
 import java.io.IOException;
 
+/**
+ * @author: Daksh & Ashwin
+ * Date: Jan. 2023
+ * Description: GUI for the company add route screen
+ * Method List:
+ * public CompanyAddRouteView()
+ **/
+
 @Route("companyAddRouteView")
 @PageTitle("companyAddRoute")
 public class CompanyAddRouteView extends VerticalLayout {
