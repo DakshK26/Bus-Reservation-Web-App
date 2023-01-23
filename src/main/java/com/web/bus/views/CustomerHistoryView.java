@@ -19,6 +19,7 @@ import com.web.bus.records.Bus;
 import com.web.bus.records.BusList;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @Route(value = "customerHistoryView", layout = CustomerMainLayout.class)
@@ -28,49 +29,73 @@ public class CustomerHistoryView extends VerticalLayout {
     private TextField searchbar;
     private Select<String> select;
     private Grid<Bus> table;
-    private BusList busses;
+    private BusList buses;
 
     private List<Bus> busList;
 
     public CustomerHistoryView() throws IOException {
         // Get customer from session data
         Customer customer = (Customer) UI.getCurrent().getSession().getAttribute("customer");
-        //busses = new BusList();
-        //Bus bus = new Bus("Freeway", "Toronto", "Ottawa", "10");
-        //Bus bus2 = new Bus("Parkway", "Vancouver", "Hamilton", "20");
-       // Bus bus3 = new Bus("International", "Brampton", "Regina", "15");
-        //Bus bus4 = new Bus("BooLoo", "Brampton", "Regina", "15");
-       // Bus bus5 = new Bus("International", "Brampton", "Regina", "15");
-       // Bus bus6 = new Bus("International", "Brampton", "Regina", "15");
-        //Bus bus7 = new Bus("International", "Brampton", "Regina", "15");
-      //  Bus bus8 = new Bus("International", "Brampton", "Regina", "15");
-        //Bus bus9 = new Bus("International", "Brampton", "Regina", "15");
-       // Bus bus10 = new Bus("International", "Brampton", "Regina", "15");
 
-        // busses.insert(bus);
-      //  busses.insert(bus2);
-      //  busses.insert(bus3);
-       // busses.insert(bus4);
-       // busses.insert(bus5);
-       // busses.insert(bus6);
-       // busses.insert(bus7);
-        //busses.insert(bus8);
-       // busses.insert(bus9);
-        //busses.insert(bus10);
+            BusList temp = new BusList();
+            String [] tempData = temp.readFilePurchases();
+            String [] usernames = new String[tempData.length];
+            for (int i = 0; i < tempData.length; i++) {
+                String[] words = tempData[i].split("/");
+                usernames[i] = words[0];
+                Bus tempBus = new Bus(words[1], words[2], Integer.parseInt(words[3]), words[4]);
+                temp.increaseSize();
+                temp.insert(tempBus);
+            }
 
-        //busList = Arrays.asList(busses.getList());
+            BusList myBookedBuses = new BusList();
+            for (int i = 0; i < usernames.length; i++) {
+                if(usernames[i].equalsIgnoreCase(customer.getUsername())) {
+                   myBookedBuses.increaseSize();
+                   myBookedBuses.insert(temp.getList()[i]);
+                }
+            }
+        busList = Arrays.asList(myBookedBuses.getList());
 
         select = new Select<>();
-        select.setItems("Bus ID", "Start Destination", "End Destination");
-        select.setValue("Bus ID");
+        select.setItems("Company", "Start Destination", "End Destination");
+        select.setValue("Company");
         searchbar = new TextField();
         searchbar.setPlaceholder("Search Criteria");
         searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
-        search = new Button("Search");
-        clear = new Button("Clear Filters");
+        search = new Button("Search", event ->{ // Register action event
+            if (select.getValue().equalsIgnoreCase("Company")) {
+                String companyName = searchbar.getValue();
+                BusList companyBuses = new BusList();
+                companyBuses = companyBuses.searchCompany(companyName, myBookedBuses);
+                companyBuses.quickSort(companyBuses, 0, companyBuses.getList().length - 1);
+                busList = Arrays.asList(companyBuses.getList());
+                table.setItems(busList);
+            }
+            else if (select.getValue().equalsIgnoreCase("Start Destination")) {
+                String busStart = searchbar.getValue();
+                BusList startDestinationBuses = new BusList();
+                startDestinationBuses = startDestinationBuses.searchByStartDestination(busStart, myBookedBuses);
+                startDestinationBuses.quickSort(startDestinationBuses, 0, startDestinationBuses.getList().length - 1);
+                busList = Arrays.asList(startDestinationBuses.getList());
+                table.setItems(busList);
+            }
+            else if (select.getValue().equalsIgnoreCase("End Destination")) {
+                String busEnd = searchbar.getValue();
+                BusList endDestinationBuses = new BusList();
+                endDestinationBuses = endDestinationBuses.searchByEndDestination(busEnd, myBookedBuses);
+                endDestinationBuses.quickSort(endDestinationBuses, 0, endDestinationBuses.getList().length - 1);
+                busList = Arrays.asList(endDestinationBuses.getList());
+                table.setItems(busList);
+            }
+        });
+        clear = new Button("Clear Filters", event ->{ // Register action event
+            busList = Arrays.asList(myBookedBuses.getList());
+            table.setItems(busList);
+        });
         table = new Grid<>();
-        //table.setItems(busList);
-      //  table.addColumn(Bus::getBusID).setHeader("Bus ID");
+        table.setItems(busList);
+        table.addColumn(Bus::getBusID).setHeader("Company");
         table.addColumn(Bus::getStartDestination).setHeader("Start Destination");
         table.addColumn(Bus::getEndDestination).setHeader("End Destination");
         table.addColumn(Bus::getDistance).setHeader("Distance");

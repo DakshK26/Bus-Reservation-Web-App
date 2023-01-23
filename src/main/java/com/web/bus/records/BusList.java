@@ -156,7 +156,7 @@ public class BusList{
         return matchingBusses;
     }
 
-    private void increaseSize() {
+    public void increaseSize() {
         this.setMaxSize(maxSize + 1);
         Bus[] newList = new Bus[this.getMaxSize()];
         System.arraycopy(this.list, 0, newList, 0, this.list.length);
@@ -218,6 +218,34 @@ public class BusList{
             writerF.println(list.getList()[i].toStringFile());
         }
     writerF.println("EOF");
+        writerF.close();
+    }
+
+    public String [] readFilePurchases() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("allPurchases.txt"));
+        int length = 0;
+        while(!reader.readLine().equalsIgnoreCase("EOF")) {
+            length = length + 1;
+        }
+        reader.close();
+
+        String[] fileContents = new String[length];
+
+        reader = new BufferedReader(new FileReader("allPurchases.txt"));
+
+        for (int i = 0; i < fileContents.length; i++) {
+            fileContents[i] = reader.readLine();
+        }
+        reader.close();
+
+        return fileContents;
+    }
+    public void writeFilePurchases (String usernames [] , BusList list) throws IOException {
+        PrintWriter writerF = new PrintWriter(new FileWriter("allPurchases.txt"));
+        for (int i = 0; i < list.getList().length && list.getList()[i] != null; i++) {
+            writerF.println(usernames[i] + "/" + list.getList()[i].toStringFile());
+        }
+        writerF.println("EOF");
         writerF.close();
     }
 }

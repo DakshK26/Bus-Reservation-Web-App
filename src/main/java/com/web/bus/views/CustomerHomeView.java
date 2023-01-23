@@ -49,6 +49,7 @@ public class CustomerHomeView extends VerticalLayout {
                 String companyName = searchbar.getValue();
                 BusList companyBuses = new BusList();
                 companyBuses = companyBuses.searchCompany(companyName, buses);
+                companyBuses.quickSort(companyBuses, 0, companyBuses.getList().length - 1);
                 busList = Arrays.asList(companyBuses.getList());
                 table.setItems(busList);
             }
@@ -56,6 +57,7 @@ public class CustomerHomeView extends VerticalLayout {
                 String busStart = searchbar.getValue();
                 BusList startDestinationBuses = new BusList();
                 startDestinationBuses = startDestinationBuses.searchByStartDestination(busStart, buses);
+                startDestinationBuses.quickSort(startDestinationBuses, 0, startDestinationBuses.getList().length - 1);
                 busList = Arrays.asList(startDestinationBuses.getList());
                 table.setItems(busList);
             }
@@ -63,6 +65,7 @@ public class CustomerHomeView extends VerticalLayout {
                 String busEnd = searchbar.getValue();
                 BusList endDestinationBuses = new BusList();
                 endDestinationBuses = endDestinationBuses.searchByEndDestination(busEnd, buses);
+                endDestinationBuses.quickSort(endDestinationBuses, 0, endDestinationBuses.getList().length - 1);
                 busList = Arrays.asList(endDestinationBuses.getList());
                 table.setItems(busList);
             }
