@@ -42,6 +42,9 @@ public class CompanyLoginView extends Div {
     @Autowired
     private CompanyRepository authenticationService;
 
+    /*
+    Constructor to build the company login view/GUI
+     */
     public CompanyLoginView() {
         setId("login-view"); // Set element ID
         // Declare components
