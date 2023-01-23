@@ -27,7 +27,7 @@ into the GUIs/pages related to each customer/company account.
 
 Booking A Bus Through Company Home View:
 TO BOOK A BUS AS A CUSTOMER FROM THE HOME PAGE, click on the row with th desired bus route and it will redirect you to the purchase
-screen. NOTE, THERE IS NO BOOK BUTTON, simply click on the row with the bus you deire to book.
+screen. NOTE, THERE IS NO BOOK BUTTON, simply click on the row with the bus you desire to book.
 
 Few Program Notes:
 1. You may notice some classes do not have a self testing main method. This is because these are vaadin web application views and hence, these
