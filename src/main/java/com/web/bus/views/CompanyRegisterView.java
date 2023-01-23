@@ -58,6 +58,14 @@ public class CompanyRegisterView extends Div {
                     String enteredPassword = password.getValue();
                     String enteredConfirmPassword = confirmPassword.getValue();
 
+                    // Validate the name is not empty
+                    if(enteredName.isEmpty()) {
+                        Notification.show("Name cannot be empty. Please try again.", 5000, Notification.Position.TOP_CENTER);
+                    }
+                    // Validate the email meets condition of email
+                    else if(!enteredEmail.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+                        Notification.show("Email is not valid. Please try again.", 5000, Notification.Position.TOP_CENTER);
+                    }
                     // Validate the username is not already taken
                     if(this.companyController.existsByEmail(enteredEmail)) {
                         Notification.show("Username is already taken. Please try again.", 5000, Notification.Position.TOP_CENTER);

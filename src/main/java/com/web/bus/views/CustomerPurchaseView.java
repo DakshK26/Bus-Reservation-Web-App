@@ -5,6 +5,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.EmailField;
@@ -39,7 +40,7 @@ public class CustomerPurchaseView extends VerticalLayout {
         Bus bus = (Bus) UI.getCurrent().getSession().getAttribute("selectedBus");
 
         // Set bus cost
-        busCost = "18.95";
+        busCost = "$18.95";
 
         company = new Label("Company: ");
         companyName = new Label(bus.getBusID());
@@ -55,7 +56,9 @@ public class CustomerPurchaseView extends VerticalLayout {
         name = new TextField("First & Last Name");
         name.setWidth("300px");
         name.setMinLength(1);
+        name.setValue(customer.getName());
         emailAddress = new EmailField("Email Address");
+        emailAddress.setValue(customer.getEmail());
         emailAddress.setWidth("300px");
         emailAddress.setMinLength(1);
         emailAddress.setPlaceholder("example@asdk.com");
@@ -103,6 +106,9 @@ public class CustomerPurchaseView extends VerticalLayout {
 
             if (!enteredName.equalsIgnoreCase("") && !enteredEmail.equalsIgnoreCase("") && enteredPhoneNumber >= 1000000000 && enteredCardNum.compareTo(cardNumLength) >=0 && (month > 0 && month <13) && (year > 0) && (enteredCVC >= 0 && enteredCVC < 10000)) {
                 UI.getCurrent().navigate("customerHomeView"); // Send user to register route
+            }
+            else{
+                Notification.show("Please fill all fields!", 5000, Notification.Position.TOP_CENTER);
             }
         });
         cancel = new Button("Cancel Purchase", event -> { // Company action event

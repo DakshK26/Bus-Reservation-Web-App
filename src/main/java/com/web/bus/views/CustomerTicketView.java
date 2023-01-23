@@ -25,7 +25,7 @@ public class CustomerTicketView extends VerticalLayout {
         duration = new Label("Trip Duration: " + selectedBus.getTimeInMinutes()/60 + " hours " + selectedBus.getTimeInMinutes() %60 + " minutes");
         cost = new Label("Ticket Price: $18.95");
 
-
+        // Create container for ticket information
         Div container = new Div();
         container.add(new H1("Reciept: "), companyInfo, companyName, startDestination, endDestination, duration, cost);
         container.setWidth("300px");
@@ -34,6 +34,7 @@ public class CustomerTicketView extends VerticalLayout {
         container.getStyle().set("vertical-align", "middle");
         add(container);
 
+        // Set alignment
         setHorizontalComponentAlignment(
                 Alignment.CENTER,
                 companyInfo,
@@ -43,6 +44,8 @@ public class CustomerTicketView extends VerticalLayout {
                 duration,
                 cost
         );
+
+        // Add all components to view
         add(companyInfo, companyName, startDestination, endDestination, duration, cost);
     }
 }
