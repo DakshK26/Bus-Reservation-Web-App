@@ -36,8 +36,8 @@ public class Bus {
     Default Constructor
      */
     public Bus(String startDestination, String endDestination, int numberOfSeats, String busID) throws IOException {
-        this.startDestination = startDestination;
-        this.endDestination = endDestination;
+        this.startDestination = removeSpaces(startDestination);
+        this.endDestination = removeSpaces(endDestination);
         this.numberOfSeats = numberOfSeats;
         this.busID = busID;
         var startCords = getCoordinates(startDestination);
@@ -75,7 +75,7 @@ public class Bus {
     /*
     Method to find longtitude and langtitude from adress
      */
-    public double[] getCoordinates(String location) throws IOException {
+    public double[] getCoordinates(String location) throws IOException{
         String API_KEY = "AIzaSyCbAe6efhgr5AYp9zqahePb_wV3LQBPLtQ";
         String requestUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
                 location + "&key=" + API_KEY;
@@ -112,7 +112,7 @@ public class Bus {
     /*
     Method to get travel time from two locations
      */
-    public void getTravelTime() throws IOException {
+    public void getTravelTime() throws IOException{
         String API_KEY = "AIzaSyCbAe6efhgr5AYp9zqahePb_wV3LQBPLtQ";
         String requestUrl = "https://maps.googleapis.com/maps/api/directions/json?origin=" +
                 this.startDestination + "&destination=" + this.endDestination + "&key=" + API_KEY;
@@ -142,6 +142,13 @@ public class Bus {
         JsonObject firstLeg = legs.get(0).getAsJsonObject();
 
         this.timeInMinutes = (firstLeg.get("duration").getAsJsonObject().get("value").getAsInt() / 60); // Convert time to minutes and return
+    }
+
+    /*
+    Method to remove spaces
+     */
+    public String removeSpaces(String str) {
+        return str.replaceAll("\s", "");
     }
 
     /*

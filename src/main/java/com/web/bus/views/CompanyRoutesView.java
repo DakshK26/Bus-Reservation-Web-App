@@ -35,12 +35,12 @@ public class CompanyRoutesView extends VerticalLayout {
 
     public CompanyRoutesView() throws IOException {
         // Get company from session data
-        Company customer = (Company) UI.getCurrent().getSession().getAttribute("company");
+        Company company = (Company) UI.getCurrent().getSession().getAttribute("company");
 
         buses = new BusList();
         buses = buses.readFileMaster();
         companyBuses = new BusList();
-        companyBuses = companyBuses.searchCompany(customer.getName(), buses);
+        companyBuses = companyBuses.searchCompany(company.getName(), buses);
 
 
         busList = Arrays.asList(companyBuses.getList());

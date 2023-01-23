@@ -7,4 +7,5 @@ California/Toronto/220/Youtube
 Chicago/Ottawa/200/Freeridge Bus Co.
 California/Detroit/200/Freeridge Bus Co.
 Detroit/Regina/130/Freeridge Bus Co.
+toronto/ottawa/21/Thing
 EOF
