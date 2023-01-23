@@ -26,7 +26,7 @@ import java.io.IOException;
 @Route("companyAddRouteView")
 @PageTitle("companyAddRoute")
 public class CompanyAddRouteView extends VerticalLayout {
-private TextField startDestination, endDestination, companyName;
+private TextField startDestination, endDestination;
 private IntegerField numSeatsAvailable;
 private Button add, cancel;
     public CompanyAddRouteView() {
@@ -74,12 +74,11 @@ private Button add, cancel;
             UI.getCurrent().navigate("companyRoutesView"); // Send user to register route
         });
 
-        setHorizontalComponentAlignment(Alignment.CENTER, companyName, startDestination, endDestination, numSeatsAvailable,
+        setHorizontalComponentAlignment(Alignment.CENTER, startDestination, endDestination, numSeatsAvailable,
                                         add, cancel);
 
         add ( // Add components to layout
                 new H1("Add Route"),
-                companyName,
                 startDestination,
                 endDestination,
                 numSeatsAvailable,

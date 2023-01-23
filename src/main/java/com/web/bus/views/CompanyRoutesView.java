@@ -56,82 +56,66 @@ public class CompanyRoutesView extends VerticalLayout {
 
 
         busList = Arrays.asList(companyBuses.getList());
-        select = new Select<>();
+        select = new Select<>(); // Create a select component
         select.setItems("Start Destination", "End Destination");
         select.setValue("Start Destination");
-        searchbar = new TextField();
+        searchbar = new TextField(); // Create a text field component
         searchbar.setPlaceholder("Search Criteria");
         searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
         search = new Button("Search", event ->{ // Register action event
             if (select.getValue().equalsIgnoreCase("Company")) {
                 String companyName = searchbar.getValue();
                 BusList companyBuses = new BusList();
-                companyBuses = companyBuses.searchCompany(companyName, buses);
+                companyBuses = companyBuses.searchCompany(companyName, buses); // Search for company
                 companyBuses.quickSort();
                 busList = Arrays.asList(companyBuses.getList());
-                table.setItems(busList);
+                table.setItems(busList); // Set table to company buses
             }
             else if (select.getValue().equalsIgnoreCase("Start Destination")) {
-                String busStart = searchbar.getValue();
+                String busStart = searchbar.getValue(); // Get search criteria
                 BusList startDestinationBuses = new BusList();
                 startDestinationBuses = startDestinationBuses.searchByStartDestination(busStart, buses);
-                startDestinationBuses.quickSort();
+                startDestinationBuses.quickSort(); // Sort by start destination
                 busList = Arrays.asList(startDestinationBuses.getList());
                 table.setItems(busList);
             }
             else if (select.getValue().equalsIgnoreCase("End Destination")) {
-                String busEnd = searchbar.getValue();
+                String busEnd = searchbar.getValue(); // Get search criteria
                 BusList endDestinationBuses = new BusList();
                 endDestinationBuses = endDestinationBuses.searchByEndDestination(busEnd, buses);
-                endDestinationBuses.quickSort();
+                endDestinationBuses.quickSort(); // Sort by end destination
                 busList = Arrays.asList(endDestinationBuses.getList());
                 table.setItems(busList);
             }
         });
         clear = new Button("Clear Filters", event ->{ // Register action event
             busList = Arrays.asList(buses.getList());
-            table.setItems(busList);
+            table.setItems(busList); // Set table to all buses
         });
         addRoute = new Button ("Add a Route", event -> { // Company action event
             UI.getCurrent().navigate("companyAddRouteView"); // Send user to register route
         });
-        table = new Grid<>();
+        table = new Grid<>(); // Create a table component
         table.setItems(busList);
         table.addColumn(Bus::getBusID).setHeader("CompanyName");
         table.addColumn(Bus::getStartDestination).setHeader("Start Destination");
         table.addColumn(Bus::getEndDestination).setHeader("End Destination");
         table.addColumn(Bus::getDistance).setHeader("Distance");
         table.addColumn(Bus::getTimeInMinutes).setHeader("Travel Time");
-        table.addComponentColumn(item -> {
-            Button btn = new Button("Cancel");
-            btn.addClickListener(event -> {
-                // Cancel route
-                buses.delete(item);
-                try {
-                    buses.writeFileMaster(buses);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                busList = Arrays.asList(buses.getList());
-                table.setItems(busList);
-            });
-            return btn;
-        }).setHeader("Cancel Routes");
 
-
+        // Add theme variants
         table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
-
-
         table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
 
 
 
-        add (
+        add ( // Add components to the view
                 new H1("Company Active Routes"),
                 new HorizontalLayout(new H4("Search: "), select, searchbar, search, clear),
                 addRoute,
                 table
                 );
+        // Add theme variants
         search.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         clear.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
     }
