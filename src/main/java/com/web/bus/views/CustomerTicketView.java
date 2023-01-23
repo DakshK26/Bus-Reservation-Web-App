@@ -10,7 +10,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.web.bus.records.Bus;
 
-/*
+/**
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
  * Description: GUI for Ticket Reciept
@@ -21,7 +21,9 @@ import com.web.bus.records.Bus;
 @Route("ticketView")
 @PageTitle("Ticket")
 public class CustomerTicketView extends VerticalLayout {
-
+    /*
+    Private Instance Data
+     */
     private Label companyInfo, companyName, startDestination, endDestination, duration, cost;
     private Button home;
 
