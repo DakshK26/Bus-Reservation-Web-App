@@ -3,6 +3,11 @@ Bus Reservation Web App
 
 Running the project:
 
+Recommended IDE: IntelliJ IDEA
+Recommended Plugin For Eclipse: Maven Integration for Eclipse (M2E) 1.17.0 - https://www.eclipse.org/m2e/
+Recommended Java Version (JDK): 11.0.8
+
+
 To run the project, navigate to the "BusApplication" class and click "run". If you do not run the program
 through this class, the project will fail to run as all the classes are interconnected and are routed from the initial
 main route which is only available from running this class. The "BusApplication" class can be found in
