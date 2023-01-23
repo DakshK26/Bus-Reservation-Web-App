@@ -14,17 +14,15 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.web.bus.entities.Customer;
 import com.web.bus.records.Bus;
-import com.web.bus.records.BusList;
 
-import java.io.IOException;
 import java.math.BigInteger;
 
 @Route("customerPurchaseView")
 @PageTitle("customerPurchase")
 public class CustomerPurchaseView extends VerticalLayout {
 
-    private Label company, companyName, seats, seatsName, startDestinationLbl, startDestinationName,
-            endDestinationLbl, endDestinationName, distanceLbl, distanceName, durationLbl, durationName, costLbl, costName;
+    private Label company, companyName, startDestinationLbl, startDestinationName,
+            endDestinationLbl, endDestinationName, durationLbl, durationName, costLbl, costName;
     private TextField name, phoneNumber, cardNum, expiration;
     private EmailField emailAddress;
     private IntegerField cvc;
@@ -45,14 +43,10 @@ public class CustomerPurchaseView extends VerticalLayout {
 
         company = new Label("Company: ");
         companyName = new Label(bus.getBusID());
-        seats = new Label("Seats");
-        seatsName = new Label(String.valueOf(bus.getNumberOfSeats()));
         startDestinationLbl = new Label("Start Destination:");
         startDestinationName = new Label(bus.getStartDestination());
         endDestinationLbl = new Label("End Destination:");
         endDestinationName = new Label(bus.getEndDestination());
-        distanceLbl = new Label("Distance");
-        distanceName = new Label(String.valueOf(bus.getDistance()));
         durationLbl = new Label("Trip Duration:");
         durationName = new Label("" + bus.getTimeInMinutes());
         costLbl = new Label("Ticket Price: ");
@@ -98,6 +92,7 @@ public class CustomerPurchaseView extends VerticalLayout {
             int month = Integer.parseInt(expirations[0]);
             int year = Integer.parseInt(expirations[1]);
 
+
             System.out.println(enteredName);
             System.out.println(enteredEmail);
             System.out.println(enteredPhoneNumber);
@@ -107,28 +102,7 @@ public class CustomerPurchaseView extends VerticalLayout {
             System.out.println(enteredCVC);
 
             if (!enteredName.equalsIgnoreCase("") && !enteredEmail.equalsIgnoreCase("") && enteredPhoneNumber >= 1000000000 && enteredCardNum.compareTo(cardNumLength) >=0 && (month > 0 && month <13) && (year > 0) && (enteredCVC >= 0 && enteredCVC < 10000)) {
-                try {
-                    BusList temp = new BusList();
-                    Bus busTemp = new Bus(startDestinationName.getText(), endDestinationName.getText(), Integer.parseInt(seatsName.getText()), companyName.getText());
-                    String [] tempData = temp.readFilePurchases();
-                    String [] usernames = new String[tempData.length+1];
-                    for (int i = 0; i < tempData.length; i++) {
-                        String[] words = tempData[i].split("/");
-                        usernames [i] = words[0];
-                        Bus tempBus = new Bus(words[1], words[2], Integer.parseInt(words[3]), words[4]);
-                        temp.increaseSize();
-                        temp.insert(tempBus);
-                    }
-                    temp.insert(busTemp);
-                    usernames[usernames.length-1] = customer.getUsername();
-                    temp.writeFilePurchases(usernames, temp);
-                    System.out.println(busTemp.toStringFile());
-
-                    UI.getCurrent().navigate("customerHomeView"); // Send user to register route
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                UI.getCurrent().navigate("customerHomeView"); // Send user to register route
             }
         });
         cancel = new Button("Cancel Purchase", event -> { // Company action event
@@ -143,14 +117,10 @@ public class CustomerPurchaseView extends VerticalLayout {
                 title,
                 company,
                 companyName,
-                seats,
-                seatsName,
                 startDestinationLbl,
                 startDestinationName,
                 endDestinationLbl,
                 endDestinationName,
-                distanceLbl,
-                distanceName,
                 durationLbl,
                 durationName,
                 costLbl,
@@ -169,14 +139,10 @@ public class CustomerPurchaseView extends VerticalLayout {
                 title,
                 company,
                 companyName,
-                seats,
-                seatsName,
                 startDestinationLbl,
                 startDestinationName,
                 endDestinationLbl,
                 endDestinationName,
-                distanceLbl,
-                distanceName,
                 durationLbl,
                 durationName,
                 costLbl,
