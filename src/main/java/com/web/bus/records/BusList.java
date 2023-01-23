@@ -1,11 +1,9 @@
 package com.web.bus.records;
 
 
-import org.springframework.security.core.parameters.P;
-
 import java.io.*;
 
-public class BusList{
+public class BusList {
     /*
     Private Instace Data
      */
@@ -13,6 +11,7 @@ public class BusList{
     private Bus[] list;
     private int maxSize;
     private int currentSize;
+
     /*
     Default Constructor
      */
@@ -22,6 +21,11 @@ public class BusList{
         this.list = new Bus[maxSize];
     }
 
+    /**
+     * Insert Method
+     *
+     * @param bus the bus to be inserted
+     */
     public void insert(Bus bus) {
         if (currentSize < maxSize) {
             list[currentSize] = bus;
@@ -33,6 +37,11 @@ public class BusList{
         }
     }
 
+    /**
+     * Delete Method
+     *
+     * @param bus the bus to be deleted
+     */
     public void delete(Bus bus) {
         for (int i = 0; i < currentSize; i++) {
             if (list[i].equals(bus)) {
@@ -45,39 +54,38 @@ public class BusList{
         }
     }
 
+    /**
+     * Replace bus at index with bus
+     *
+     * @param index the index of the bus to be replaced
+     * @param bus   the bus to replace the bus at index
+     */
     public void replace(int index, Bus bus) {
         if (index >= 0 && index < currentSize) {
             list[index] = bus;
         }
     }
 
+
     public void quickSort(BusList list, int left, int right) {
         if (left < right) {
-            int sz = right - left + 1;
-            int pivotpt = (left + right)/2;
-            int i = left;
-            int j = right - 1;
-            int pivot = (int)list.getList()[pivotpt].getDistance();
-            swap(list.getList()[pivotpt], list.getList()[right]);
-            pivotpt = right;
-            while(i<j) {
-                while(i<right-1 && list.getList()[i].getDistance()<pivot) {
-                    i++;
-                }
-                while(j > 0 && list.getList()[j].getDistance()>pivot) {
-                    j--;
-                }
-                if(i<j) {
-                    swap(list.getList()[i++], list.getList()[j--]);
-                }
-            }
-            if(i == j && list.getList()[i].getDistance() < list.getList()[pivotpt].getDistance()) {
-                i++;
-            }
-            swap(list.getList()[i], list.getList()[pivotpt]);
-            quickSort(list, left, i-1);
-            quickSort(list, i+1, right);
+            int pivot = partition(list, left, right);
+            quickSort(list, left, pivot - 1);
+            quickSort(list, pivot + 1, right);
         }
+    }
+
+    public int partition(BusList list, int left, int right) {
+        int pivot = (int) list.getList()[right].getDistance();
+        int i = left - 1;
+        for (int j = left; j < right; j++) {
+            if (list.getList()[j].getDistance() <= pivot) {
+                i++;
+                swap(list.getList()[i], list.getList()[j]);
+            }
+        }
+        swap(list.getList()[i + 1], list.getList()[right]);
+        return i + 1;
     }
 
     public void swap(Bus bus1, Bus bus2) {
@@ -85,30 +93,8 @@ public class BusList{
         bus1 = bus2;
         bus2 = temp;
     }
-   /* public void quickSort(BusList list, int low, int high) {
-        if (low < high) {
-            int pivotIndex = partition(list, low, high);
-            quickSort(list, low, pivotIndex);
-            quickSort(list, pivotIndex + 1, high);
-        }
-    }
 
-    public int partition(BusList list, int low, int high) {
-        int pivot = (int)list.getList()[high].getDistance();
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
-            if(list.getList()[j].getDistance() <= pivot) {
-                i++;
-                Bus temp = list.getList()[i];
-                list.getList()[i] = list.getList()[j];
-                list.getList()[j] = temp;
-            }
-        }
-        Bus temp = list.getList()[i + 1];
-        list.getList()[i + 1] = list.getList()[high];
-        list.getList()[high] = temp;
-        return i+1;
-    }*/
+
 
     public int binarySearch(double distance) {
         int low = 0;
@@ -128,11 +114,11 @@ public class BusList{
 
     public BusList searchCompany(String company, BusList list) {
         BusList companySorted = new BusList();
-         for (int i = 0; i < list.getList().length; i++) {
-             if (list.getList()[i].getBusID().equalsIgnoreCase(company)) {
-                 companySorted.insert(list.getList()[i]);
+        for (int i = 0; i < list.getList().length; i++) {
+            if (list.getList()[i].getBusID().equalsIgnoreCase(company)) {
+                companySorted.insert(list.getList()[i]);
             }
-         }
+        }
         return companySorted;
     }
 
@@ -146,7 +132,7 @@ public class BusList{
         return matchingBusses;
     }
 
-    public BusList searchByEndDestination(String endDestination, BusList list){
+    public BusList searchByEndDestination(String endDestination, BusList list) {
         BusList matchingBusses = new BusList();
         for (int i = 0; i < list.getList().length; i++) {
             if (list.getList()[i].getEndDestination().equalsIgnoreCase(endDestination)) {
@@ -190,7 +176,7 @@ public class BusList{
     public BusList readFileMaster() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("allBuses.txt"));
         int length = 0;
-        while(!reader.readLine().equalsIgnoreCase("EOF")) {
+        while (!reader.readLine().equalsIgnoreCase("EOF")) {
             length = length + 1;
         }
         reader.close();
@@ -212,19 +198,20 @@ public class BusList{
 
         return list;
     }
-    public void writeFileMaster (BusList list) throws IOException {
+
+    public void writeFileMaster(BusList list) throws IOException {
         PrintWriter writerF = new PrintWriter(new FileWriter("allBuses.txt"));
         for (int i = 0; i < list.getList().length && list.getList()[i] != null; i++) {
             writerF.println(list.getList()[i].toStringFile());
         }
-    writerF.println("EOF");
+        writerF.println("EOF");
         writerF.close();
     }
 
-    public String [] readFilePurchases() throws IOException {
+    public String[] readFilePurchases() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("allPurchases.txt"));
         int length = 0;
-        while(!reader.readLine().equalsIgnoreCase("EOF")) {
+        while (!reader.readLine().equalsIgnoreCase("EOF")) {
             length = length + 1;
         }
         reader.close();
@@ -240,12 +227,25 @@ public class BusList{
 
         return fileContents;
     }
-    public void writeFilePurchases (String usernames [] , BusList list) throws IOException {
+
+    public void writeFilePurchases(String[] usernames, BusList list) throws IOException {
         PrintWriter writerF = new PrintWriter(new FileWriter("allPurchases.txt"));
         for (int i = 0; i < list.getList().length && list.getList()[i] != null; i++) {
             writerF.println(usernames[i] + "/" + list.getList()[i].toStringFile());
         }
         writerF.println("EOF");
         writerF.close();
+    }
+
+    /**
+     * Print list method
+     */
+    public void printList() throws IOException {
+        for (Bus bus : list) {
+            if (bus != null) {
+                System.out.println(bus.toString());
+            }
+        }
+
     }
 }

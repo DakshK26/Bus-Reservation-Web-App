@@ -239,6 +239,9 @@ public class Bus {
         return (getStartDestination() + "/" + getEndDestination() + "/" + getNumberOfSeats() + "/" + getBusID());
     }
 
+    /*
+    toString method
+     */
     @Override
     public String toString() {
         return "Bus{" +
