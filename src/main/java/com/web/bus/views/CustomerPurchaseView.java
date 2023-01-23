@@ -13,6 +13,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.web.bus.entities.Customer;
+import com.web.bus.records.Bus;
 
 import java.math.BigInteger;
 
@@ -20,24 +21,36 @@ import java.math.BigInteger;
 @PageTitle("customerPurchase")
 public class CustomerPurchaseView extends VerticalLayout {
 
-    private Label busIDLbl, startDestinationLbl, endDestinationLbl, durationLbl, costLbl;
+    private Label company, companyName, startDestinationLbl, startDestinationName,
+            endDestinationLbl, endDestinationName, durationLbl, durationName, costLbl, costName;
     private TextField name, phoneNumber, cardNum, expiration;
     private EmailField emailAddress;
     private IntegerField cvc;
     private Select<String> cardTypes;
     private Button purchase, cancel;
+    private String busCost;
 
     private BigInteger cardNumLength = new BigInteger("1000000000000000");
 
     public CustomerPurchaseView() {
         // Get customer from session data
         Customer customer = (Customer) UI.getCurrent().getSession().getAttribute("customer");
+        // Get bus from session data
+        Bus bus = (Bus) UI.getCurrent().getSession().getAttribute("selectedBus");
 
-        busIDLbl = new Label("Bus ID: ");
+        // Set bus cost
+        busCost = "18.95";
+
+        company = new Label("Company: ");
+        companyName = new Label(bus.getBusID());
         startDestinationLbl = new Label("Start Destination:");
+        startDestinationName = new Label(bus.getStartDestination());
         endDestinationLbl = new Label("End Destination:");
+        endDestinationName = new Label(bus.getEndDestination());
         durationLbl = new Label("Trip Duration:");
-        costLbl = new Label("Ticket Price");
+        durationName = new Label("" + bus.getTimeInMinutes());
+        costLbl = new Label("Ticket Price: ");
+        costName = new Label(busCost);
 
         name = new TextField("First & Last Name");
         name.setWidth("300px");
@@ -63,7 +76,7 @@ public class CustomerPurchaseView extends VerticalLayout {
         expiration.setMinLength(7);
         expiration.setMaxLength(7);
         cvc = new IntegerField("CVC");
-        cvc.setMin(000);
+        cvc.setMin(0);
         cvc.setMax(9999);
 
         purchase = new Button("Purchase", event ->{ // Register action event
@@ -75,7 +88,7 @@ public class CustomerPurchaseView extends VerticalLayout {
             String enteredExpiration = expiration.getValue();
             int enteredCVC = cvc.getValue();
 
-            String expirations [] = enteredExpiration.split("/");
+            String[] expirations = enteredExpiration.split("/");
             int month = Integer.parseInt(expirations[0]);
             int year = Integer.parseInt(expirations[1]);
 
@@ -93,19 +106,47 @@ public class CustomerPurchaseView extends VerticalLayout {
             }
         });
         cancel = new Button("Cancel Purchase", event -> { // Company action event
+            UI.getCurrent().getSession().setAttribute("selectedBus", null);
             UI.getCurrent().navigate("customerHomeView"); // Send user to register route
         });
 
-        setHorizontalComponentAlignment(Alignment.CENTER, busIDLbl, startDestinationLbl,  endDestinationLbl, durationLbl, costLbl,
-                                        name, emailAddress, phoneNumber, cardTypes, cardNum, expiration, cvc, purchase, cancel);
+        var title = new H1("Purchase a Ticket: ");
+
+        setHorizontalComponentAlignment(
+                Alignment.CENTER,
+                title,
+                company,
+                companyName,
+                startDestinationLbl,
+                startDestinationName,
+                endDestinationLbl,
+                endDestinationName,
+                durationLbl,
+                durationName,
+                costLbl,
+                costName,
+                name,
+                emailAddress,
+                phoneNumber,
+                cardTypes,
+                cardNum,
+                expiration,
+                cvc,
+                purchase,
+                cancel);
 
         add (
-                new H1("Purchase Ticket"),
-                busIDLbl,
+                title,
+                company,
+                companyName,
                 startDestinationLbl,
+                startDestinationName,
                 endDestinationLbl,
+                endDestinationName,
                 durationLbl,
+                durationName,
                 costLbl,
+                costName,
                 name,
                 emailAddress,
                 phoneNumber,

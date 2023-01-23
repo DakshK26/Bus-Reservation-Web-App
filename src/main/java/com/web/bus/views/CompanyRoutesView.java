@@ -92,6 +92,7 @@ public class CompanyRoutesView extends VerticalLayout {
             return btn;
         }).setHeader("Cancel Routes");
 
+
         table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
 
 

@@ -1,5 +1,6 @@
 package com.web.bus.views;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
@@ -77,10 +78,11 @@ public class CustomerHomeView extends VerticalLayout {
         table.addColumn(Bus::getEndDestination).setHeader("End Destination");
         table.addColumn(Bus::getDistance).setHeader("Distance");
         table.addColumn(Bus::getTimeInMinutes).setHeader("Travel Time");
-
-        table.addComponentColumn(item -> {
-            return new Button("Book");
-                }).setHeader("Book Bus");
+        table.addItemClickListener(event -> {
+            Bus selectedBus = event.getItem();
+            UI.getCurrent().getSession().setAttribute("selectedBus", selectedBus);
+            UI.getCurrent().navigate("customerPurchaseView");
+        });
        
 
         table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
