@@ -66,10 +66,19 @@ public class BusList {
         }
     }
 
+    /**
+     *Quicksort list
+     */
     public void quickSort() {
         quickSort( 0, currentSize-1);
     }
 
+    /**
+     * Quick sort helper method
+     *
+     * @param left  the left index
+     * @param right the right index
+     */
     public void quickSort(int left, int right) {
         if (left < right) {
             int sz = right - left + 1;
@@ -99,6 +108,12 @@ public class BusList {
         }
     }
 
+    /**
+     * Swap two elements in the list
+     *
+     * @param i the index of the first element
+     * @param j the index of the second element
+     */
     public void swap(int i, int j) {
         Bus temp = list[i];
         list[i] = list[j];
@@ -106,6 +121,12 @@ public class BusList {
     }
 
 
+    /**
+     * Binary Search
+     *
+     * @param distance the distance to be searched for
+     * @return the index of the distance
+     */
     public int binarySearch(double distance) {
         int low = 0;
         int high = currentSize - 1;
@@ -122,6 +143,12 @@ public class BusList {
         return -1;
     }
 
+    /**
+     * Linear Search
+     *
+     * @param distance the distance to be searched for
+     * @return the index of the distance
+     */
     public BusList searchCompany(String company, BusList list) {
         BusList companySorted = new BusList();
         for (int i = 0; i < list.getList().length; i++) {
@@ -132,6 +159,9 @@ public class BusList {
         return companySorted;
     }
 
+    /*
+    Search by start destination
+     */
     public BusList searchByStartDestination(String startDestination, BusList list) {
         BusList matchingBusses = new BusList();
         for (int i = 0; i < list.getList().length; i++) {
@@ -142,6 +172,9 @@ public class BusList {
         return matchingBusses;
     }
 
+    /*
+    Search by end destination
+     */
     public BusList searchByEndDestination(String endDestination, BusList list) {
         BusList matchingBusses = new BusList();
         for (int i = 0; i < list.getList().length; i++) {
@@ -152,6 +185,9 @@ public class BusList {
         return matchingBusses;
     }
 
+    /**
+     * Increase the size of the list
+     */
     public void increaseSize() {
         this.setMaxSize(maxSize + 1);
         Bus[] newList = new Bus[this.getMaxSize()];
@@ -159,6 +195,9 @@ public class BusList {
         list = newList;
     }
 
+    /*
+    Getters and Setters
+     */
     public Bus[] getList() {
         return list;
     }

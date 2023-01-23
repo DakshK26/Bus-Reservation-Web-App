@@ -22,9 +22,17 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author: Daksh & Ashwin
+ * Date: Jan. 2023
+ * Description: This class is the view for the customer to view their history
+ */
 @Route(value = "customerHistoryView", layout = CustomerMainLayout.class)
 @PageTitle("CustomerHistory")
 public class CustomerHistoryView extends VerticalLayout {
+    /*
+    Private Instance Data
+     */
     private Button search, clear;
     private TextField searchbar;
     private Select<String> select;
@@ -32,6 +40,7 @@ public class CustomerHistoryView extends VerticalLayout {
     private BusList buses;
 
     private List<Bus> busList;
+
 
     public CustomerHistoryView() throws IOException {
         // Get customer from session data
@@ -48,23 +57,23 @@ public class CustomerHistoryView extends VerticalLayout {
                 temp.insert(tempBus);
             }
 
-            BusList myBookedBuses = new BusList();
+            BusList myBookedBuses = new BusList(); // List of buses that the customer has booked
             for (int i = 0; i < usernames.length; i++) {
                 if(usernames[i].equalsIgnoreCase(customer.getUsername())) {
                    myBookedBuses.increaseSize();
                    myBookedBuses.insert(temp.getList()[i]);
                 }
             }
-        busList = Arrays.asList(myBookedBuses.getList());
+        busList = Arrays.asList(myBookedBuses.getList()); // List of buses that the customer has booked
 
-        select = new Select<>();
+        select = new Select<>(); // Create a select component
         select.setItems("Company", "Start Destination", "End Destination");
         select.setValue("Company");
         searchbar = new TextField();
         searchbar.setPlaceholder("Search Criteria");
         searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
         search = new Button("Search", event ->{ // Register action event
-            if (select.getValue().equalsIgnoreCase("Company")) {
+            if (select.getValue().equalsIgnoreCase("Company")) { // Search by company
                 String companyName = searchbar.getValue();
                 BusList companyBuses = new BusList();
                 companyBuses = companyBuses.searchCompany(companyName, myBookedBuses);
@@ -72,7 +81,7 @@ public class CustomerHistoryView extends VerticalLayout {
                 busList = Arrays.asList(companyBuses.getList());
                 table.setItems(busList);
             }
-            else if (select.getValue().equalsIgnoreCase("Start Destination")) {
+            else if (select.getValue().equalsIgnoreCase("Start Destination")) { // Search by start destination
                 String busStart = searchbar.getValue();
                 BusList startDestinationBuses = new BusList();
                 startDestinationBuses = startDestinationBuses.searchByStartDestination(busStart, myBookedBuses);
@@ -80,7 +89,7 @@ public class CustomerHistoryView extends VerticalLayout {
                 busList = Arrays.asList(startDestinationBuses.getList());
                 table.setItems(busList);
             }
-            else if (select.getValue().equalsIgnoreCase("End Destination")) {
+            else if (select.getValue().equalsIgnoreCase("End Destination")) { // Search by end destination
                 String busEnd = searchbar.getValue();
                 BusList endDestinationBuses = new BusList();
                 endDestinationBuses = endDestinationBuses.searchByEndDestination(busEnd, myBookedBuses);
@@ -93,7 +102,8 @@ public class CustomerHistoryView extends VerticalLayout {
             busList = Arrays.asList(myBookedBuses.getList());
             table.setItems(busList);
         });
-        table = new Grid<>();
+
+        table = new Grid<>(); // Create a grid component
         table.setItems(busList);
         table.addColumn(Bus::getBusID).setHeader("Company");
         table.addColumn(Bus::getStartDestination).setHeader("Start Destination");
