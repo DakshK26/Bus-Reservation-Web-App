@@ -91,12 +91,32 @@ public class BusList{
 
     public BusList searchCompany(String company, BusList list) {
         BusList companySorted = new BusList();
-        for (int i = 0; i < list.getList().length; i++) {
-            if (list.getList()[i].getBusID().equalsIgnoreCase(company)) {
-                companySorted.insert(list.getList()[i]);
+         for (Bus bus : list.getList()) {
+             if (bus.getBusID().equalsIgnoreCase(company)) {
+                 companySorted.insert(bus);
+            }
+         }
+        return companySorted;
+    }
+
+    public Bus[] searchByStartDestination(String startDestination, BusList list) {
+        BusList matchingBusses = new BusList();
+        for (Bus bus : list.getList()) {
+            if (bus.getStartDestination().equalsIgnoreCase(startDestination)) {
+                matchingBusses.insert(bus);
             }
         }
-        return companySorted;
+        return matchingBusses.getList();
+    }
+
+    public Bus[] searchByEndDestination(String endDestination, BusList list){
+        BusList matchingBusses = new BusList();
+        for (Bus bus : list.getList()) {
+            if (bus.getEndDestination().equalsIgnoreCase(endDestination)) {
+                matchingBusses.insert(bus);
+            }
+        }
+        return matchingBusses.getList();
     }
 
     private void increaseSize() {

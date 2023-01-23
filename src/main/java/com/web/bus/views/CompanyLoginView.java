@@ -49,6 +49,13 @@ public class CompanyLoginView extends Div {
                 login = new Button("Login", event -> { // Login action event
                     // Call the authentication service to verify the user's credentials
                     Optional<Company> optionalCompany = authenticationService.findByEmail(email.getValue());
+                    try{
+                        if (optionalCompany.isEmpty()) {
+                            throw new Exception("Invalid email or password. Please try again.");
+                        }
+                    } catch (Exception e) {
+                        Notification.show(e.getMessage(), 5000, Notification.Position.TOP_CENTER);
+                    }
                     Company Company = optionalCompany.get();
 
                     if (Company.getPassword().equals(password.getValue())) {

@@ -48,6 +48,13 @@ public class LoginView extends Div {
         login = new Button("Login", event -> {
             // Call the authentication service to verify the user's credentials
             Optional<Customer> optionalCustomer = authenticationService.findByUsername(username.getValue());
+            try{
+                if (optionalCustomer.isEmpty()) {
+                    throw new Exception("Invalid username or password. Please try again.");
+                }
+            } catch (Exception e) {
+                Notification.show(e.getMessage(), 5000, Notification.Position.TOP_CENTER);
+            }
             Customer customer = optionalCustomer.get();
 
             if (customer.getPassword().equals(password.getValue())) {
