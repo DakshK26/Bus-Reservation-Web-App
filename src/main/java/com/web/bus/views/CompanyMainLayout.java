@@ -1,5 +1,6 @@
 package com.web.bus.views;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
@@ -33,6 +34,10 @@ public class CompanyMainLayout extends AppLayout {
 
         logout = new Button("Logout");
         logout.getStyle().set("margin-left", "20px");
+        logout.addClickListener(event -> {
+            UI.getCurrent().getSession().close();
+            UI.getCurrent().navigate("");
+        });
 
         addToNavbar(header, title, logout);
     }
