@@ -7,4 +7,5 @@ California/Toronto/220/Youtube
 Chicago/Ottawa/200/Freeridge Bus Co.
 California/Detroit/200/Freeridge Bus Co.
 Detroit/Regina/130/Freeridge Bus Co.
+Mumbai/Bangkok/300/AshwinSant Busses
 EOF
