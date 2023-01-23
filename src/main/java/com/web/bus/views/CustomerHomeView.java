@@ -64,6 +64,7 @@ public class CustomerHomeView extends VerticalLayout {
                 String companyName = searchbar.getValue();
                 //create a new bus list with buses matching company name
                 BusList companyBuses = new BusList();
+                //search list by company name
                 companyBuses = companyBuses.searchCompany(companyName, buses);
                 companyBuses.quickSort(); //sort the list by distance
                 busList = Arrays.asList(companyBuses.getList());
@@ -74,6 +75,7 @@ public class CustomerHomeView extends VerticalLayout {
                 //create a new bus list with buses matching start destinations
                 String busStart = searchbar.getValue();
                 BusList startDestinationBuses = new BusList();
+                //search list by start destination
                 startDestinationBuses = startDestinationBuses.searchByStartDestination(busStart, buses);
                 startDestinationBuses.quickSort(); //sort the list by distance
                 busList = Arrays.asList(startDestinationBuses.getList());
@@ -84,6 +86,7 @@ public class CustomerHomeView extends VerticalLayout {
                 //create a new bus list with buses matching end destinations
                 String busEnd = searchbar.getValue();
                 BusList endDestinationBuses = new BusList();
+                //search list by end destination
                 endDestinationBuses = endDestinationBuses.searchByEndDestination(busEnd, buses);
                 endDestinationBuses.quickSort(); //sort the list by distance
                 busList = Arrays.asList(endDestinationBuses.getList());

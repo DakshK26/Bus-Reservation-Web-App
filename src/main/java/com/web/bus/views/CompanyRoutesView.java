@@ -42,6 +42,9 @@ public class CompanyRoutesView extends VerticalLayout {
 
     private List<Bus> busList;
 
+    /*
+    Constructor to build the company routes view
+     */
     public CompanyRoutesView() throws IOException {
         // Get company from session data
         Company company = (Company) UI.getCurrent().getSession().getAttribute("company");

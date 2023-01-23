@@ -63,13 +63,17 @@ Constructor to build the Customer Purchased Tickets View
                 usernames[i] = words[0];
                 //remaining words used to create bus object
                 Bus tempBus = new Bus(words[1], words[2], Integer.parseInt(words[3]), words[4]);
+                //insert bus into the list
                 temp.increaseSize();
                 temp.insert(tempBus);
             }
 
             BusList myBookedBuses = new BusList(); // List of buses that the customer has booked
+           //loop through usernames array
             for (int i = 0; i < usernames.length; i++) {
+                //if username is equal to the logged in customer username
                 if(usernames[i].equalsIgnoreCase(customer.getUsername())) {
+                    //insert the bus at index [i] into the booked busses list
                    myBookedBuses.increaseSize();
                    myBookedBuses.insert(temp.getList()[i]);
                 }
@@ -78,50 +82,59 @@ Constructor to build the Customer Purchased Tickets View
 
         select = new Select<>(); // Create a select component
         select.setItems("Company", "Start Destination", "End Destination");
-        select.setValue("Company");
-        searchbar = new TextField();
-        searchbar.setPlaceholder("Search Criteria");
-        searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
+        select.setValue("Company"); //default option
+        searchbar = new TextField(); //search bar
+        searchbar.setPlaceholder("Search Criteria"); //placeholder
+        searchbar.setPrefixComponent(VaadinIcon.SEARCH.create()); //magnifying glass icon
         search = new Button("Search", event ->{ // Register action event
             if (select.getValue().equalsIgnoreCase("Company")) { // Search by company
+               //create a bus list for the company name buses
                 String companyName = searchbar.getValue();
                 BusList companyBuses = new BusList();
+                //search for the company names from the list
                 companyBuses = companyBuses.searchCompany(companyName, myBookedBuses);
-                companyBuses.quickSort();
-                busList = Arrays.asList(companyBuses.getList());
-                table.setItems(busList);
+                companyBuses.quickSort(); //sort the list by distance
+                busList = Arrays.asList(companyBuses.getList()); //convert into a list to be displayed in table
+                table.setItems(busList); //set the items in the table
             }
             else if (select.getValue().equalsIgnoreCase("Start Destination")) { // Search by start destination
+                //create a bus list for the start destination buses
                 String busStart = searchbar.getValue();
                 BusList startDestinationBuses = new BusList();
+                //search for the start destinations from the list
                 startDestinationBuses = startDestinationBuses.searchByStartDestination(busStart, myBookedBuses);
-                startDestinationBuses.quickSort();
-                busList = Arrays.asList(startDestinationBuses.getList());
-                table.setItems(busList);
+                startDestinationBuses.quickSort(); //sort the list by distance
+                busList = Arrays.asList(startDestinationBuses.getList()); //convert into a list to be displayed in table
+                table.setItems(busList); //set the items in the table
             }
             else if (select.getValue().equalsIgnoreCase("End Destination")) { // Search by end destination
+                //create a bus list for the end destination buses
                 String busEnd = searchbar.getValue();
                 BusList endDestinationBuses = new BusList();
+                //search for the end destinations from the list
                 endDestinationBuses = endDestinationBuses.searchByEndDestination(busEnd, myBookedBuses);
-                endDestinationBuses.quickSort();
-                busList = Arrays.asList(endDestinationBuses.getList());
-                table.setItems(busList);
+                endDestinationBuses.quickSort(); //sort the list by distance
+                busList = Arrays.asList(endDestinationBuses.getList()); //convert into a list to be displayed in table
+                table.setItems(busList); //set the items in the table
             }
         });
+        //clear button
         clear = new Button("Clear Filters", event ->{ // Register action event
+            //reset the table back to the original table with all booked routes visible
             busList = Arrays.asList(myBookedBuses.getList());
             table.setItems(busList);
         });
 
         table = new Grid<>(); // Create a grid component
         table.setItems(busList);
+        //add the table columns
         table.addColumn(Bus::getBusID).setHeader("Company");
         table.addColumn(Bus::getStartDestination).setHeader("Start Destination");
         table.addColumn(Bus::getEndDestination).setHeader("End Destination");
         table.addColumn(Bus::getDistance).setHeader("Distance");
         table.addColumn(Bus::getTimeInMinutes).setHeader("Travel Time");
 
-        table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
+        table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT); //set table theme
 
         add ( // Add components to the layout
                 new H1("Past Purchases"),
