@@ -23,11 +23,9 @@ private IntegerField numSeatsAvailable;
 private Button add, cancel;
     public CompanyAddRouteView() {
         // Get company from session data
-     //   Company company = (Company) UI.getCurrent().getSession().getAttribute("company");
+        Company company = (Company) UI.getCurrent().getSession().getAttribute("company");
 
-        companyName = new TextField("Company Name");
-        companyName.setWidth("250px");
-        companyName.setMinLength(1);
+        // Create text fields
         startDestination = new TextField("Start Destination");
         startDestination.setWidth("250px");
         startDestination.setMinLength(1);
@@ -40,7 +38,7 @@ private Button add, cancel;
 
 
         add = new Button("Add Route", event -> {
-            String companyNameValue = companyName.getValue();
+            String companyNameValue = company.getName();
             String startDestinationValue = startDestination.getValue();
             String endDestinationValue = endDestination.getValue();
             int numSeatsAvailableValue = numSeatsAvailable.getValue();
@@ -61,7 +59,7 @@ private Button add, cancel;
                    System.out.println(bus.toStringFile());
                     UI.getCurrent().navigate("companyRoutesView");
                 }
-                catch (IOException e) {
+                catch (IOException ignored) {
 
                 }
             }

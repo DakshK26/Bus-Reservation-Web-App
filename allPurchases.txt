@@ -11,4 +11,5 @@ AshwinSant5/California/Detroit/200/Freeridge Bus Co.
 AshwinSant5/California/Toronto/220/Youtube
 AshwinTest/Toronto/Vancouver/12/Ashwin
 AshwinTest/Niagra/Buffalo/24/NiagraFalls
+tester/California/Toronto/220/Youtube
 EOF

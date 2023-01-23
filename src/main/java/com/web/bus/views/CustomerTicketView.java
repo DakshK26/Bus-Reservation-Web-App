@@ -1,6 +1,7 @@
 package com.web.bus.views;
 
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
@@ -14,6 +15,7 @@ import com.web.bus.records.Bus;
 public class CustomerTicketView extends VerticalLayout {
 
     private Label companyInfo, companyName, startDestination, endDestination, duration, cost;
+    private Button home;
 
     public CustomerTicketView() {
         // Get selected bus from session data
@@ -24,10 +26,13 @@ public class CustomerTicketView extends VerticalLayout {
         endDestination = new Label("End Destination: " + selectedBus.getEndDestination());
         duration = new Label("Trip Duration: " + selectedBus.getTimeInMinutes()/60 + " hours " + selectedBus.getTimeInMinutes() %60 + " minutes");
         cost = new Label("Ticket Price: $18.95");
+        home = new Button("Home", event -> {
+            UI.getCurrent().navigate("customerHomeView");
+        });
 
         // Create container for ticket information
         Div container = new Div();
-        container.add(new H1("Reciept: "), companyInfo, companyName, startDestination, endDestination, duration, cost);
+        container.add(new H1("Reciept: "), companyInfo, companyName, startDestination, endDestination, duration, cost, home);
         container.setWidth("300px");
         container.setHeight("200px");
         container.getStyle().set("text-align", "center");
@@ -42,10 +47,11 @@ public class CustomerTicketView extends VerticalLayout {
                 startDestination,
                 endDestination,
                 duration,
-                cost
+                cost,
+                home
         );
 
         // Add all components to view
-        add(companyInfo, companyName, startDestination, endDestination, duration, cost);
+        add(companyName, startDestination, endDestination, duration, cost, companyInfo, home);
     }
 }
