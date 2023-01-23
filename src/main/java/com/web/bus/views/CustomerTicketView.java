@@ -1,6 +1,7 @@
 package com.web.bus.views;
 
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -23,6 +24,16 @@ public class CustomerTicketView extends VerticalLayout {
         duration = new Label("Trip Duration: " + selectedBus.getTimeInMinutes()/60 + " hours " + selectedBus.getTimeInMinutes() %60 + " minutes");
         cost = new Label("Ticket Price: $18.95");
 
+
+        Div container = new Div();
+        container.add(companyInfo, companyName, startDestination, endDestination, duration, cost);
+        container.setWidth("300px");
+        container.setHeight("200px");
+        container.getStyle().set("border", "2px solid black");
+        container.getStyle().set("text-align", "center");
+        container.getStyle().set("vertical-align", "middle");
+        add(container);
+
         setHorizontalComponentAlignment(
                 Alignment.CENTER,
                 companyInfo,
@@ -32,7 +43,6 @@ public class CustomerTicketView extends VerticalLayout {
                 duration,
                 cost
         );
-
         add(companyInfo, companyName, startDestination, endDestination, duration, cost);
     }
 }
