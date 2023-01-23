@@ -30,11 +30,15 @@ public class CompanyAddRouteView extends VerticalLayout {
 private TextField startDestination, endDestination;
 private IntegerField numSeatsAvailable;
 private Button add, cancel;
+
+    /*
+    Constructor to build the company add route view/GUI
+     */
     public CompanyAddRouteView() {
         // Get company from session data
         Company company = (Company) UI.getCurrent().getSession().getAttribute("company");
 
-        // Create text fields
+        // Create input fields for required information
         startDestination = new TextField("Start Destination");
         startDestination.setWidth("250px");
         startDestination.setMinLength(1);
@@ -56,13 +60,13 @@ private Button add, cancel;
             // Check if all fields are filled
             if (!companyNameValue.equalsIgnoreCase("") && !startDestinationValue.equalsIgnoreCase("") && !endDestinationValue.equalsIgnoreCase("") && numSeatsAvailable.getValue() > 0) {
                 try {
-                    // Create bus object
+                    // Create bus object and a bus list
                     Bus bus = new Bus(startDestinationValue, endDestinationValue, numSeatsAvailableValue, companyNameValue);
                     BusList temp = new BusList();
-                    temp = temp.readFileMaster();
-                    temp.insert(bus);
+                    temp = temp.readFileMaster(); //read from the master bus list and initialize it to the temp bus list
+                    temp.insert(bus); //insert the bus into the temp bus list
                     temp.writeFileMaster(temp); // Write to master file
-
+                    //renavigate user back to the company routes view
                     UI.getCurrent().navigate("companyRoutesView");
                 }
                 catch (IOException e) {
@@ -71,11 +75,12 @@ private Button add, cancel;
                 }
             }
         });
-
+        //cancel button
         cancel = new Button("Cancel", event -> { // Company action event
             UI.getCurrent().navigate("companyRoutesView"); // Send user to register route
         });
 
+        //center components
         setHorizontalComponentAlignment(Alignment.CENTER, startDestination, endDestination, numSeatsAvailable,
                                         add, cancel);
 

@@ -45,7 +45,7 @@ public class Bus {
     private int timeInMinutes;
 
     /*
-    Default Constructor
+    Constructor to create bus object
      */
     public Bus(String startDestination, String endDestination, int numberOfSeats, String busID) throws IOException {
         this.startDestination = removeSpaces(startDestination);

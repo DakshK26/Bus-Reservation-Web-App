@@ -38,7 +38,7 @@ public class BusList {
     private int currentSize;
 
     /*
-    Default Constructor
+    Default Constructor to create bus list object
      */
     public BusList() {
         this.maxSize = 0;
