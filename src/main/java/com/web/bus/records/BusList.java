@@ -169,10 +169,10 @@ public class BusList {
     }
 
     /**
-     * Linear Search
-     *
-     * @param distance the distance to be searched for
-     * @return the index of the distance
+     * Search by company
+     * @param company the company to be searched for
+     * @param list the list to be searched
+     * @return the list of busses with the company
      */
     public BusList searchCompany(String company, BusList list) {
         BusList companySorted = new BusList();
@@ -184,8 +184,11 @@ public class BusList {
         return companySorted;
     }
 
-    /*
-    Search by start destination
+    /**
+     * Search by start destination
+     * @param startDestination the start destination to be searched for
+     * @param list the list to be searched
+     * @return the list of busses with the start destination
      */
     public BusList searchByStartDestination(String startDestination, BusList list) {
         BusList matchingBusses = new BusList();
@@ -197,8 +200,11 @@ public class BusList {
         return matchingBusses;
     }
 
-    /*
-    Search by end destination
+    /**
+     * Search by end destination
+     * @param endDestination the end destination to be searched for
+     * @param list the list to be searched
+     * @return the list of busses with the end destination
      */
     public BusList searchByEndDestination(String endDestination, BusList list) {
         BusList matchingBusses = new BusList();
@@ -247,6 +253,11 @@ public class BusList {
         this.currentSize = currentSize;
     }
 
+    /**
+     * Read the file and create a list of busses
+     * @return the list of busses
+     * @throws IOException
+     */
     public BusList readFileMaster() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("allBuses.txt"));
         int length = 0;
@@ -273,6 +284,11 @@ public class BusList {
         return list;
     }
 
+    /**
+     * Write the list of busses to a file
+     * @param list the list of busses
+     * @throws IOException
+     */
     public void writeFileMaster(BusList list) throws IOException {
         PrintWriter writerF = new PrintWriter(new FileWriter("allBuses.txt"));
         for (int i = 0; i < list.getList().length && list.getList()[i] != null; i++) {
@@ -282,6 +298,11 @@ public class BusList {
         writerF.close();
     }
 
+    /**
+     * Read the file and create a list of usernames
+     * @return the list of usernames
+     * @throws IOException
+     */
     public String[] readFilePurchases() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("allPurchases.txt"));
         int length = 0;
@@ -302,6 +323,12 @@ public class BusList {
         return fileContents;
     }
 
+    /**
+     * Write the list of usernames to a file
+     * @param usernames the list of usernames
+     * @param list the list of busses
+     * @throws IOException
+     */
     public void writeFilePurchases(String[] usernames, BusList list) throws IOException {
         PrintWriter writerF = new PrintWriter(new FileWriter("allPurchases.txt"));
         for (int i = 0; i < list.getList().length && list.getList()[i] != null; i++) {
