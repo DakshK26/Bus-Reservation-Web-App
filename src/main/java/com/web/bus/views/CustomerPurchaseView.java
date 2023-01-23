@@ -39,7 +39,7 @@ public class CustomerPurchaseView extends VerticalLayout {
         Bus bus = (Bus) UI.getCurrent().getSession().getAttribute("selectedBus");
 
         // Set bus cost
-        busCost = "18.95";
+        busCost = "$18.95";
 
         company = new Label("Company: ");
         companyName = new Label(bus.getBusID());
@@ -48,14 +48,16 @@ public class CustomerPurchaseView extends VerticalLayout {
         endDestinationLbl = new Label("End Destination:");
         endDestinationName = new Label(bus.getEndDestination());
         durationLbl = new Label("Trip Duration:");
-        durationName = new Label("" + bus.getTimeInMinutes());
+        durationName = new Label("" + bus.getTimeInMinutes()/60 + " hours " + bus.getTimeInMinutes() %60 + " minutes");
         costLbl = new Label("Ticket Price: ");
         costName = new Label(busCost);
 
         name = new TextField("First & Last Name");
+        name.setValue(customer.getName());
         name.setWidth("300px");
         name.setMinLength(1);
         emailAddress = new EmailField("Email Address");
+        emailAddress.setValue(customer.getEmail());
         emailAddress.setWidth("300px");
         emailAddress.setMinLength(1);
         emailAddress.setPlaceholder("example@asdk.com");
@@ -102,7 +104,7 @@ public class CustomerPurchaseView extends VerticalLayout {
             System.out.println(enteredCVC);
 
             if (!enteredName.equalsIgnoreCase("") && !enteredEmail.equalsIgnoreCase("") && enteredPhoneNumber >= 1000000000 && enteredCardNum.compareTo(cardNumLength) >=0 && (month > 0 && month <13) && (year > 0) && (enteredCVC >= 0 && enteredCVC < 10000)) {
-                UI.getCurrent().navigate("customerHomeView"); // Send user to register route
+                UI.getCurrent().navigate("ticketView"); // Send user to ticket route
             }
         });
         cancel = new Button("Cancel Purchase", event -> { // Company action event
