@@ -39,38 +39,38 @@ public class CompanyHomeView extends VerticalLayout {
         Company company = (Company) UI.getCurrent().getSession().getAttribute("company");
 
         buses = new BusList();
-        buses = buses.readFileMaster();
+        buses = buses.readFileMaster(); // Read in master file
 
         busList = Arrays.asList(buses.getList());
 
-        select = new Select<>();
+        select = new Select<>(); // Create select
         select.setItems("Company", "Start Destination", "End Destination");
         select.setValue("Company");
         searchbar = new TextField();
         searchbar.setPlaceholder("Search Criteria");
-        searchbar.setPrefixComponent(VaadinIcon.SEARCH.create());
+        searchbar.setPrefixComponent(VaadinIcon.SEARCH.create()); // Add search icon
         search = new Button("Search", event ->{ // Register action event
         if (select.getValue().equalsIgnoreCase("Company")) {
             String companyName = searchbar.getValue();
-            BusList companyBuses = new BusList();
+            BusList companyBuses = new BusList(); // Create new bus list
             companyBuses = companyBuses.searchCompany(companyName, buses);
-            companyBuses.quickSort();
+            companyBuses.quickSort(); // Sort list
             busList = Arrays.asList(companyBuses.getList());
             table.setItems(busList);
         }
-        else if (select.getValue().equalsIgnoreCase("Start Destination")) {
+        else if (select.getValue().equalsIgnoreCase("Start Destination")) { // Search by start destination
             String busStart = searchbar.getValue();
-            BusList startDestinationBuses = new BusList();
+            BusList startDestinationBuses = new BusList(); // Create new bus list
             startDestinationBuses = startDestinationBuses.searchByStartDestination(busStart, buses);
             startDestinationBuses.quickSort();
-            busList = Arrays.asList(startDestinationBuses.getList());
+            busList = Arrays.asList(startDestinationBuses.getList()); // Convert to list
             table.setItems(busList);
         }
-        else if (select.getValue().equalsIgnoreCase("End Destination")) {
+        else if (select.getValue().equalsIgnoreCase("End Destination")) { // Search by end destination
             String busEnd = searchbar.getValue();
             BusList endDestinationBuses = new BusList();
             endDestinationBuses = endDestinationBuses.searchByEndDestination(busEnd, buses);
-            endDestinationBuses.quickSort();
+            endDestinationBuses.quickSort(); // Sort list
             busList = Arrays.asList(endDestinationBuses.getList());
             table.setItems(busList);
         }
@@ -79,24 +79,24 @@ public class CompanyHomeView extends VerticalLayout {
             busList = Arrays.asList(buses.getList());
             table.setItems(busList);
         });
-        table = new Grid<>();
+        table = new Grid<>(); // Create table
         table.setItems(busList);
-        table.addColumn(Bus::getBusID).setHeader("Company");
+        table.addColumn(Bus::getBusID).setHeader("Company"); // Add columns
         table.addColumn(Bus::getStartDestination).setHeader("Start Destination");
         table.addColumn(Bus::getEndDestination).setHeader("End Destination");
         table.addColumn(Bus::getDistance).setHeader("Distance");
         table.addColumn(Bus::getTimeInMinutes).setHeader("Travel Time");
 
-        table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT);
+        table.addThemeVariants(GridVariant.LUMO_WRAP_CELL_CONTENT); // Add theme variants
 
 
 
-        add (
+        add ( // Add components to layout
                 new H1("All Currently Active Routes - All Companies"),
                 new HorizontalLayout(new H4("Search: "), select, searchbar, search, clear),
                 table
         );
         search.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
-        clear.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
+        clear.addThemeVariants(ButtonVariant.LUMO_CONTRAST); // Add theme variants
     }
 }

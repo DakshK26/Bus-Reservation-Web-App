@@ -79,7 +79,7 @@ private Button add, cancel;
                 cancel
         );
 
-
+        // Add theme variants
         add.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
         cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_CONTRAST);
     }

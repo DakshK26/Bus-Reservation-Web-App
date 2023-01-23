@@ -22,9 +22,18 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author: Daksh & Ashwin
+ * date: Jan. 2023
+ * Description: This class is the view for the company to view their routes
+ * Method List: CompanyRoutesView()
+ */
 @Route(value = "companyRoutesView", layout = CompanyMainLayout.class)
 @PageTitle("CustomerRoutes")
 public class CompanyRoutesView extends VerticalLayout {
+    /*
+    Private Instance Data
+     */
     private Button search, addRoute, clear;
     private TextField searchbar;
     private Select<String> select;

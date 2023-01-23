@@ -31,6 +31,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 @PageTitle("CompanyRegister")
 @CssImport("./styles/views/login/login-view.css")
 public class CompanyRegisterView extends Div {
+    /*
+    Private Instance Data
+     */
     private UsernameField username;
     private CustomPasswordField password, confirmPassword;
     private Button register, loginRedirect, customerRedirect;
@@ -38,7 +41,7 @@ public class CompanyRegisterView extends Div {
     private EmailField companyEmail;
     @Autowired
     private CompanyRepository companyController;
-    public CompanyRegisterView() {
+    public CompanyRegisterView() { // Constructor
         setId("login-view"); // Set element ID
         // Declare components
         companyName = new TextField("Company Name");

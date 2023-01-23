@@ -31,6 +31,9 @@ import java.util.Optional;
 @PageTitle("Login")
 @CssImport("./styles/views/login/login-view.css")
 public class CompanyLoginView extends Div {
+    /*
+    Private Instance Data
+     */
     private EmailField email;
     private CustomPasswordField password;
     private Button login, register, userRedirect;
@@ -51,19 +54,19 @@ public class CompanyLoginView extends Div {
                     // Call the authentication service to verify the user's credentials
                     Optional<Company> optionalCompany = authenticationService.findByEmail(email.getValue());
                     try{
-                        if (optionalCompany.isEmpty()) {
+                        if (optionalCompany.isEmpty()) { // If user is not found
                             throw new NoSuchElementException("Invalid email or password. Please try again.");
                         }
-                    } catch (NoSuchElementException e) {
+                    } catch (NoSuchElementException e) { // Catch exception
                         Notification.show(e.getMessage(), 5000, Notification.Position.TOP_CENTER);
                     }
                     Company Company = optionalCompany.get();
 
-                    if (Company.getPassword().equals(password.getValue())) {
+                    if (Company.getPassword().equals(password.getValue())) {  // If user is found
                         // Save customer to UI session data
                         UI.getCurrent().getSession().setAttribute("company", Company);
                         // Redirect the user to the "main" route
-                        UI.getCurrent().navigate("companyHomeView");
+                        UI.getCurrent().navigate("companyHomeView"); // Send user to main route
                     } else {
                         // Show an error message
                         Notification.show("Invalid username or password. Please try again.", 5000, Notification.Position.TOP_CENTER);

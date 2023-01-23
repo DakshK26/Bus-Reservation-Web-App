@@ -12,6 +12,11 @@ import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 
+/**
+ * @author: Daksh & Ashwin
+ * Date: Jan. 2023
+ * Description: This class is the main layout for the company user. It contains the navigation bar and the drawer.
+ */
 @Route("companyMainView")
 public class CompanyMainLayout extends AppLayout {
     HorizontalLayout header;
