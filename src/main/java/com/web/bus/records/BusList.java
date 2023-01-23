@@ -1,6 +1,8 @@
 package com.web.bus.records;
 
 
+import org.springframework.security.core.parameters.P;
+
 import java.io.*;
 
 public class BusList{
@@ -46,32 +48,64 @@ public class BusList{
         }
     }
 
-    public void quicksort(int low, int high) {
-        if (low < high) {
-            int pivot = partition(low, high);
-            quicksort(low, pivot);
-            quicksort(pivot + 1, high);
+    public void quickSort(BusList list, int left, int right) {
+        if (left < right) {
+            int sz = right - left + 1;
+            int pivotpt = (left + right)/2;
+            int i = left;
+            int j = right - 1;
+            int pivot = (int)list.getList()[pivotpt].getDistance();
+            swap(list.getList()[pivotpt], list.getList()[right]);
+            pivotpt = right;
+            while(i<j) {
+                while(i<right-1 && list.getList()[i].getDistance()<pivot) {
+                    i++;
+                }
+                while(j > 0 && list.getList()[j].getDistance()>pivot) {
+                    j--;
+                }
+                if(i<j) {
+                    swap(list.getList()[i++], list.getList()[j--]);
+                }
+            }
+            if(i == j && list.getList()[i].getDistance() < list.getList()[pivotpt].getDistance()) {
+                i++;
+            }
+            swap(list.getList()[i], list.getList()[pivotpt]);
+            quickSort(list, left, i-1);
+            quickSort(list, i+1, right);
         }
     }
 
-    private int partition(int low, int high) {
-        Bus pivot = list[high];
+    public void swap(Bus bus1, Bus bus2) {
+        Bus temp = bus1;
+        bus1 = bus2;
+        bus2 = temp;
+    }
+   /* public void quickSort(BusList list, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(list, low, high);
+            quickSort(list, low, pivotIndex);
+            quickSort(list, pivotIndex + 1, high);
+        }
+    }
+
+    public int partition(BusList list, int low, int high) {
+        int pivot = (int)list.getList()[high].getDistance();
         int i = low - 1;
-        for (int j = low; j <= high - 1; j++) {
-            if (list[j].getDistance() < pivot.getDistance()) {
+        for (int j = low; j < high; j++) {
+            if(list.getList()[j].getDistance() <= pivot) {
                 i++;
-                swap(i, j);
+                Bus temp = list.getList()[i];
+                list.getList()[i] = list.getList()[j];
+                list.getList()[j] = temp;
             }
         }
-        swap(i + 1, high);
-        return i + 1;
-    }
-
-    private void swap(int i, int j) {
-        Bus temp = list[i];
-        list[i] = list[j];
-        list[j] = temp;
-    }
+        Bus temp = list.getList()[i + 1];
+        list.getList()[i + 1] = list.getList()[high];
+        list.getList()[high] = temp;
+        return i+1;
+    }*/
 
     public int binarySearch(double distance) {
         int low = 0;
