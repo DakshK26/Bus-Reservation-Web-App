@@ -39,6 +39,10 @@ public class LoginView extends Div {
     private Button login, register, companyRedirect;
     @Autowired
     private CustomerRepository authenticationService;
+
+    /*
+    Constructor to build the Login View/page
+     */
     public LoginView() {
         setId("login-view"); // Set element ID
         // Declare components
@@ -51,7 +55,7 @@ public class LoginView extends Div {
             // Call the authentication service to verify the user's credentials
             Optional<Customer> optionalCustomer = authenticationService.findByUsername(username.getValue());
             try{
-                if (optionalCustomer.isEmpty()) {
+                if (optionalCustomer.isEmpty()) { //if invalid username/password
                     throw new Exception("Invalid username or password. Please try again.");
                 }
             } catch (Exception e) {
@@ -59,6 +63,7 @@ public class LoginView extends Div {
             }
             Customer customer = optionalCustomer.get();
 
+            //if customer password is valid
             if (customer.getPassword().equals(password.getValue())) {
                 // Save customer to UI session data
                 UI.getCurrent().getSession().setAttribute("customer", customer);

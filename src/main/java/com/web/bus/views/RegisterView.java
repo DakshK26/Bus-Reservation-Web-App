@@ -42,6 +42,10 @@ public class RegisterView extends Div {
     private PasswordStrengthBar passwordStrengthBar;
     @Autowired
     private CustomerRepository customerController;
+
+    /*
+     Constructor to build the Register View/page
+      */
     public RegisterView() {
         setId("login-view"); // Set element ID
         // Declare components
@@ -62,6 +66,7 @@ public class RegisterView extends Div {
                 passwordStrengthBar,
                 confirmPassword,
                 register = new Button("Register", event -> { // Register action event
+                    //get the values of the input fields
                     String enteredName = name.getValue();
                     String enteredEmail = email.getValue();
                     String enteredUsername = username.getValue();

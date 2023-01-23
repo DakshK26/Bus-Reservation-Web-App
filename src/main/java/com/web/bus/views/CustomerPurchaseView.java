@@ -40,9 +40,11 @@ public class CustomerPurchaseView extends VerticalLayout {
     private Select<String> cardTypes;
     private Button purchase, cancel;
     private String busCost;
-
     private BigInteger cardNumLength = new BigInteger("1000000000000000");
 
+    /*
+    Default constructor to build the page/GUI
+     */
     public CustomerPurchaseView() {
         // Get customer from session data
         Customer customer = (Customer) UI.getCurrent().getSession().getAttribute("customer");

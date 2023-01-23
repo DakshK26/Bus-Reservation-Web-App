@@ -27,6 +27,9 @@ public class CustomerTicketView extends VerticalLayout {
     private Label companyInfo, companyName, startDestination, endDestination, duration, cost;
     private Button home;
 
+    /*
+    Constructor to build the Customer Ticket View GUI/page
+     */
     public CustomerTicketView() {
         // Get selected bus from session data
         Bus selectedBus = (Bus) UI.getCurrent().getSession().getAttribute("selectedBus");

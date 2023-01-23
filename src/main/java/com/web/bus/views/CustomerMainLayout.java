@@ -29,12 +29,18 @@ public class CustomerMainLayout extends AppLayout {
     private RouterLink customerMainLink, customerHistoryLink;
     private  HorizontalLayout header;
     private Button logout;
+
+    /*
+    Constructor to build the navigation menu and header
+     */
     public CustomerMainLayout() {
         createNavbar();
         createDrawer();
     }
 
-
+    /*
+    Constructor to build the Navbar
+     */
     private void createNavbar() {
         H1 title = new H1("Bus Reservation Web App");  // Title of the page
         title.getStyle().set("font-size", "var(--lumo-font-size-l)")
@@ -54,6 +60,9 @@ public class CustomerMainLayout extends AppLayout {
         addToNavbar(header, title, logout); // Add the title and logout button to the navbar
     }
 
+    /*
+    Constructor to build the toggle menu
+     */
     private void createDrawer() { // Create the drawer
        customerMainLink = new RouterLink("Book A Bus", CustomerHomeView.class);
         customerMainLink.setHighlightCondition(HighlightConditions.sameLocation());

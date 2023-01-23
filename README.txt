@@ -20,6 +20,10 @@ NOTE: You must proceed through this login screen in order to access the other ac
 access these pages directly, the application will not function properly as the customer information is carried through the login page
 into the GUIs/pages related to each customer/company account.
 
+Booking A Bus Through Company Home View:
+TO BOOK A BUS AS A CUSTOMER FROM THE HOME PAGE, click on the row with th desired bus route and it will redirect you to the purchase
+screen. NOTE, THERE IS NO BOOK BUTTON, simply click on the row with the bus you deire to book.
+
 Few Program Notes:
 1. You may notice some classes do not have a self testing main method. This is because these are vaadin web application views and hence, these
 views cannot be run by themselves and must be viewed through navigating to the respective routes after logging in. Vaadin web application does

@@ -42,7 +42,9 @@ public class CustomerHistoryView extends VerticalLayout {
 
     private List<Bus> busList;
 
-
+/*
+Constructor to build the Customer Purchased Tickets View
+ */
     public CustomerHistoryView() throws IOException {
         // Get customer from session data
         Customer customer = (Customer) UI.getCurrent().getSession().getAttribute("customer");
@@ -50,11 +52,16 @@ public class CustomerHistoryView extends VerticalLayout {
 
             // Read the file and store the data in a list
             BusList temp = new BusList();
+            //array for data read from file
             String [] tempData = temp.readFilePurchases();
+            //array to store usernames
             String [] usernames = new String[tempData.length];
+            //loop through each element of the tempData array
             for (int i = 0; i < tempData.length; i++) {
                 String[] words = tempData[i].split("/");
+                //first word is the username
                 usernames[i] = words[0];
+                //remaining words used to create bus object
                 Bus tempBus = new Bus(words[1], words[2], Integer.parseInt(words[3]), words[4]);
                 temp.increaseSize();
                 temp.insert(tempBus);
