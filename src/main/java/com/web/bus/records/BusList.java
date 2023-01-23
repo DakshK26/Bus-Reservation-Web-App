@@ -67,7 +67,7 @@ public class BusList {
     }
 
 
-    public void quickSort(BusList list, int left, int right) {
+    public void quickSort(BusList list, int left, int right) { // To call it pass in the list, 0, and the list size - 1
         if (left < right) {
             int pivot = partition(list, left, right);
             quickSort(list, left, pivot - 1);
@@ -246,6 +246,5 @@ public class BusList {
                 System.out.println(bus.toString());
             }
         }
-
     }
 }
