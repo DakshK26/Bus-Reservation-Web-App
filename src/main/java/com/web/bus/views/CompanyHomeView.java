@@ -33,6 +33,9 @@ import java.util.List;
 @Route(value = "companyHomeView", layout = CompanyMainLayout.class)
 @PageTitle("CompanyHome")
 public class CompanyHomeView extends VerticalLayout {
+    /*
+    Private Instance Data
+     */
     private Button search, clear;
     private TextField searchbar;
     private Select<String> select;

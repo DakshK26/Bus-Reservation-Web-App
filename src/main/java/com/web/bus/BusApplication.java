@@ -21,7 +21,9 @@ public class BusApplication {
 
 	/**
 	 * Build Web App
-	 * @param args
+	 * @param args the command line arguments
+	 * @throws URISyntaxException if the URI is invalid
+	 * @throws IOException if the file cannot be opened
 	 */
 	public static void main(String[] args) throws URISyntaxException, IOException {
 		SpringApplication.run(BusApplication.class, args);

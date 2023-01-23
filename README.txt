@@ -61,26 +61,28 @@ Springboot: https://www.youtube.com/watch?v=9SGDpanrc8U
 
 
 Annotations:
-# Annotations Used in Repository Classes
-# @Repository is a Spring annotation that indicates that this interface is a repository. This annotation is used to mark the interface as a repository, allowing the Spring Framework to pick it up and create an implementation at runtime.
-# @Transactional is used to indicate that a method or a class is transactional. This annotation is used to mark the methods that change the database, such as saveAndFlush, replace, and deleteByIdAndUsername methods.
-# @Modifying is a Spring Data JPA annotation that is used in combination with the @Transactional annotation to indicate that a query modifies the database. It is used on the replace method because it modifies the customer data.
-# @Query is a Spring Data JPA annotation that allows you to use a custom JPQL query for a repository method. It is used on the replace method to define the query that updates the customer.
-# @Param is a Spring Data JPA annotation that allows you to bind a named parameter to a method query. It is used in the replace method to bind the newC and id parameters.
-# @Entity is a JPA annotation that indicates that this class is an entity. It is used to mark the Customer class as an entity.
-# @Id is a JPA annotation that indicates that this field is the primary key of the entity. It is used to mark the id field as the primary key.
-# @GeneratedValue is a JPA annotation that indicates that the primary key is generated automatically. It is used to mark the id field as auto-generated.
-# @Column is a JPA annotation that indicates that this field is a column in the database. It is used to mark the username, password, and email fields as columns in the database.
-# @Table is a JPA annotation that indicates that this class is a table in the database. It is used to mark the Customer class as a table in the database.
-# @Component is a Spring annotation that indicates that this class is a component. It is used to mark the CustomerService class as a component.
-# @Autowired is a Spring annotation that allows you to inject a bean into another bean. It is used to inject the CustomerRepository bean into the CustomerService class.
-# @Service is a Spring annotation that indicates that this class is a service. It is used to mark the CustomerService class as a service.
-# @RestController is a Spring annotation that indicates that this class is a REST controller. It is used to mark the CustomerController class as a REST controller.
-# @RequestMapping is a Spring annotation that maps HTTP requests to handler methods of MVC and REST controllers. It is used to map the HTTP requests to the controller methods.
-# @GetMapping is a Spring annotation that maps HTTP GET requests onto specific handler methods. It is used to map the HTTP GET requests to the controller methods.
-# @PostMapping is a Spring annotation that maps HTTP POST requests onto specific handler methods. It is used to map the HTTP POST requests to the controller methods.
-# @PutMapping is a Spring annotation that maps HTTP PUT requests onto specific handler methods. It is used to map the HTTP PUT requests to the controller methods.
-# @DeleteMapping is a Spring annotation that maps HTTP DELETE requests onto specific handler methods. It is used to map the HTTP DELETE requests to the controller methods.
+Annotations Used in Repository Classes
+@Repository is a Spring annotation that indicates that this interface is a repository. This annotation is used to mark the interface as a repository, allowing the Spring Framework to pick it up and create an implementation at runtime.
+@Transactional is used to indicate that a method or a class is transactional. This annotation is used to mark the methods that change the database, such as saveAndFlush, replace, and deleteByIdAndUsername methods.
+@Modifying is a Spring Data JPA annotation that is used in combination with the @Transactional annotation to indicate that a query modifies the database. It is used on the replace method because it modifies the customer data.
+@Query is a Spring Data JPA annotation that allows you to use a custom JPQL query for a repository method. It is used on the replace method to define the query that updates the customer.
+@Param is a Spring Data JPA annotation that allows you to bind a named parameter to a method query. It is used in the replace method to bind the newC and id parameters.
+@Entity is a JPA annotation that indicates that this class is an entity. It is used to mark the Customer class as an entity.
+@Id is a JPA annotation that indicates that this field is the primary key of the entity. It is used to mark the id field as the primary key.
+@GeneratedValue is a JPA annotation that indicates that the primary key is generated automatically. It is used to mark the id field as auto-generated.
+@Column is a JPA annotation that indicates that this field is a column in the database. It is used to mark the username, password, and email fields as columns in the database.
+@Table is a JPA annotation that indicates that this class is a table in the database. It is used to mark the Customer class as a table in the database.
+@Component is a Spring annotation that indicates that this class is a component. It is used to mark the CustomerService class as a component.
+@Autowired is a Spring annotation that allows you to inject a bean into another bean. It is used to inject the CustomerRepository bean into the CustomerService class.
+@Service is a Spring annotation that indicates that this class is a service. It is used to mark the CustomerService class as a service.
+@RestController is a Spring annotation that indicates that this class is a REST controller. It is used to mark the CustomerController class as a REST controller.
+@RequestMapping is a Spring annotation that maps HTTP requests to handler methods of MVC and REST controllers. It is used to map the HTTP requests to the controller methods.
+@GetMapping is a Spring annotation that maps HTTP GET requests onto specific handler methods. It is used to map the HTTP GET requests to the controller methods.
+@PostMapping is a Spring annotation that maps HTTP POST requests onto specific handler methods. It is used to map the HTTP POST requests to the controller methods.
+@PutMapping is a Spring annotation that maps HTTP PUT requests onto specific handler methods. It is used to map the HTTP PUT requests to the controller methods.
+@DeleteMapping is a Spring annotation that maps HTTP DELETE requests onto specific handler methods. It is used to map the HTTP DELETE requests to the controller methods.
+@EnableJpaRepositories(basePackages = "com.web.bus.services") is a Spring annotation that enables JPA repositories. It is used to enable the JPA repositories.
+@EntityScan(basePackages = "com.web.bus.entities") is a Spring annotation that enables scanning of JPA entities. It is used to enable the scanning of JPA entities.
 
 Explanations of each folder:
 .idea - This folder contains the project settings and configurations for the IntelliJ IDEA IDE. It is not necessary to open the project in IntelliJ IDEA, but it is recommended.
@@ -117,7 +119,7 @@ Spring Boot - This dependency is used to create the backend for the application.
 Spring Data JPA - This dependency is used to create the database for the application. It uses the spring data jpa library to create the database.
 H2 Database - Creates a in-memory database for the application. To be used with Spring Data JPA.
 Spring Web - This dependency is used to create the REST API for the application. It uses the spring web library to create the REST API.
-Spring Boot DevTools- Creates tools like live reload for the application. To be used with Spring Boot.
+Spring Boot DevTools - Creates tools like live reload for the application. To be used with Spring Boot.
 Spring Boot Starter Test - This dependency is used to create the unit tests for the application. It uses the spring boot starter test library to create the unit tests.
 
 
