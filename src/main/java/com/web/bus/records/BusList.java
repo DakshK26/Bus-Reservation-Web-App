@@ -66,34 +66,44 @@ public class BusList {
         }
     }
 
+    public void quickSort() {
+        quickSort( 0, currentSize-1);
+    }
 
-    public void quickSort(BusList list, int left, int right) { // To call it pass in the list, 0, and the list size - 1
+    public void quickSort(int left, int right) {
         if (left < right) {
-            int pivot = partition(list, left, right);
-            quickSort(list, left, pivot - 1);
-            quickSort(list, pivot + 1, right);
-        }
-    }
-
-    public int partition(BusList list, int left, int right) {
-        int pivot = (int) list.getList()[right].getDistance();
-        int i = left - 1;
-        for (int j = left; j < right; j++) {
-            if (list.getList()[j].getDistance() <= pivot) {
-                i++;
-                swap(list.getList()[i], list.getList()[j]);
+            int sz = right - left + 1;
+            int pivotpt = (left + right)/2;
+            int i = left;
+            int j = right - 1;
+            int pivot = (int)list[pivotpt].getDistance();
+            swap(pivotpt, right);
+            pivotpt = right;
+            while(i<j) {
+                while(i<right-1 && list[i].getDistance()<pivot) {
+                    i++;
+                }
+                while(j > 0 && list[j].getDistance()>pivot) {
+                    j--;
+                }
+                if(i<j) {
+                    swap(i++, j--);
+                }
             }
+            if(i == j && list[i].getDistance() < list[pivotpt].getDistance()) {
+                i++;
+            }
+            swap(i, pivotpt);
+            quickSort(left, i-1);
+            quickSort(i+1, right);
         }
-        swap(list.getList()[i + 1], list.getList()[right]);
-        return i + 1;
     }
 
-    public void swap(Bus bus1, Bus bus2) {
-        Bus temp = bus1;
-        bus1 = bus2;
-        bus2 = temp;
+    public void swap(int i, int j) {
+        Bus temp = list[i];
+        list[i] = list[j];
+        list[j] = temp;
     }
-
 
 
     public int binarySearch(double distance) {
