@@ -17,6 +17,7 @@ import com.web.bus.entities.Customer;
 import com.web.bus.services.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -51,9 +52,9 @@ public class CompanyLoginView extends Div {
                     Optional<Company> optionalCompany = authenticationService.findByEmail(email.getValue());
                     try{
                         if (optionalCompany.isEmpty()) {
-                            throw new Exception("Invalid email or password. Please try again.");
+                            throw new NoSuchElementException("Invalid email or password. Please try again.");
                         }
-                    } catch (Exception e) {
+                    } catch (NoSuchElementException e) {
                         Notification.show(e.getMessage(), 5000, Notification.Position.TOP_CENTER);
                     }
                     Company Company = optionalCompany.get();

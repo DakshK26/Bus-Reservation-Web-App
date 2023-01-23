@@ -122,9 +122,7 @@ public class BusList{
     private void increaseSize() {
         this.setMaxSize(maxSize + 1);
         Bus[] newList = new Bus[this.getMaxSize()];
-        for (int i = 0; i < this.list.length; i++) {
-            newList[i] = this.list[i];
-        }
+        System.arraycopy(this.list, 0, newList, 0, this.list.length);
         list = newList;
     }
 
@@ -160,7 +158,7 @@ public class BusList{
         }
         reader.close();
 
-        String fileContents[] = new String[length];
+        String[] fileContents = new String[length];
 
         BusList list = new BusList();
 
@@ -168,7 +166,7 @@ public class BusList{
 
         for (int i = 0; i < fileContents.length; i++) {
             fileContents[i] = reader.readLine();
-            String words [] = fileContents[i].split("/");
+            String[] words = fileContents[i].split("/");
             Bus bus = new Bus(words[0], words[1], Integer.parseInt(words[2]), words[3]);
             list.increaseSize();
             list.insert(bus);
