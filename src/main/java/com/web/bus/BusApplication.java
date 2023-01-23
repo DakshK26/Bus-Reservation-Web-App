@@ -13,6 +13,7 @@ import java.net.URISyntaxException;
 * Description: Class to start web app
 * Method List: public static void main(String[] args)
  */
+
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.web.bus.services")
 @EntityScan(basePackages = "com.web.bus.entities")
@@ -25,6 +26,7 @@ public class BusApplication {
 	public static void main(String[] args) throws URISyntaxException, IOException {
 		SpringApplication.run(BusApplication.class, args);
 
+		// Open browser
 		Runtime rt = Runtime.getRuntime();
 		String url = "http://localhost:8080/";
 		rt.exec("rundll32 url.dll,FileProtocolHandler " + url);

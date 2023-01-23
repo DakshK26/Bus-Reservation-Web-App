@@ -78,6 +78,45 @@ Annotations:
 # @PutMapping is a Spring annotation that maps HTTP PUT requests onto specific handler methods. It is used to map the HTTP PUT requests to the controller methods.
 # @DeleteMapping is a Spring annotation that maps HTTP DELETE requests onto specific handler methods. It is used to map the HTTP DELETE requests to the controller methods.
 
+Explanations of each folder:
+.idea - This folder contains the project settings and configurations for the IntelliJ IDEA IDE. It is not necessary to open the project in IntelliJ IDEA, but it is recommended.
+.mvn - This folder contains the Maven wrapper files. It is not necessary to use the Maven wrapper, but it is recommended.
+.settings - This folder contains the project settings and configurations for the Eclipse IDE. It is not necessary to open the project in Eclipse, but it is recommended.
+frontend - This folder contains the frontend code for the application. It has the css, html, and js files. It also has the node_modules folder that contains the frontend dependencies.
+node_modules - This folder contains the frontend dependencies. It is not necessary to use the frontend dependencies, but it is recommended.
+src - This folder contains the source code for the application. It has the main and test folders. The main folder has the java and resources folders. The java folder has the com.web.bus package. The resources folder has the static and templates folders. The static folder has the css, images, and js folders. The templates folder has the html files.
+target - This folder contains the compiled code for the application. It is not necessary to compile the code, but it is recommended.
+out - This folder contains the compiled code for the application. It is not necessary to compile the code, but it is recommended.
+
+
+Explanations of each file:
+pom.xml - This file contains the project dependencies and configurations for the Maven build tool. It is not necessary to use the Maven build tool, but it is recommended.
+package.json - This file contains the project dependencies and configurations for the Node.js build tool. It is not necessary to use the Node.js build tool, but it is recommended.
+package-lock.json - This file contains the project dependencies and configurations for the Node.js build tool. It is not necessary to use the Node.js build tool, but it is recommended.
+.gitignore - This file contains the files and folders that should be ignored by Git. It is not necessary to use Git, but it is recommended.
+mydb.mv.db - This file contains the database for the application. It is not necessary to use the database, but it is recommended.
+application.properties - This file contains the project configurations for the Spring Boot framework.
+allBuses.txt - This file contains the data for the buses in the database.
+.classpath - This file contains the project settings and configurations for the Eclipse IDE. It is not necessary to open the project in Eclipse, but it is recommended.
+tsconfig.json - This file contains the project configurations for the TypeScript build tool. It is not necessary to use the TypeScript build tool, but it is recommended.
+tslint.json - This file contains the project configurations for the TypeScript build tool. It is not necessary to use the TypeScript build tool, but it is recommended.
+webpack.config.js - This file contains the project configurations for the Webpack build tool. It is not necessary to use the Webpack build tool, but it is recommended.
+.iml - This file contains the project settings and configurations for the IntelliJ IDEA IDE. It is not necessary to open the project in IntelliJ IDEA, but it is recommended.
+mvnw - This file contains the Maven wrapper. It is not necessary to use the Maven wrapper, but it is recommended.
+vite.config.ts - This file contains the project configurations for the Vite build tool. It is not necessary to use the Vite build tool, but it is recommended.
+vite.generated.d.ts - This file contains the project configurations for the Vite build tool. It is not necessary to use the Vite build tool, but it is recommended.
+
+All Dependencies Used in the Project:
+Google Gson - This dependency is used to convert Java objects to JSON and vice versa. It uses the google maps api library to get the coordinates and travel time between locations
+Vaadin - This dependency is used to create the frontend for the application. It uses the vaadin library to create the frontend.
+Spring Boot - This dependency is used to create the backend for the application. It uses the spring boot library to create the backend.
+Spring Data JPA - This dependency is used to create the database for the application. It uses the spring data jpa library to create the database.
+H2 Database - Creates a in-memory database for the application. To be used with Spring Data JPA.
+Spring Web - This dependency is used to create the REST API for the application. It uses the spring web library to create the REST API.
+Spring Boot DevTools- Creates tools like live reload for the application. To be used with Spring Boot.
+Spring Boot Starter Test - This dependency is used to create the unit tests for the application. It uses the spring boot starter test library to create the unit tests.
+
+
 
 
 
