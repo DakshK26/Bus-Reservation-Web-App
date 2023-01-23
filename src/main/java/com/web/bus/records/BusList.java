@@ -323,43 +323,60 @@ public class BusList {
     }
 
     /**
-
-     *  * public void replace(int index, Bus bus)
-     *  * public void quickSort()
-     *  * public void quickSort(int left, int right)
-     *  * public void swap(int i, int j)
-     *  * public int binarySearch(double distance)
-     *  * public BusList searchCompany(String company, BusList list)
-     *  * public BusList searchByStartDestination(String startDestination, BusList list)
-     *  * public BusList searchByEndDestination(String endDestination, BusList list)
-     *  * public void increaseSize()
-     *  * getters and setters
-     *  * public BusList readFileMaster() throws IOException
-     *  * public void writeFileMaster(BusList list) throws IOException
-     *  * public String[] readFilePurchases() throws IOException
-     *  * public void writeFilePurchases(String[] usernames, BusList list) throws IOException
-     *  * public void printList() throws IOException
-     *  * public static void main (String [] args) throws IOException
+     *  Self Testing Main
+     * @param args command line arguments
+     * @throws IOException if file not found
      */
-    public static void main (String [] args) throws IOException {
-        Bus bus1 = new Bus("Toronto", "Vancouver", 12, "Freeridge");
-        Bus bus2 = new Bus("Toronto", "Chicago", 24, "Parkway Buses");
-        Bus bus3 = new Bus("Mumbai", "London", 100, "International Buses");
+    public static void main(String[] args) throws IOException {
+        BusList busList = new BusList();
+        Bus bus1 = new Bus("New York City", "Los Angeles", 50, "NYC-LA-01");
+        Bus bus2 = new Bus("Chicago", "Houston", 40, "CHI-HOU-01");
+        Bus bus3 = new Bus("Boston", "San Francisco", 45, "BOS-SF-01");
 
-        BusList list = new BusList();
-        System.out.println(list.getList().length);
-        list.insert(bus1);
-        System.out.println(list.getList()[0]);
-        list.insert(bus2);
-        list.insert(bus3);
-        System.out.println(list.getList().length);
-        for(int i = 0; i < list.getCurrentSize(); i++) {
-            System.out.println(list.getList()[i]);
-        }
-        list.delete(bus2);
-        System.out.println(list.getList().length);
-        for(int i = 0; i < list.getCurrentSize(); i++) {
-            System.out.println(list.getList()[i]);
-        }
+        // Test Insert method
+        busList.insert(bus1);
+        busList.insert(bus2);
+        busList.insert(bus3);
+
+        System.out.println("Test Insert Method:");
+        busList.printList();
+
+        // Test Delete method
+        busList.delete(bus2);
+
+        System.out.println("Test Delete Method:");
+        busList.printList();
+
+        // Test Replace method
+        Bus bus4 = new Bus("Houston", "New York City", 40, "HOU-NYC-01");
+        busList.replace(0, bus4);
+
+        System.out.println("Test Replace Method:");
+        busList.printList();
+
+        // Test quickSort method
+        busList.quickSort();
+
+        System.out.println("Test quickSort Method:");
+        busList.printList();
+
+        // Test binarySearch method
+        System.out.println("Test binarySearch Method:");
+        System.out.println(busList.binarySearch(4200));
+
+        // Test searchCompany method
+        System.out.println("Test searchCompany Method:");
+        BusList companyList = busList.searchCompany("Greyhound", busList);
+        companyList.printList();
+
+        // Test searchByStartDestination method
+        System.out.println("Test searchByStartDestination Method:");
+        BusList startDestinationList = busList.searchByStartDestination("Houston", busList);
+        startDestinationList.printList();
+
+        // Test searchByEndDestination method
+        System.out.println("Test searchByEndDestination Method:");
+        BusList endDestinationList = busList.searchByEndDestination("New York City", busList);
+        endDestinationList.printList();
     }
 }

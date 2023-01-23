@@ -273,9 +273,50 @@ public class Bus {
                 '}';
     }
 
+    /**
+     * Self Testing Main Method
+     * @param args the command line arguments
+     * @throws java.io.IOException
+     * */
     public static void main(String[] args) throws IOException {
-        Bus bus = new Bus("Toronto", "Ottawa", 10, "Mustang");
-        System.out.println(bus.toStringFile());
+        Bus bus1 = new Bus("New York City", "Los Angeles", 50, "NYC-LA-01");
+        Bus bus2 = new Bus("Chicago", "Houston", 40, "CHI-HOU-01");
+        Bus bus3 = new Bus("Boston", "San Francisco", 45, "BOS-SF-01");
+
+        // Test Insert method
+        System.out.println("Test Insert Method:");
+        System.out.println(bus1);
+        System.out.println(bus2);
+        System.out.println(bus3);
+
+        // Test Remove spaces method
+        System.out.println("Test Remove spaces Method:");
+        System.out.println(bus1.removeSpaces("New York City"));
+        System.out.println(bus1.removeSpaces(" Los Angeles "));
+
+        // Test getCoordinates method
+        System.out.println("Test getCoordinates Method:");
+        double[] coordinates = bus1.getCoordinates("New York City");
+        System.out.println("Latitude: " + coordinates[0] + ", Longitude: " + coordinates[1]);
+
+        // Test calculateDistance method
+        System.out.println("Test calculateDistance Method:");
+        bus1.calculateDistance();
+        System.out.println(bus1.getDistance() + " kilometers");
+
+        // Test getTravelTime method
+        System.out.println("Test getTravelTime Method:");
+        bus1.getTravelTime();
+        System.out.println(bus1.getTimeInMinutes() + " minutes");
+
+        // Test toStringFile method
+        System.out.println("Test toStringFile Method:");
+        System.out.println(bus1.toStringFile());
+
+        // Test toString method
+        System.out.println("Test toString Method:");
+        System.out.println(bus1.toString());
+
     }
 
 
