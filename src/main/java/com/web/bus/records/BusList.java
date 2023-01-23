@@ -31,12 +31,15 @@ public class BusList{
         }
     }
 
-    public void delete(int index) {
-        if (index >= 0 && index < currentSize) {
-            for (int i = index; i < currentSize - 1; i++) {
-                list[i] = list[i + 1];
+    public void delete(Bus bus) {
+        for (int i = 0; i < currentSize; i++) {
+            if (list[i].equals(bus)) {
+                for (int j = i; j < currentSize - 1; j++) {
+                    list[j] = list[j + 1];
+                }
+                currentSize--;
+                break;
             }
-            currentSize--;
         }
     }
 

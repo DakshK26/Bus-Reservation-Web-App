@@ -89,6 +89,22 @@ public class CompanyRoutesView extends VerticalLayout {
         table.addColumn(Bus::getTimeInMinutes).setHeader("Travel Time");
         table.addComponentColumn(item -> {
             Button btn = new Button("Cancel");
+            btn.addClickListener(event -> {
+                // Cancel route
+                BusList busList = new BusList();
+                try {
+                    busList = busList.readFileMaster();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                busList.delete(item);
+                try {
+                    busList.writeFileMaster(busList);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                UI.getCurrent().navigate("companyRoutesView");
+            });
             return btn;
         }).setHeader("Cancel Routes");
 

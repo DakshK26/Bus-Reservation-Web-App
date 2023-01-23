@@ -154,7 +154,6 @@ public class CustomerPurchaseView extends VerticalLayout {
                 cardNum,
                 expiration,
                 cvc,
-
                 purchase,
                 cancel
         );
