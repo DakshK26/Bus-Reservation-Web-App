@@ -55,7 +55,6 @@ public class CustomerMainLayout extends AppLayout {
         logout = new Button("Logout"); // Logout button
         logout.getStyle().set("margin-left", "20px");
         logout.addClickListener(event -> { // When logout button is clicked, close the session and navigate to the login page
-            UI.getCurrent().getSession().close();
             UI.getCurrent().navigate("");
         });
         //add components to navbar

@@ -54,8 +54,7 @@ public class CompanyMainLayout extends AppLayout {
         logout = new Button("Logout");
         logout.getStyle().set("margin-left", "20px");
         logout.addClickListener(event -> {
-            UI.getCurrent().getSession().close();
-            UI.getCurrent().navigate(""); //navigate back to main route
+            UI.getCurrent().navigate("register"); //navigate back to main route
         });
         //add components to navbar
         addToNavbar(header, title, logout);
