@@ -61,7 +61,7 @@ public class LoginView extends Div {
                 // Save customer to UI session data
                 UI.getCurrent().getSession().setAttribute("customer", customer);
                 // Redirect the user to the "main" route
-                UI.getCurrent().navigate("main");
+                UI.getCurrent().navigate("customerHomeView");
             } else {
                 // Show an error message
                 Notification.show("Invalid username or password. Please try again.", 5000, Notification.Position.TOP_CENTER);
