@@ -4,7 +4,7 @@ Bus Reservation Web App
 Running the project:
 
 Recommended IDE: IntelliJ IDEA
-Recommended Plugin For Eclipse: Maven Integration for Eclipse (M2E) 1.17.0 - https://www.eclipse.org/m2e/
+Recommended Plugin For Eclipse: Maven Integration for Eclipse (M2E) 1.17.0 - https://www.eclipse.org/m2e/ (Not needed at all, just improves project structure formatting to make project more readable)
 Recommended Java Version (JDK): 11.0.8
 
 
