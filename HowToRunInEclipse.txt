@@ -1,0 +1,9 @@
+The following is a tutorial on how to import this project into eclipse.
+This tutorial assumes that you have already installed eclipse.
+1. Open eclipse and select File > Import.
+2. Select Maven > Existing Maven Projects into Workspace and click Next.
+3. Click Browse and select the directory where you extracted the project.
+4. The main classes will be found inside the main/java directory.
+5. To run the program, right-click on the project select Run As > Java Application.
+6. Select the class "BusApplication" when it asks for what is the main class in this project.
+7. The program will run, and you can start using it.
