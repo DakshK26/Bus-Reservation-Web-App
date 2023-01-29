@@ -1,17 +1,15 @@
 package com.web.bus.records;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Scanner;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.web.bus.HiddenConfig;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.DecimalFormat;
+import java.util.Scanner;
 /**
  * @author: Daksh & Ashwin
  * Date: Jan. 2023
@@ -91,9 +89,8 @@ public class Bus {
     Method to find longtitude and langtitude from adress
      */
     public double[] getCoordinates(String location) throws IOException{
-        String API_KEY = "AIzaSyCbAe6efhgr5AYp9zqahePb_wV3LQBPLtQ";
         String requestUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-                location + "&key=" + API_KEY;
+                location + "&key=" + HiddenConfig.API_KEY;
 
         // make the HTTP GET request to the URL
         URL url = new URL(requestUrl);
@@ -128,9 +125,8 @@ public class Bus {
     Method to get travel time from two locations
      */
     public void getTravelTime() throws IOException{
-        String API_KEY = "AIzaSyCbAe6efhgr5AYp9zqahePb_wV3LQBPLtQ";
         String requestUrl = "https://maps.googleapis.com/maps/api/directions/json?origin=" +
-                this.startDestination + "&destination=" + this.endDestination + "&key=" + API_KEY;
+                this.startDestination + "&destination=" + this.endDestination + "&key=" + HiddenConfig.API_KEY;
 
         // make the HTTP GET request to the URL
         URL url = new URL(requestUrl);

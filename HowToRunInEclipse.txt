@@ -1,5 +1,6 @@
 The following is a tutorial on how to import this project into eclipse.
 This tutorial assumes that you have already installed eclipse.
+0. Download the project and unzip it into your chosen directory.
 1. Open eclipse and select File > Import.
 2. Select Maven > Existing Maven Projects into Workspace and click Next.
 3. Click Browse and select the directory where you extracted the project.
