@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 /*
 * @author: Daksh & Ashwin
 * Date: Jan. 2023
-* Description: Class to start web app
+* Description: Class to launch web app
 * Method List: public static void main(String[] args)
  */
 

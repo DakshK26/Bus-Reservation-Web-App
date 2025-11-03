@@ -7,4 +7,4 @@ This tutorial assumes that you have already installed eclipse.
 4. The main classes will be found inside the main/java directory.
 5. To run the program, right-click on the project select Run As > Java Application.
 6. Select the class "BusApplication" when it asks for what is the main class in this project.
-7. The program will run, and you can start using it.
+7. The program will run, and you can start using it. 

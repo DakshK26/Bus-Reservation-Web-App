@@ -5,7 +5,7 @@ Running the project:
 
 Recommended IDE: IntelliJ IDEA
 Recommended Plugin For Eclipse: Maven Integration for Eclipse (M2E) 1.17.0 - https://www.eclipse.org/m2e/ (Not needed at all, just improves project structure formatting to make project more readable)
-Recommended Java Version (JDK): 11.0.8
+Recommended Java Version (JDK): 11.0.8 
 
 
 To run the project, navigate to the "BusApplication" class and click "run". If you do not run the program
