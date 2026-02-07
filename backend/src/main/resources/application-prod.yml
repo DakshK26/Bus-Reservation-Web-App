@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  data:
+    redis:
+      url: ${REDIS_URL:redis://localhost:6379}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    security:
+      protocol: SSL
+    ssl:
+      trust-store-type: PEM
+      trust-store-certificates: ${KAFKA_SSL_CA_CERT}
+      key-store-type: PEM
+      key-store-certificate-chain: ${KAFKA_SSL_ACCESS_CERT}
+      key-store-key: ${KAFKA_SSL_ACCESS_KEY}
+    consumer:
+      auto-offset-reset: earliest
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: 86400000
+  bigquery:
+    enabled: false
+  seed:
+    enabled: true
+
+logging:
+  level:
+    com.web.bus: INFO

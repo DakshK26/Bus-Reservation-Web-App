@@ -1,0 +1,63 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    schema: bus_reservation
+    tables:
+      - name: raw_booking_events
+        description: "Raw booking lifecycle events ingested from Kafka"
+        columns:
+          - name: event_id
+            description: "Unique event identifier (UUID)"
+            tests:
+              - unique
+              - not_null
+          - name: event_type
+            description: "Type of booking event"
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['BOOKING_CREATED', 'BOOKING_CONFIRMED', 'BOOKING_CANCELLED']
+          - name: booking_id
+            tests:
+              - not_null
+          - name: event_timestamp
+            tests:
+              - not_null
+
+models:
+  - name: stg_booking_events
+    description: "Deduplicated and typed booking events"
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+
+  - name: bookings_by_day
+    description: "Daily booking aggregations"
+    columns:
+      - name: booking_date
+        tests:
+          - unique
+          - not_null
+
+  - name: revenue_by_route
+    description: "Revenue aggregated by origin-destination pair"
+    columns:
+      - name: route_name
+        tests:
+          - unique
+          - not_null
+
+  - name: revenue_by_company
+    description: "Revenue aggregated by company"
+    columns:
+      - name: company_id
+        tests:
+          - unique
+          - not_null
+
+  - name: booking_confirmation_latency
+    description: "Booking confirmation latency percentiles"
