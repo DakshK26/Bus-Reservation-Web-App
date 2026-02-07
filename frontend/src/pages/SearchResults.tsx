@@ -130,7 +130,7 @@ export default function SearchResults() {
                           <div className="flex items-center gap-4">
                             <span className="text-lg font-bold text-primary-600">${bus.pricePerSeat}</span>
                             <button
-                              onClick={(e) => { e.stopPropagation(); navigate(`/book/${bus.id}`); }}
+                              onClick={(e) => { e.stopPropagation(); sessionStorage.setItem(`bus-${bus.id}`, JSON.stringify(bus)); navigate(`/book/${bus.id}`); }}
                               className="btn-primary py-2 px-4 text-sm"
                             >
                               Book Now

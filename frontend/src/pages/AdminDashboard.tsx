@@ -104,7 +104,7 @@ export default function AdminDashboard() {
             </div>
             <div>
               <p className="text-sm text-gray-500">p95 Latency</p>
-              <p className="text-2xl font-bold">{data.latency.p95_ms || 0}ms</p>
+              <p className="text-2xl font-bold">{String(data.latency.p95_ms || 0)}ms</p>
             </div>
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function AdminDashboard() {
           ].map(({ label, value, unit }) => (
             <div key={label} className="bg-gray-50 rounded-lg p-4 text-center">
               <p className="text-sm text-gray-500 mb-1">{label}</p>
-              <p className="text-2xl font-bold text-gray-900">{value || 0}{unit}</p>
+              <p className="text-2xl font-bold text-gray-900">{String(value || 0)}{unit}</p>
             </div>
           ))}
         </div>

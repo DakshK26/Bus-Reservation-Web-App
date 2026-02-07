@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MapPin, Clock, Users, Minus, Plus, Loader2, CheckCircle } from 'lucide-react';
-import { routeApi, bookingApi } from '../services/api';
+import { bookingApi } from '../services/api';
 import { useAuthStore } from '../store/authStore';
 import { toast } from 'sonner';
 import type { BusResponse } from '../types';
