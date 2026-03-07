@@ -12,16 +12,21 @@ spring:
   data:
     redis:
       url: ${REDIS_URL:redis://localhost:6379}
+  ssl:
+    bundle:
+      pem:
+        kafka:
+          truststore:
+            certificate: classpath:certs/ca.pem
+          keystore:
+            certificate: classpath:certs/service.cert
+            private-key: classpath:certs/service.key
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka-391ed52e-khannad24-1ace.i.aivencloud.com:27441}
     security:
       protocol: SSL
     ssl:
-      trust-store-type: PEM
-      trust-store-certificates: ${KAFKA_SSL_CA_CERT}
-      key-store-type: PEM
-      key-store-certificate-chain: ${KAFKA_SSL_ACCESS_CERT}
-      key-store-key: ${KAFKA_SSL_ACCESS_KEY}
+      bundle: kafka
     consumer:
       auto-offset-reset: earliest
 
